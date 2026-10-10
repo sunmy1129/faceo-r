@@ -185,9 +185,9 @@ modularity.
 \noindent\textbf{Contributions.} \begin{enumerate}
 \item \textbf{FACEO-R}, a functionally anchored overlapping community detection method whose
 reliance on GO-derived functional similarity adapts to the estimated reliability of the
-expression graph --- collapsing to standard Leiden on clean data and preserving module
-coherence under degradation. It outperforms Leiden $\gamma=1.0$ and WGCNA-style partitioning
-under controlled data degradation (81\% and 88\% win rates; $p = 1.9\times10^{-14}$ and
+expression graph. Its anchoring strength was selected by a systematic sweep. It outperforms
+Leiden $\gamma=1.0$ and WGCNA-style partitioning
+under controlled degradation and on clean data (81\% and 88\% win rates; $p = 1.9\times10^{-14}$ and
 $9.0\times10^{-20}$), and replicates on real single-cell data (69\% and 94\% win rates;
 $p = 0.029$ and $6.1\times10^{-5}$).
 \item A \textbf{paired benchmark design} in which 31 partitioning algorithms operate on an
@@ -837,6 +837,16 @@ $0.217$ (Leiden) and $0.181$ (WGCNA). Notably, the magnitude of the advantage wa
 correlated with the zero fraction (Spearman $\rho = -0.28$, n.s.), indicating that on real
 data the benefit arises from the functional anchor supplying information orthogonal to
 expression density, rather than from compensating dropout per se.
+
+A second, independent single-cell cohort delineates the boundary of this benefit.
+On healthy intestinal epithelium (GSE185224; three donors; 23{,}185 cells, 1{,}941 after
+stringent QC), expression is high quality and zero fractions are low. Here FACEO-R was
+statistically indistinguishable from Leiden
+(mean Reactome coherence $0.175$ versus $0.178$ across 20 pathway subnetworks) while still
+exceeding WGCNA-style hierarchical cutting ($0.145$). With GSE145926, this defines the
+operating regime: the functional anchor adds information when the expression graph is
+unreliable, and is neutral when it is already informative. It does not degrade performance
+in the high-quality limit.
 
 \begin{figure}[htbp]
 \centering
