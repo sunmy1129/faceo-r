@@ -432,12 +432,53 @@ hierarchical cutting on pathway-derived graphs frequently fails to yield a parti
 improves on the trivial one-module solution (Fig.~\ref{fig:network} illustrates the
 coarse-versus-fine division on a representative apoptotic subnetwork).
 
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth,height=0.44\textheight,keepaspectratio]{../output/figures_v3/Fig8_network_structure.png}
+\caption{Network structure of an apoptotic-process subnetwork (GSE137342, 110
+highest-variance genes) partitioned on an identical topological-overlap input. Node colour
+denotes module membership; node size scales with degree. WGCNA-style hierarchical cutting
+yields 3 coarse modules, whereas Leiden at $\gamma=1.0$ and $\gamma=2.0$ resolve 4 and 23
+modules respectively. Edges are the top 8\% of topological-overlap weights.}
+\label{fig:network}
+\end{figure}
+
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth,height=0.44\textheight,keepaspectratio]{../output/figures_v3/Fig4_consistency.png}
+\caption{Cross-cohort consistency. $\Delta$ functional coherence (Leiden $\gamma=1.0$ minus
+WGCNA-style) per cohort, and the distribution of coherence $z$-scores for both methods.}
+\label{fig:consistency}
+\end{figure}
+
+
 Crucially, the same comparison on the size-unbiased functional coherence metric --- computed
 against random gene sets drawn from the same pathway --- favoured multi-resolution
 partitioning (median $z = 0.689$ versus $0.045$; $q = 4.6\times10^{-7}$,
 $\delta = +0.418$). This establishes that the finer partitions are not merely more numerous
 but functionally more coherent than the pathway's own baseline expectation
 (Fig.~\ref{fig:metrics}, Fig.~\ref{fig:heatmap}).
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth,height=0.44\textheight,keepaspectratio]{../output/figures_v3/Fig3_heatmap.png}
+\caption{Performance profile of each algorithm across six evaluation layers ($z$-score
+standardised). The primary functional endpoint (coherence $z$) is shown alongside
+structural, stability, robustness and biological metrics.}
+\label{fig:heatmap}
+\end{figure}
+
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth,height=0.44\textheight,keepaspectratio]{../output/figures_v3/Fig2_metrics.png}
+\caption{Multi-metric comparison of the 31 partitioning algorithms. (a) Functional
+coherence $z$-score ranking. (b) Stability (bootstrap ARI) versus robustness (ARI under
+10\% noise). (c) Separation rate for literature-curated antagonistic gene pairs.}
+\label{fig:metrics}
+\end{figure}
+
 
 The separation rate for 20 literature-curated antagonistic gene pairs was also higher for
 multi-resolution partitioning (median $0.500$ versus $0.000$; $q = 7.0\times10^{-7}$,
@@ -452,6 +493,16 @@ range $\gamma\in[1.0,2.0]$ occupied the region of maximal functional coherence, 
 $\gamma\geq 5.0$ produced partitions with modularity approaching zero. Module count alone is
 therefore an inadequate criterion, and resolution must be chosen against an external
 functional criterion.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth,height=0.44\textheight,keepaspectratio]{../output/figures_v3/Fig1_overpartition.png}
+\caption{Fragmentation cost of resolution. (a) Number of modules versus modularity $Q$.
+(b) Number of modules versus functional coherence. (c) Continuous sweep of the resolution
+parameter, showing simultaneous collapse of modularity and coherence at high resolution.}
+\label{fig:overpartition}
+\end{figure}
+
 
 \noindent\textbf{Synthetic benchmarks confirm recovery of nested structure.} On the block-model benchmark with known ground truth, most algorithms recovered the planted
 communities when fuzziness was low, but performance diverged sharply as the between- and
@@ -469,6 +520,16 @@ reached ARI $= 0.908$ and identified only 11 modules. Low-resolution settings
 6 modules). This provides direct, ground-truth-based evidence that multi-resolution
 partitioning resolves nested functional structure that single-scale hierarchical cutting
 cannot (Fig.~\ref{fig:synthetic}).
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth,height=0.44\textheight,keepaspectratio]{../output/figures/Fig5_synthetic.png}
+\caption{Synthetic benchmarks with known ground truth. (a) Absolute accuracy (ARI) as a
+function of community fuzziness. (b) Recovery of nested sub-groups (the decisive
+benchmark). (c) Robustness to additive noise.}
+\label{fig:synthetic}
+\end{figure}
+
 
 \noindent\textbf{Self-supervised embeddings provide independent structural support that
 favours multi-resolution partitioning.} Because the embedding model was trained exclusively on an edge-prediction objective with no
@@ -488,6 +549,19 @@ better than the hierarchical one, providing independent structural corroboration
 main result of Section~\ref{sec:main}. On a synthetic graph with known communities, the same
 pipeline recovered the ground-truth partition exactly (ARI $=1.000$).
 
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth,height=0.44\textheight,keepaspectratio]{../output/figures_v3/Fig9_umap_embedding.png}
+\caption{Self-supervised embedding of the apoptotic subnetwork, projected by UMAP. Nodes
+are coloured by partition membership for (a) WGCNA-style hierarchical cutting,
+(b) Leiden $\gamma=1.0$ and (c) Leiden $\gamma=2.0$. (d) Adjusted Rand index between each
+partition and the partition derived from the embedding alone (no community labels used
+during training). The embedding reproduces the Leiden $\gamma=1.0$ partition several-fold
+better than the hierarchical one.}
+\label{fig:umap}
+\end{figure}
+
+
 \noindent\textbf{Downstream clinical prediction.} Module eigengenes derived from each partition were used to predict disease status under
 five-fold stratified cross-validation (317 records). Multi-resolution partitions achieved
 consistently higher AUC than the hierarchical reference (Leiden $\gamma=1.0$: $0.989$;
@@ -499,6 +573,16 @@ producing very fine partitions (e.g. CPM $\gamma=0.20$, $>140$ modules) did not 
 moderate-resolution settings, again indicating that excessive fragmentation is not
 beneficial.
 
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth,height=0.44\textheight,keepaspectratio]{../output/figures/Fig7_downstream.png}
+\caption{Downstream clinical prediction. Cross-validated AUC for module-eigengene
+classifiers predicting disease status, shown per algorithm and as a function of module
+count.}
+\label{fig:downstream}
+\end{figure}
+
+
 \noindent\textbf{Modularity is unstable with respect to graph construction.} \label{sec:null}
 
 Because topological overlap matrices must be thresholded before community detection, we
@@ -509,6 +593,20 @@ configuration using the 75th percentile --- the setting most commonly adopted --
 $z = -5.54$ (observed \emph{below} null), whereas a less sparse construction gives the
 opposite. Modularity comparisons against null models are therefore threshold-dependent and
 \emph{cannot} be reported as a robust property of the data (Fig.~\ref{fig:null}).
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth,height=0.44\textheight,keepaspectratio]{../output/figures/Fig6_null.png}
+\caption{Modularity is unstable with respect to graph construction. (a) Mean modularity
+increases monotonically with the edge-weight threshold, from $0.269$ at the 50th percentile
+to $0.419$ at the 95th. (b) Decomposition of the weighted modularity: values fall from
+$0.335$ (weighted) to $0.237$ (unweighted), indicating that roughly $29\%$ of the observed
+modularity derives from the weight distribution rather than from topology. Because both the
+absolute level and the sign of the null-model comparison depend on the threshold, modularity
+is not a robust criterion for module quality.}
+\label{fig:null}
+\end{figure}
+
 
 \noindent\textbf{Weight dependence.} Holding topology fixed while replacing all edge weights
 with a constant reduced mean modularity from $0.335$ to $0.237$ --- a $29\%$ contribution
@@ -564,6 +662,17 @@ resolution selection, and it argues that reporting a single partition at a singl
 is not defensible. We recommend reporting the resolution-sensitivity curve and validating any
 chosen resolution against held-out functional evidence (Fig.~\ref{fig:paramsel}).
 
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth,height=0.44\textheight,keepaspectratio]{../output/figures_v3/Fig10_parameter_selection.png}
+\caption{Resolution selection cannot be automated. (a) Distribution of the functionally
+optimal resolution across 100 pathway--cohort pairs; the entropy (1.74 of a maximum 1.79)
+indicates no universal optimum. (b) Gain in functional coherence relative to fixed
+$\gamma=1.0$ for four families of automatic selection strategies.}
+\label{fig:paramsel}
+\end{figure}
+
+
 Taken together, and consistent with long-standing caution regarding modularity
 \citep{fortunato2007resolution,fortunato2010review}, modularity $Q$ ---
 and, critically, its significance against null models --- should not be used as primary
@@ -573,85 +682,17 @@ reported. We therefore base all primary conclusions on functional coherence agai
 annotation and on downstream predictive utility, which are defined with respect to external
 references and are insensitive to these choices.
 
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\columnwidth,height=0.44\textheight,keepaspectratio]{../output/figures_v3/Fig4_consistency.png}
-\caption{Cross-cohort consistency. $\Delta$ functional coherence (Leiden $\gamma=1.0$ minus
-WGCNA-style) per cohort, and the distribution of coherence $z$-scores for both methods.}
-\label{fig:consistency}
-\end{figure}
 
 %% ============================================================
 %% FIGURES
 %% ============================================================
 
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\columnwidth,height=0.44\textheight,keepaspectratio]{../output/figures_v3/Fig8_network_structure.png}
-\caption{Network structure of an apoptotic-process subnetwork (GSE137342, 110
-highest-variance genes) partitioned on an identical topological-overlap input. Node colour
-denotes module membership; node size scales with degree. WGCNA-style hierarchical cutting
-yields 3 coarse modules, whereas Leiden at $\gamma=1.0$ and $\gamma=2.0$ resolve 4 and 23
-modules respectively. Edges are the top 8\% of topological-overlap weights.}
-\label{fig:network}
-\end{figure}
 
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\columnwidth,height=0.44\textheight,keepaspectratio]{../output/figures_v3/Fig2_metrics.png}
-\caption{Multi-metric comparison of the 31 partitioning algorithms. (a) Functional
-coherence $z$-score ranking. (b) Stability (bootstrap ARI) versus robustness (ARI under
-10\% noise). (c) Separation rate for literature-curated antagonistic gene pairs.}
-\label{fig:metrics}
-\end{figure}
 
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\columnwidth,height=0.44\textheight,keepaspectratio]{../output/figures_v3/Fig3_heatmap.png}
-\caption{Performance profile of each algorithm across six evaluation layers ($z$-score
-standardised). The primary functional endpoint (coherence $z$) is shown alongside
-structural, stability, robustness and biological metrics.}
-\label{fig:heatmap}
-\end{figure}
 
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\columnwidth,height=0.44\textheight,keepaspectratio]{../output/figures_v3/Fig1_overpartition.png}
-\caption{Fragmentation cost of resolution. (a) Number of modules versus modularity $Q$.
-(b) Number of modules versus functional coherence. (c) Continuous sweep of the resolution
-parameter, showing simultaneous collapse of modularity and coherence at high resolution.}
-\label{fig:overpartition}
-\end{figure}
 
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\columnwidth,height=0.44\textheight,keepaspectratio]{../output/figures/Fig5_synthetic.png}
-\caption{Synthetic benchmarks with known ground truth. (a) Absolute accuracy (ARI) as a
-function of community fuzziness. (b) Recovery of nested sub-groups (the decisive
-benchmark). (c) Robustness to additive noise.}
-\label{fig:synthetic}
-\end{figure}
 
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\columnwidth,height=0.44\textheight,keepaspectratio]{../output/figures_v3/Fig9_umap_embedding.png}
-\caption{Self-supervised embedding of the apoptotic subnetwork, projected by UMAP. Nodes
-are coloured by partition membership for (a) WGCNA-style hierarchical cutting,
-(b) Leiden $\gamma=1.0$ and (c) Leiden $\gamma=2.0$. (d) Adjusted Rand index between each
-partition and the partition derived from the embedding alone (no community labels used
-during training). The embedding reproduces the Leiden $\gamma=1.0$ partition several-fold
-better than the hierarchical one.}
-\label{fig:umap}
-\end{figure}
 
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\columnwidth,height=0.44\textheight,keepaspectratio]{../output/figures/Fig7_downstream.png}
-\caption{Downstream clinical prediction. Cross-validated AUC for module-eigengene
-classifiers predicting disease status, shown per algorithm and as a function of module
-count.}
-\label{fig:downstream}
-\end{figure}
 
 %% ============================================================
 %% TABLES
@@ -734,23 +775,23 @@ $0.1061$ for Leiden ($\Delta = +0.046$; 29/33 wins; $p<10^{-4}$). Under expressi
 $p = 0.077$ and $0.117$), where graph topology is preserved and only estimation variance
 increases.
 
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth,height=0.44\textheight,keepaspectratio]{../output/figures_v3/Fig11_faceo_r_robustness.png}
+\caption{FACEO-R outperforms existing methods under data degradation. (a--c) Functional
+coherence as a function of degradation level for feature dropout, expression noise and sample
+subsampling. (d) Per-condition win rate against Leiden and WGCNA. (e) Adaptive anchoring
+weight $\alpha$ as a function of estimated graph reliability $q$. (f) Overall mean coherence
+across all 165 comparisons.}
+\label{fig:faceor}
+\end{figure}
+
+
 \noindent\textbf{Mechanism.} Because the anchoring weight $\alpha(q)$ decreases with graph
 reliability, the functional term contributes most precisely when expression information is
 least trustworthy, while FACEO-R never fell below the Leiden baseline on clean data ---
 consistent with the designed non-inferiority.
 
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\columnwidth,height=0.44\textheight,keepaspectratio]{../output/figures/Fig6_null.png}
-\caption{Modularity is unstable with respect to graph construction. (a) Mean modularity
-increases monotonically with the edge-weight threshold, from $0.269$ at the 50th percentile
-to $0.419$ at the 95th. (b) Decomposition of the weighted modularity: values fall from
-$0.335$ (weighted) to $0.237$ (unweighted), indicating that roughly $29\%$ of the observed
-modularity derives from the weight distribution rather than from topology. Because both the
-absolute level and the sign of the null-model comparison depend on the threshold, modularity
-is not a robust criterion for module quality.}
-\label{fig:null}
-\end{figure}
 
 \noindent\textbf{Validation on real single-cell data.} \label{sec:scrna}
 
@@ -773,13 +814,16 @@ expression density, rather than from compensating dropout per se.
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\columnwidth,height=0.44\textheight,keepaspectratio]{../output/figures_v3/Fig10_parameter_selection.png}
-\caption{Resolution selection cannot be automated. (a) Distribution of the functionally
-optimal resolution across 100 pathway--cohort pairs; the entropy (1.74 of a maximum 1.79)
-indicates no universal optimum. (b) Gain in functional coherence relative to fixed
-$\gamma=1.0$ for four families of automatic selection strategies.}
-\label{fig:paramsel}
+\includegraphics[width=\columnwidth,height=0.44\textheight,keepaspectratio]{../output/figures_v3/Fig12_scrna_validation.png}
+\caption{Validation on real single-cell data. (a) Distribution of true zero fractions across
+pathway subnetworks in GSE145926 (median 84\%), with the simulated level used in Fig.~8
+marked. (b) Paired coherence for the three methods across 16 subnetworks. (c) Coherence gain
+as a function of zero fraction, showing no significant trend. (d) Win rate and significance
+against each baseline.}
+\label{fig:scrna}
 \end{figure}
+
+
 
 %% ============================================================
 \section{Discussion}
@@ -917,26 +961,6 @@ S1--S6 are provided in the Supplementary Material.
 \bibitem{wolf2018scanpy} Wolf FA, Angerer P, Theis FJ (2018) SCANPY: Large-scale single-cell gene expression data analysis. \textit{Genome Biology} 19, 15.
 \end{thebibliography}
 
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\columnwidth,height=0.44\textheight,keepaspectratio]{../output/figures_v3/Fig11_faceo_r_robustness.png}
-\caption{FACEO-R outperforms existing methods under data degradation. (a--c) Functional
-coherence as a function of degradation level for feature dropout, expression noise and sample
-subsampling. (d) Per-condition win rate against Leiden and WGCNA. (e) Adaptive anchoring
-weight $\alpha$ as a function of estimated graph reliability $q$. (f) Overall mean coherence
-across all 165 comparisons.}
-\label{fig:faceor}
-\end{figure}
 
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\columnwidth,height=0.44\textheight,keepaspectratio]{../output/figures_v3/Fig12_scrna_validation.png}
-\caption{Validation on real single-cell data. (a) Distribution of true zero fractions across
-pathway subnetworks in GSE145926 (median 84\%), with the simulated level used in Fig.~8
-marked. (b) Paired coherence for the three methods across 16 subnetworks. (c) Coherence gain
-as a function of zero fraction, showing no significant trend. (d) Win rate and significance
-against each baseline.}
-\label{fig:scrna}
-\end{figure}
 
 \end{document}
