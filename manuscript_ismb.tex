@@ -773,7 +773,7 @@ noise ($\sigma = 0.5$ and $1.0$) gains were $+0.049$ and $+0.043$
 $+0.047$ ($p = 2.7\times10^{-4}$ and $2.2\times10^{-4}$).
 
 \noindent\textbf{The anchoring weight is critical and its optimum is narrow.} A systematic
-sweep of the fixed anchoring weight (Fig.~\ref{fig:alpha}) revealed a monotone dependence:
+sweep of the fixed anchoring weight (Fig.~\ref{fig:clean}b) revealed a monotone dependence:
 strong anchoring is uniformly better, with mean coherence falling from $0.207$ at
 $\alpha = 0.05$ to $0.189$ at $\alpha = 0.55$. The reliability-adaptive schedule originally
 proposed ($\alpha \in [0.35, 0.95]$) therefore under-anchored and scored $0.184$ --- below
@@ -795,21 +795,13 @@ across all 145 comparisons.}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\columnwidth,height=0.44\textheight,keepaspectratio]{../output/figures_v3/FigCA_clean.png}
-\caption{The advantage is present with and without degradation. Mean functional coherence
-($z$) under clean data and five degradation regimes; FACEO-R exceeds both baselines in every
-condition, with the largest margins under feature dropout.}
+\caption{The advantage is present with and without degradation, and the anchoring strength
+has a narrow optimum. (a) Mean functional coherence under clean data and five degradation
+regimes; FACEO-R exceeds both baselines in every condition. (b) Coherence as a function of a
+fixed anchoring weight $\alpha$ (solid); performance improves monotonically as anchoring
+strengthens, the originally proposed adaptive schedule under-anchored (dashed, below every
+fixed setting in $[0.05, 0.35]$), and the retuned schedule matches the best fixed weight.}
 \label{fig:clean}
-\end{figure}
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\columnwidth,height=0.44\textheight,keepaspectratio]{../output/figures_v3/FigCA_alpha.png}
-\caption{The anchoring weight has a narrow optimum and must be tuned. Mean coherence as a
-function of a fixed anchoring weight $\alpha$ (red). Performance improves monotonically as
-anchoring strengthens; the originally proposed adaptive schedule (blue dashed) under-anchored
-and fell below every fixed setting in $[0.05, 0.35]$, whereas the retuned schedule
-(green dotted) matches the best fixed weight.}
-\label{fig:alpha}
 \end{figure}
 
 
@@ -847,6 +839,25 @@ exceeding WGCNA-style hierarchical cutting ($0.145$). With GSE145926, this defin
 operating regime: the functional anchor adds information when the expression graph is
 unreliable, and is neutral when it is already informative. It does not degrade performance
 in the high-quality limit.
+
+\noindent\textbf{Recovered modules correspond to specific biological processes.} To test
+whether the partitions carry biological meaning beyond the pathways used to build them, we
+took the modules returned on four cohorts and asked which Gene Ontology terms they enriched,
+\emph{excluding the input pathway itself}. Every module was significantly enriched
+(39/39; median $p = 2.1\times10^{-14}$) and mapped onto a specific sub-process rather than
+the parent pathway --- for example \emph{cellular response to cytokine stimulus},
+\emph{granulocyte chemotaxis} and \emph{chemokine-mediated signalling} across the lung,
+sepsis and colorectal cohorts (Fig.~\ref{fig:bio}).
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth,height=0.44\textheight,keepaspectratio]{../output/figures_v3/FigCA_bio.png}
+\caption{Recovered modules map onto coherent, specific biological processes. Median
+enrichment significance of the top Gene Ontology term per module, with the input pathway
+excluded from consideration; annotations show the median number of module genes in each
+term. Twenty-two distinct processes were recovered across four cohorts.}
+\label{fig:bio}
+\end{figure}
 
 \begin{figure}[htbp]
 \centering
