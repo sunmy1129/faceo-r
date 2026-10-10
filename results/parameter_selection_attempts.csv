@@ -1,0 +1,6 @@
+strategy,type,n,metric,value,baseline,gain_vs_fixed_gamma,verdict
+Structure fingerprint (RandomForest),Regression on structural features,70,accuracy,0.171,0.167,-0.149,failed
+Structure fingerprint (LogisticReg),Regression on structural features,70,accuracy,0.157,0.167,-0.167,failed
+Pathway-size binning rule,Single-feature grouping rule,70,spearman_rho,0.222,0.0,,failed (p=0.064)
+Multi-resolution consensus clustering,Aggregation over resolutions,12,win_rate,0.0,0.5,-2.226,failed
+Cross-library held-out (GO to Reactome),Annotation-guided selection,11,win_rate,0.455,0.5,0.286,unstable

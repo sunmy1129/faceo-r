@@ -1,0 +1,4 @@
+algo,coverage,purity,score,n_modules,mean_memb
+FACEO (ours),1.0,0.629,0.629,5.3889,2.0914
+Leiden γ=1.0,0.996,0.6416,0.6396,4.5,1.0
+WGCNA-style,0.9814,0.622,0.6104,1.3333,1.0

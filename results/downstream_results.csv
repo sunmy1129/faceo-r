@@ -1,0 +1,189 @@
+gse,pathway,algo,task,n_samples,n_modules_used,AUC
+GSE25066,apoptotic process (GO:0006915),Leiden γ=0.5,er_status,481,3,0.6509931077694235
+GSE25066,apoptotic process (GO:0006915),Leiden γ=1.0,er_status,481,4,0.8047368421052632
+GSE25066,apoptotic process (GO:0006915),Leiden γ=2.0,er_status,481,9,0.8749154135338346
+GSE25066,apoptotic process (GO:0006915),Leiden γ=5.0,er_status,481,9,0.8939880952380952
+GSE25066,apoptotic process (GO:0006915),CPM γ=0.05,er_status,481,3,0.7531124686716792
+GSE25066,apoptotic process (GO:0006915),CPM γ=0.10,er_status,481,2,0.5985103383458645
+GSE25066,apoptotic process (GO:0006915),Louvain,er_status,481,4,0.8115523182957393
+GSE25066,apoptotic process (GO:0006915),Infomap,er_status,481,8,0.8851284461152883
+GSE25066,apoptotic process (GO:0006915),Walktrap,er_status,481,5,0.87937656641604
+GSE25066,apoptotic process (GO:0006915),Label Propagation,er_status,481,5,0.8746600877192983
+GSE25066,apoptotic process (GO:0006915),K-means,er_status,481,3,0.6377005012531328
+GSE25066,apoptotic process (GO:0006915),Gaussian Mixture,er_status,481,4,0.650048558897243
+GSE25066,apoptotic process (GO:0006915),Ward,er_status,481,5,0.7907832080200501
+GSE25066,apoptotic process (GO:0006915),Spectral,er_status,481,5,0.8771616541353383
+GSE25066,cellular response to oxidative stress (GO:0034599),Leiden γ=0.5,er_status,481,2,0.6919329573934837
+GSE25066,cellular response to oxidative stress (GO:0034599),Leiden γ=1.0,er_status,481,3,0.6910447994987468
+GSE25066,cellular response to oxidative stress (GO:0034599),Leiden γ=2.0,er_status,481,5,0.8761278195488723
+GSE25066,cellular response to oxidative stress (GO:0034599),Leiden γ=5.0,er_status,481,5,0.8719251253132831
+GSE25066,cellular response to oxidative stress (GO:0034599),Louvain,er_status,481,3,0.6907769423558896
+GSE25066,cellular response to oxidative stress (GO:0034599),Infomap,er_status,481,7,0.8700046992481203
+GSE25066,cellular response to oxidative stress (GO:0034599),Walktrap,er_status,481,5,0.8700375939849625
+GSE25066,cellular response to oxidative stress (GO:0034599),Label Propagation,er_status,481,4,0.871939223057644
+GSE25066,cellular response to oxidative stress (GO:0034599),K-means,er_status,481,2,0.6943421052631579
+GSE25066,cellular response to oxidative stress (GO:0034599),Gaussian Mixture,er_status,481,3,0.6945112781954887
+GSE25066,cellular response to oxidative stress (GO:0034599),Ward,er_status,481,2,0.6943421052631579
+GSE25066,cellular response to oxidative stress (GO:0034599),Spectral,er_status,481,3,0.7293640350877192
+GSE25066,chemokine-mediated signaling pathway (GO:0070098),Leiden γ=0.5,er_status,481,3,0.8057988721804511
+GSE25066,chemokine-mediated signaling pathway (GO:0070098),Leiden γ=1.0,er_status,481,5,0.8228226817042608
+GSE25066,chemokine-mediated signaling pathway (GO:0070098),Leiden γ=2.0,er_status,481,7,0.88140507518797
+GSE25066,chemokine-mediated signaling pathway (GO:0070098),Leiden γ=5.0,er_status,481,6,0.8622838345864661
+GSE25066,chemokine-mediated signaling pathway (GO:0070098),Louvain,er_status,481,5,0.8228226817042608
+GSE25066,chemokine-mediated signaling pathway (GO:0070098),Infomap,er_status,481,6,0.8742543859649123
+GSE25066,chemokine-mediated signaling pathway (GO:0070098),Walktrap,er_status,481,4,0.7989661654135338
+GSE25066,chemokine-mediated signaling pathway (GO:0070098),Label Propagation,er_status,481,3,0.7683442982456139
+GSE25066,chemokine-mediated signaling pathway (GO:0070098),K-means,er_status,481,2,0.7494470551378447
+GSE25066,chemokine-mediated signaling pathway (GO:0070098),Gaussian Mixture,er_status,481,2,0.7494470551378447
+GSE25066,chemokine-mediated signaling pathway (GO:0070098),Ward,er_status,481,2,0.7530513784461152
+GSE25066,chemokine-mediated signaling pathway (GO:0070098),Spectral,er_status,481,2,0.7783302005012531
+GSE25066,inflammatory response (GO:0006954),Leiden γ=0.5,er_status,481,2,0.6723073308270676
+GSE25066,inflammatory response (GO:0006954),Leiden γ=1.0,er_status,481,4,0.786622807017544
+GSE25066,inflammatory response (GO:0006954),Leiden γ=2.0,er_status,481,11,0.8493937969924812
+GSE25066,inflammatory response (GO:0006954),Leiden γ=5.0,er_status,481,14,0.8902208646616542
+GSE25066,inflammatory response (GO:0006954),CPM γ=0.05,er_status,481,3,0.7220739348370928
+GSE25066,inflammatory response (GO:0006954),CPM γ=0.10,er_status,481,2,0.7058114035087719
+GSE25066,inflammatory response (GO:0006954),Louvain,er_status,481,4,0.7689990601503759
+GSE25066,inflammatory response (GO:0006954),Infomap,er_status,481,7,0.8820097117794485
+GSE25066,inflammatory response (GO:0006954),Walktrap,er_status,481,17,0.8732299498746867
+GSE25066,inflammatory response (GO:0006954),K-means,er_status,481,5,0.7991557017543859
+GSE25066,inflammatory response (GO:0006954),Gaussian Mixture,er_status,481,6,0.7996694862155389
+GSE25066,inflammatory response (GO:0006954),Ward,er_status,481,5,0.8045911654135338
+GSE25066,inflammatory response (GO:0006954),Spectral,er_status,481,7,0.8566494360902256
+GSE25066,regulation of I-kappaB kinase/NF-kappaB signaling (GO:0043122),Leiden γ=0.5,er_status,481,2,0.9070191102756893
+GSE25066,regulation of I-kappaB kinase/NF-kappaB signaling (GO:0043122),Leiden γ=1.0,er_status,481,3,0.9074624060150376
+GSE25066,regulation of I-kappaB kinase/NF-kappaB signaling (GO:0043122),Leiden γ=2.0,er_status,481,11,0.8961043233082705
+GSE25066,regulation of I-kappaB kinase/NF-kappaB signaling (GO:0043122),Leiden γ=5.0,er_status,481,9,0.9013784461152883
+GSE25066,regulation of I-kappaB kinase/NF-kappaB signaling (GO:0043122),CPM γ=0.05,er_status,481,2,0.666968984962406
+GSE25066,regulation of I-kappaB kinase/NF-kappaB signaling (GO:0043122),Louvain,er_status,481,4,0.9060996240601502
+GSE25066,regulation of I-kappaB kinase/NF-kappaB signaling (GO:0043122),Infomap,er_status,481,7,0.9064505012531328
+GSE25066,regulation of I-kappaB kinase/NF-kappaB signaling (GO:0043122),Walktrap,er_status,481,14,0.895048558897243
+GSE25066,regulation of I-kappaB kinase/NF-kappaB signaling (GO:0043122),Label Propagation,er_status,481,2,0.8192246240601504
+GSE25066,regulation of I-kappaB kinase/NF-kappaB signaling (GO:0043122),K-means,er_status,481,2,0.8305043859649123
+GSE25066,regulation of I-kappaB kinase/NF-kappaB signaling (GO:0043122),Gaussian Mixture,er_status,481,2,0.8310949248120301
+GSE25066,regulation of I-kappaB kinase/NF-kappaB signaling (GO:0043122),Ward,er_status,481,2,0.831749686716792
+GSE25066,regulation of I-kappaB kinase/NF-kappaB signaling (GO:0043122),Spectral,er_status,481,5,0.9064771303258146
+GSE25066,regulation of immune response (GO:0050776),Leiden γ=0.5,er_status,481,3,0.6730263157894736
+GSE25066,regulation of immune response (GO:0050776),Leiden γ=1.0,er_status,481,4,0.6385416666666666
+GSE25066,regulation of immune response (GO:0050776),Leiden γ=2.0,er_status,481,10,0.7908583959899749
+GSE25066,regulation of immune response (GO:0050776),Leiden γ=5.0,er_status,481,9,0.8210134711779448
+GSE25066,regulation of immune response (GO:0050776),CPM γ=0.05,er_status,481,4,0.6838533834586467
+GSE25066,regulation of immune response (GO:0050776),CPM γ=0.10,er_status,481,4,0.6256672932330827
+GSE25066,regulation of immune response (GO:0050776),Louvain,er_status,481,4,0.6509210526315788
+GSE25066,regulation of immune response (GO:0050776),Infomap,er_status,481,4,0.755595238095238
+GSE25066,regulation of immune response (GO:0050776),Walktrap,er_status,481,6,0.7304151002506266
+GSE25066,regulation of immune response (GO:0050776),Label Propagation,er_status,481,2,0.6466416040100251
+GSE25066,regulation of immune response (GO:0050776),K-means,er_status,481,5,0.6539896616541353
+GSE25066,regulation of immune response (GO:0050776),Gaussian Mixture,er_status,481,5,0.709501879699248
+GSE25066,regulation of immune response (GO:0050776),Ward,er_status,481,5,0.6830686090225564
+GSE25066,regulation of immune response (GO:0050776),Spectral,er_status,481,5,0.8069251253132832
+GSE25066,response to cytokine (GO:0034097),Leiden γ=0.5,er_status,481,3,0.7090585839598997
+GSE25066,response to cytokine (GO:0034097),Leiden γ=1.0,er_status,481,5,0.8796773182957394
+GSE25066,response to cytokine (GO:0034097),Leiden γ=2.0,er_status,481,6,0.8673527568922307
+GSE25066,response to cytokine (GO:0034097),Leiden γ=5.0,er_status,481,9,0.8837077067669172
+GSE25066,response to cytokine (GO:0034097),CPM γ=0.05,er_status,481,3,0.7169924812030075
+GSE25066,response to cytokine (GO:0034097),CPM γ=0.10,er_status,481,3,0.6799733709273182
+GSE25066,response to cytokine (GO:0034097),Louvain,er_status,481,6,0.8793750000000001
+GSE25066,response to cytokine (GO:0034097),Infomap,er_status,481,7,0.883983395989975
+GSE25066,response to cytokine (GO:0034097),Walktrap,er_status,481,10,0.8665977443609021
+GSE25066,response to cytokine (GO:0034097),Label Propagation,er_status,481,5,0.7821052631578947
+GSE25066,response to cytokine (GO:0034097),K-means,er_status,481,2,0.7332315162907268
+GSE25066,response to cytokine (GO:0034097),Ward,er_status,481,2,0.7342152255639098
+GSE25066,response to cytokine (GO:0034097),Spectral,er_status,481,3,0.7055889724310777
+GSE39582,apoptotic process (GO:0006915),Leiden γ=0.5,stage,553,3,0.48322851956949664
+GSE39582,apoptotic process (GO:0006915),Leiden γ=1.0,stage,553,7,0.5843405680394713
+GSE39582,apoptotic process (GO:0006915),Leiden γ=2.0,stage,553,10,0.603839762762993
+GSE39582,apoptotic process (GO:0006915),Leiden γ=5.0,stage,553,22,0.6021358999923307
+GSE39582,apoptotic process (GO:0006915),CPM γ=0.05,stage,553,4,0.5197893498990208
+GSE39582,apoptotic process (GO:0006915),CPM γ=0.10,stage,553,2,0.4930822915867781
+GSE39582,apoptotic process (GO:0006915),Louvain,stage,553,7,0.5852634404478871
+GSE39582,apoptotic process (GO:0006915),Infomap,stage,553,10,0.593964261062965
+GSE39582,apoptotic process (GO:0006915),Walktrap,stage,553,8,0.5926489761484776
+GSE39582,apoptotic process (GO:0006915),Label Propagation,stage,553,7,0.5880422834061916
+GSE39582,apoptotic process (GO:0006915),K-means,stage,553,5,0.5217514124293785
+GSE39582,apoptotic process (GO:0006915),Gaussian Mixture,stage,553,4,0.5299268860086407
+GSE39582,apoptotic process (GO:0006915),Ward,stage,553,4,0.5247347700488278
+GSE39582,apoptotic process (GO:0006915),Spectral,stage,553,7,0.5806720863051871
+GSE39582,cellular response to oxidative stress (GO:0034599),Leiden γ=0.5,stage,553,2,0.5478206406421761
+GSE39582,cellular response to oxidative stress (GO:0034599),Leiden γ=1.0,stage,553,4,0.5488738911470716
+GSE39582,cellular response to oxidative stress (GO:0034599),Leiden γ=2.0,stage,553,7,0.5690671575018534
+GSE39582,cellular response to oxidative stress (GO:0034599),Leiden γ=5.0,stage,553,10,0.6247092057161848
+GSE39582,cellular response to oxidative stress (GO:0034599),CPM γ=0.05,stage,553,2,0.5478142495590153
+GSE39582,cellular response to oxidative stress (GO:0034599),Louvain,stage,553,4,0.5534051691080605
+GSE39582,cellular response to oxidative stress (GO:0034599),Infomap,stage,553,6,0.5944614873328733
+GSE39582,cellular response to oxidative stress (GO:0034599),Walktrap,stage,553,11,0.6129969067157501
+GSE39582,cellular response to oxidative stress (GO:0034599),Label Propagation,stage,553,4,0.5529360636040597
+GSE39582,cellular response to oxidative stress (GO:0034599),K-means,stage,553,3,0.5552636960912135
+GSE39582,cellular response to oxidative stress (GO:0034599),Gaussian Mixture,stage,553,3,0.5552636960912135
+GSE39582,cellular response to oxidative stress (GO:0034599),Ward,stage,553,3,0.5552636960912135
+GSE39582,cellular response to oxidative stress (GO:0034599),Spectral,stage,553,4,0.5676202162742542
+GSE39582,chemokine-mediated signaling pathway (GO:0070098),WGCNA-style Hierarchical,stage,553,2,0.4657923664902729
+GSE39582,chemokine-mediated signaling pathway (GO:0070098),Leiden γ=0.5,stage,553,3,0.5258493749520669
+GSE39582,chemokine-mediated signaling pathway (GO:0070098),Leiden γ=1.0,stage,553,4,0.5441368203083059
+GSE39582,chemokine-mediated signaling pathway (GO:0070098),Leiden γ=2.0,stage,553,6,0.516883963494133
+GSE39582,chemokine-mediated signaling pathway (GO:0070098),Leiden γ=5.0,stage,553,5,0.5503336145409924
+GSE39582,chemokine-mediated signaling pathway (GO:0070098),CPM γ=0.05,stage,553,4,0.5479561316051844
+GSE39582,chemokine-mediated signaling pathway (GO:0070098),CPM γ=0.10,stage,553,3,0.5493199887516937
+GSE39582,chemokine-mediated signaling pathway (GO:0070098),Louvain,stage,553,4,0.5462471559679936
+GSE39582,chemokine-mediated signaling pathway (GO:0070098),Infomap,stage,553,5,0.5080527647825754
+GSE39582,chemokine-mediated signaling pathway (GO:0070098),Walktrap,stage,553,3,0.5242209269627016
+GSE39582,chemokine-mediated signaling pathway (GO:0070098),Label Propagation,stage,553,4,0.5224378147608457
+GSE39582,chemokine-mediated signaling pathway (GO:0070098),K-means,stage,553,2,0.5572960605363397
+GSE39582,chemokine-mediated signaling pathway (GO:0070098),Gaussian Mixture,stage,553,2,0.5572960605363397
+GSE39582,chemokine-mediated signaling pathway (GO:0070098),Ward,stage,553,2,0.5572960605363397
+GSE39582,chemokine-mediated signaling pathway (GO:0070098),Spectral,stage,553,2,0.5419574609504819
+GSE39582,inflammatory response (GO:0006954),Leiden γ=0.5,stage,553,2,0.5309187821151928
+GSE39582,inflammatory response (GO:0006954),Leiden γ=1.0,stage,553,6,0.5524183858680368
+GSE39582,inflammatory response (GO:0006954),Leiden γ=2.0,stage,553,12,0.534263875041542
+GSE39582,inflammatory response (GO:0006954),Leiden γ=5.0,stage,553,14,0.5918104660377841
+GSE39582,inflammatory response (GO:0006954),CPM γ=0.05,stage,553,7,0.5603318250377074
+GSE39582,inflammatory response (GO:0006954),CPM γ=0.10,stage,553,6,0.5245302553876832
+GSE39582,inflammatory response (GO:0006954),Louvain,stage,553,6,0.5487601298668098
+GSE39582,inflammatory response (GO:0006954),Infomap,stage,553,7,0.5957869979804177
+GSE39582,inflammatory response (GO:0006954),Walktrap,stage,553,7,0.6034332898739678
+GSE39582,inflammatory response (GO:0006954),Label Propagation,stage,553,4,0.5600237748293581
+GSE39582,inflammatory response (GO:0006954),K-means,stage,553,6,0.5568333461154996
+GSE39582,inflammatory response (GO:0006954),Gaussian Mixture,stage,553,6,0.5568333461154996
+GSE39582,inflammatory response (GO:0006954),Ward,stage,553,6,0.5743883733415139
+GSE39582,inflammatory response (GO:0006954),Spectral,stage,553,7,0.5948129969067157
+GSE39582,regulation of I-kappaB kinase/NF-kappaB signaling (GO:0043122),Leiden γ=0.5,stage,553,3,0.5549543676662321
+GSE39582,regulation of I-kappaB kinase/NF-kappaB signaling (GO:0043122),Leiden γ=1.0,stage,553,6,0.5631745788276197
+GSE39582,regulation of I-kappaB kinase/NF-kappaB signaling (GO:0043122),Leiden γ=2.0,stage,553,11,0.5560868676023213
+GSE39582,regulation of I-kappaB kinase/NF-kappaB signaling (GO:0043122),Leiden γ=5.0,stage,553,21,0.6157655239409975
+GSE39582,regulation of I-kappaB kinase/NF-kappaB signaling (GO:0043122),CPM γ=0.05,stage,553,4,0.5254045555640771
+GSE39582,regulation of I-kappaB kinase/NF-kappaB signaling (GO:0043122),Louvain,stage,553,5,0.5547677480379376
+GSE39582,regulation of I-kappaB kinase/NF-kappaB signaling (GO:0043122),Infomap,stage,553,8,0.5680586445790832
+GSE39582,regulation of I-kappaB kinase/NF-kappaB signaling (GO:0043122),Walktrap,stage,553,4,0.5615154536390828
+GSE39582,regulation of I-kappaB kinase/NF-kappaB signaling (GO:0043122),Label Propagation,stage,553,4,0.5575926067949996
+GSE39582,regulation of I-kappaB kinase/NF-kappaB signaling (GO:0043122),K-means,stage,553,4,0.5332604749853005
+GSE39582,regulation of I-kappaB kinase/NF-kappaB signaling (GO:0043122),Gaussian Mixture,stage,553,4,0.5322225630799908
+GSE39582,regulation of I-kappaB kinase/NF-kappaB signaling (GO:0043122),Ward,stage,553,4,0.5330073880921338
+GSE39582,regulation of I-kappaB kinase/NF-kappaB signaling (GO:0043122),Spectral,stage,553,7,0.5512475394329831
+GSE39582,regulation of immune response (GO:0050776),Leiden γ=0.5,stage,553,3,0.5218587826264796
+GSE39582,regulation of immune response (GO:0050776),Leiden γ=1.0,stage,553,5,0.5359332259631362
+GSE39582,regulation of immune response (GO:0050776),Leiden γ=2.0,stage,553,10,0.5754429020630416
+GSE39582,regulation of immune response (GO:0050776),Leiden γ=5.0,stage,553,7,0.5952258608789018
+GSE39582,regulation of immune response (GO:0050776),CPM γ=0.05,stage,553,4,0.5766252524477848
+GSE39582,regulation of immune response (GO:0050776),CPM γ=0.10,stage,553,4,0.5770214996037529
+GSE39582,regulation of immune response (GO:0050776),Louvain,stage,553,5,0.5227126313367589
+GSE39582,regulation of immune response (GO:0050776),Infomap,stage,553,5,0.5742656645448271
+GSE39582,regulation of immune response (GO:0050776),Walktrap,stage,553,7,0.5621072679397705
+GSE39582,regulation of immune response (GO:0050776),Label Propagation,stage,553,2,0.48831198711557644
+GSE39582,regulation of immune response (GO:0050776),K-means,stage,553,6,0.5582368279776058
+GSE39582,regulation of immune response (GO:0050776),Gaussian Mixture,stage,553,5,0.5200411585755553
+GSE39582,regulation of immune response (GO:0050776),Ward,stage,553,6,0.5774266942761459
+GSE39582,regulation of immune response (GO:0050776),Spectral,stage,553,3,0.5008436229772222
+GSE39582,response to cytokine (GO:0034097),Leiden γ=0.5,stage,553,3,0.5106820563949179
+GSE39582,response to cytokine (GO:0034097),Leiden γ=1.0,stage,553,5,0.5774126338931922
+GSE39582,response to cytokine (GO:0034097),Leiden γ=2.0,stage,553,8,0.6174936728276708
+GSE39582,response to cytokine (GO:0034097),Leiden γ=5.0,stage,553,14,0.6471227343610195
+GSE39582,response to cytokine (GO:0034097),CPM γ=0.05,stage,553,4,0.6019697318301506
+GSE39582,response to cytokine (GO:0034097),CPM γ=0.10,stage,553,4,0.6018252933507171
+GSE39582,response to cytokine (GO:0034097),Louvain,stage,553,5,0.577113531201268
+GSE39582,response to cytokine (GO:0034097),Infomap,stage,553,6,0.5810312651788225
+GSE39582,response to cytokine (GO:0034097),Walktrap,stage,553,10,0.6425237109185264
+GSE39582,response to cytokine (GO:0034097),Label Propagation,stage,553,5,0.5843418462561034
+GSE39582,response to cytokine (GO:0034097),K-means,stage,553,3,0.5812945778050465
+GSE39582,response to cytokine (GO:0034097),Gaussian Mixture,stage,553,3,0.5630774343635758
+GSE39582,response to cytokine (GO:0034097),Ward,stage,553,3,0.5592530102001687
+GSE39582,response to cytokine (GO:0034097),Spectral,stage,553,5,0.5767952552598613

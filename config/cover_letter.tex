@@ -1,0 +1,76 @@
+%% ISMB 2026 Submission Cover Letter
+\documentclass[11pt]{letter}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage[margin=2.5cm]{geometry}
+
+\signature{Mingyu Sun}
+\address{Mingyu Sun \\ Affiliation to be completed \\ Email: [email]}
+
+\begin{document}
+
+\begin{letter}{Programme Committee \\ ISMB 2026}
+
+\opening{Dear Programme Committee Members,}
+
+I am pleased to submit the manuscript entitled \textbf{``Systematic benchmarking of
+functional module partitioning in GO pathway subnetworks: multi-resolution community
+detection versus hierarchical co-expression clustering''} for consideration at ISMB 2026.
+
+\vspace{6pt}
+\noindent\textbf{Summary.} Weighted gene co-expression network analysis (WGCNA) is the
+\textit{de facto} standard for partitioning genes into functional modules, yet its
+application to single-pathway subnetworks rests on four assumptions that have not been
+systematically tested. We assembled a paired benchmark of 11 expression cohorts, seven GO
+biological-process pathways and 31 partitioning algorithms drawn from eight methodological
+families, with all algorithms operating on an identical topological overlap matrix. Each
+algorithm--pathway--cohort triple was evaluated across six orthogonal layers (structure,
+functional coherence, stability, robustness, biological validity and downstream clinical
+prediction), complemented by three synthetic benchmarks with known ground truth and two
+null models.
+
+\vspace{6pt}
+\noindent\textbf{Principal findings.} Multi-resolution community detection produced
+functionally more coherent modules than hierarchical clustering (median $z = 0.768$ versus
+$-0.075$; paired Wilcoxon $q = 5.3\times10^{-7}$) while simultaneously improving modularity,
+and recovered nested functional sub-structures in synthetic benchmarks where hierarchical
+cutting merged them (ARI $1.000$ versus $0.908$). Downstream clinical prediction concurred
+(AUC $0.989$ versus $0.898$).
+
+\vspace{6pt}
+\noindent\textbf{Why this is of interest to ISMB.} Beyond the algorithmic comparison, our
+study delivers three methodological results that we believe are of general relevance to the
+computational biology community:
+
+\begin{enumerate}
+\item \textbf{Enrichment $p$-values are size-biased.} Within a functionally coherent
+pathway, enrichment-based module scores are inflated for any partition; we propose a
+size-matched, pathway-internal null that removes both the size and background biases.
+\item \textbf{Training an embedding model on community labels and then using it to validate
+those labels is circular.} We show how self-supervised edge prediction removes this leakage
+and yields a genuinely independent test.
+\item \textbf{Modularity does not exceed degree-preserving null models} on these networks
+(mean $z = -5.54$), which argues against using modularity as evidence that inferred modules
+reflect organisation beyond what the degree distribution implies.
+\end{enumerate}
+
+We further report two negative results without suppression (the null-model finding above and
+the only partial concordance between self-supervised embeddings and Leiden communities), in
+line with best practice for computational benchmarking.
+
+\vspace{6pt}
+\noindent\textbf{Declarations.} This work is original, has not been published elsewhere and
+is not under consideration by another venue. All datasets are publicly available from GEO.
+Analysis code, processed matrices and all evaluation tables are provided as a reproducible
+pipeline. The author declares no competing interests.
+
+\vspace{8pt}
+\noindent We would be grateful for the committee's consideration and look forward to the
+reviewers' comments.
+
+\closing{Sincerely,}
+
+\end{letter}
+
+\end{document}

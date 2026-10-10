@@ -1,0 +1,318 @@
+gse,task,pathway,algo,n_samples,n_modules,AUC,druggable_purity
+GSE10072,disease,regulation of apoptotic process (GO:0042981),Leiden γ=1.0,107,5,1.0,0.06713333060575212
+GSE10072,disease,regulation of apoptotic process (GO:0042981),Leiden γ=2.0,107,29,1.0,5.528090332484896e-05
+GSE10072,disease,regulation of apoptotic process (GO:0042981),Leiden γ=5.0,107,36,1.0,0.0010258403164466717
+GSE10072,disease,regulation of apoptotic process (GO:0042981),CPM γ=0.05,107,7,1.0,0.02928528045473027
+GSE10072,disease,regulation of apoptotic process (GO:0042981),CPM γ=0.10,107,5,1.0,1.4199007544371294
+GSE10072,disease,regulation of apoptotic process (GO:0042981),Louvain,107,5,1.0,0.06713333060575212
+GSE10072,disease,regulation of apoptotic process (GO:0042981),Walktrap,107,4,1.0,0.41565501905550556
+GSE10072,disease,regulation of apoptotic process (GO:0042981),K-means,107,8,1.0,0.30092362551785395
+GSE10072,disease,regulation of apoptotic process (GO:0042981),Gaussian Mixture,107,8,1.0,0.30092362551785395
+GSE10072,disease,regulation of apoptotic process (GO:0042981),Ward,107,8,1.0,0.6378586045764877
+GSE10072,disease,regulation of apoptotic process (GO:0042981),Spectral,107,7,1.0,0.14612055376543387
+GSE10072,disease,regulation of apoptotic process (GO:0042981),HDBSCAN,107,4,1.0,0.6174542996035882
+GSE10072,disease,regulation of apoptotic process (GO:0042981),DBSCAN,107,5,1.0,0.10337949938178916
+GSE10072,disease,regulation of apoptotic process (GO:0042981),OPTICS,107,33,1.0,0.21507471410956078
+GSE10072,disease,regulation of apoptotic process (GO:0042981),Affinity Propagation,107,25,1.0,0.007614967181089945
+GSE10072,disease,regulation of apoptotic process (GO:0042981),Mean Shift,107,5,1.0,0.06713333060575212
+GSE10072,disease,regulation of apoptotic process (GO:0042981),NMF,107,8,1.0,0.10474884779414893
+GSE10072,disease,regulation of apoptotic process (GO:0042981),Fast Greedy,107,4,1.0,0.10337949938178916
+GSE10072,disease,regulation of apoptotic process (GO:0042981),Leading Eigenvector,107,2,1.0,
+GSE10072,disease,regulation of apoptotic process (GO:0042981),Multilevel,107,5,1.0,0.06713333060575212
+GSE10072,disease,regulation of apoptotic process (GO:0042981),Leiden γ=10.0,107,31,1.0,0.014351342306968667
+GSE10072,disease,regulation of apoptotic process (GO:0042981),Louvain γ=0.5,107,6,1.0,0.04417165986187693
+GSE10072,disease,regulation of apoptotic process (GO:0042981),Louvain γ=2.0,107,26,1.0,0.00017655845076615078
+GSE10072,disease,inflammatory response (GO:0006954),WGCNA-style Hierarchical,107,2,0.955909090909091,
+GSE10072,disease,inflammatory response (GO:0006954),Leiden γ=0.5,107,3,0.9916666666666666,0.11967399412284659
+GSE10072,disease,inflammatory response (GO:0006954),Leiden γ=1.0,107,5,0.9912962962962963,0.2067919652900356
+GSE10072,disease,inflammatory response (GO:0006954),Leiden γ=2.0,107,10,1.0,0.9502129943428792
+GSE10072,disease,inflammatory response (GO:0006954),Leiden γ=5.0,107,11,0.983838383838384,0.1874243206792439
+GSE10072,disease,inflammatory response (GO:0006954),CPM γ=0.05,107,5,0.9898148148148149,0.040976103141146164
+GSE10072,disease,inflammatory response (GO:0006954),CPM γ=0.10,107,4,0.9842592592592594,0.31877961660064313
+GSE10072,disease,inflammatory response (GO:0006954),Louvain,107,4,0.9931481481481482,0.31877961660064313
+GSE10072,disease,inflammatory response (GO:0006954),Infomap,107,8,1.0,0.0580980625390689
+GSE10072,disease,inflammatory response (GO:0006954),Walktrap,107,5,0.9983333333333334,0.2067919652900356
+GSE10072,disease,inflammatory response (GO:0006954),Label Propagation,107,4,0.9933333333333334,0.06945644401053837
+GSE10072,disease,inflammatory response (GO:0006954),K-means,107,3,0.9829629629629629,0.11967399412284659
+GSE10072,disease,inflammatory response (GO:0006954),Gaussian Mixture,107,4,0.9829629629629629,0.31877961660064313
+GSE10072,disease,inflammatory response (GO:0006954),Ward,107,3,0.9829629629629629,0.11967399412284659
+GSE10072,disease,inflammatory response (GO:0006954),Spectral,107,4,0.9966666666666667,0.06945644401053837
+GSE10072,disease,inflammatory response (GO:0006954),HDBSCAN,107,4,0.9916666666666666,0.11967399412284659
+GSE10072,disease,inflammatory response (GO:0006954),DBSCAN,107,4,0.9783333333333333,0.11967399412284659
+GSE10072,disease,inflammatory response (GO:0006954),OPTICS,107,4,0.99,0.11967399412284659
+GSE10072,disease,inflammatory response (GO:0006954),Affinity Propagation,107,11,1.0,0.06629403378951174
+GSE10072,disease,inflammatory response (GO:0006954),Mean Shift,107,4,0.9757575757575758,0.06945644401053837
+GSE10072,disease,inflammatory response (GO:0006954),NMF,107,3,0.9949999999999999,0.5051850135719756
+GSE10072,disease,inflammatory response (GO:0006954),Fast Greedy,107,6,0.9912962962962963,0.1354984708469745
+GSE10072,disease,inflammatory response (GO:0006954),Leading Eigenvector,107,4,0.9983333333333334,0.31877961660064313
+GSE10072,disease,inflammatory response (GO:0006954),Multilevel,107,4,0.9931481481481482,0.31877961660064313
+GSE10072,disease,inflammatory response (GO:0006954),Leiden γ=10.0,107,7,0.9179629629629631,0.08889494604765272
+GSE10072,disease,inflammatory response (GO:0006954),Louvain γ=0.5,107,6,0.9949999999999999,0.1354984708469745
+GSE10072,disease,inflammatory response (GO:0006954),Louvain γ=2.0,107,10,1.0,0.2554855762065218
+GSE10072,disease,regulation of immune response (GO:0050776),WGCNA-style Hierarchical,107,2,0.9012289562289562,
+GSE10072,disease,regulation of immune response (GO:0050776),Leiden γ=0.5,107,4,0.9739225589225589,-0.0
+GSE10072,disease,regulation of immune response (GO:0050776),Leiden γ=1.0,107,4,0.9813299663299665,-0.0
+GSE10072,disease,regulation of immune response (GO:0050776),Leiden γ=2.0,107,8,0.9881818181818183,-0.0
+GSE10072,disease,regulation of immune response (GO:0050776),Leiden γ=5.0,107,7,0.9981818181818183,0.19492678612432335
+GSE10072,disease,regulation of immune response (GO:0050776),CPM γ=0.05,107,6,0.99,0.2372556840134256
+GSE10072,disease,regulation of immune response (GO:0050776),CPM γ=0.10,107,6,0.9949999999999999,0.2372556840134256
+GSE10072,disease,regulation of immune response (GO:0050776),Louvain,107,4,0.9798148148148147,-0.0
+GSE10072,disease,regulation of immune response (GO:0050776),Infomap,107,5,0.9706228956228957,-0.0
+GSE10072,disease,regulation of immune response (GO:0050776),Walktrap,107,5,0.9794781144781146,-0.0
+GSE10072,disease,regulation of immune response (GO:0050776),Label Propagation,107,4,0.9567003367003368,-0.0
+GSE10072,disease,regulation of immune response (GO:0050776),K-means,107,3,0.9621043771043771,-0.0
+GSE10072,disease,regulation of immune response (GO:0050776),Gaussian Mixture,107,3,0.9651851851851851,-0.0
+GSE10072,disease,regulation of immune response (GO:0050776),Ward,107,3,0.9621043771043771,-0.0
+GSE10072,disease,regulation of immune response (GO:0050776),Spectral,107,3,0.9878114478114478,-0.0
+GSE10072,disease,regulation of immune response (GO:0050776),HDBSCAN,107,5,0.9774410774410776,-0.0
+GSE10072,disease,regulation of immune response (GO:0050776),DBSCAN,107,4,0.975875420875421,-0.0
+GSE10072,disease,regulation of immune response (GO:0050776),OPTICS,107,9,0.9866666666666667,-0.0
+GSE10072,disease,regulation of immune response (GO:0050776),Affinity Propagation,107,10,0.9916666666666668,-0.0
+GSE10072,disease,regulation of immune response (GO:0050776),Mean Shift,107,2,0.9413468013468014,
+GSE10072,disease,regulation of immune response (GO:0050776),NMF,107,3,0.9691077441077441,-0.0
+GSE10072,disease,regulation of immune response (GO:0050776),Clique Percolation,107,2,0.890875420875421,
+GSE10072,disease,regulation of immune response (GO:0050776),Fast Greedy,107,4,0.9813299663299665,-0.0
+GSE10072,disease,regulation of immune response (GO:0050776),Leading Eigenvector,107,5,0.9829629629629629,0.29141036001674414
+GSE10072,disease,regulation of immune response (GO:0050776),Multilevel,107,4,0.9814814814814815,-0.0
+GSE10072,disease,regulation of immune response (GO:0050776),Leiden γ=10.0,107,5,0.8076936026936027,-0.0
+GSE10072,disease,regulation of immune response (GO:0050776),CPM γ=0.20,107,3,0.9137878787878787,0.4620389554298246
+GSE10072,disease,regulation of immune response (GO:0050776),Louvain γ=0.5,107,6,0.9916666666666668,-0.0
+GSE10072,disease,regulation of immune response (GO:0050776),Louvain γ=2.0,107,9,0.99,0.48063199383559546
+GSE10072,disease,cellular response to cytokine stimulus (GO:0071345),Leiden γ=0.5,107,2,1.0,
+GSE10072,disease,cellular response to cytokine stimulus (GO:0071345),Leiden γ=1.0,107,5,1.0,0.031065086147972376
+GSE10072,disease,cellular response to cytokine stimulus (GO:0071345),Leiden γ=2.0,107,14,1.0,0.013058788617421272
+GSE10072,disease,cellular response to cytokine stimulus (GO:0071345),Leiden γ=5.0,107,23,1.0,0.0935734728982862
+GSE10072,disease,cellular response to cytokine stimulus (GO:0071345),CPM γ=0.05,107,10,1.0,0.016467338105554744
+GSE10072,disease,cellular response to cytokine stimulus (GO:0071345),CPM γ=0.10,107,9,1.0,0.26350445231120445
+GSE10072,disease,cellular response to cytokine stimulus (GO:0071345),Louvain,107,5,1.0,0.031065086147972376
+GSE10072,disease,cellular response to cytokine stimulus (GO:0071345),Infomap,107,8,1.0,0.0058423514625745
+GSE10072,disease,cellular response to cytokine stimulus (GO:0071345),Walktrap,107,4,1.0,0.05481011310890537
+GSE10072,disease,cellular response to cytokine stimulus (GO:0071345),Label Propagation,107,2,1.0,
+GSE10072,disease,cellular response to cytokine stimulus (GO:0071345),K-means,107,7,1.0,0.010183441073209969
+GSE10072,disease,cellular response to cytokine stimulus (GO:0071345),Gaussian Mixture,107,7,1.0,0.010183441073209969
+GSE10072,disease,cellular response to cytokine stimulus (GO:0071345),Ward,107,6,1.0,0.017757275057977976
+GSE10072,disease,cellular response to cytokine stimulus (GO:0071345),Spectral,107,6,1.0,0.3208972390169429
+GSE10072,disease,cellular response to cytokine stimulus (GO:0071345),HDBSCAN,107,3,0.9966666666666667,
+GSE10072,disease,cellular response to cytokine stimulus (GO:0071345),DBSCAN,107,5,0.9983333333333334,0.05481011310890537
+GSE10072,disease,cellular response to cytokine stimulus (GO:0071345),OPTICS,107,25,1.0,0.14231827505329267
+GSE10072,disease,cellular response to cytokine stimulus (GO:0071345),Affinity Propagation,107,25,1.0,0.20423877174901287
+GSE10072,disease,cellular response to cytokine stimulus (GO:0071345),Mean Shift,107,3,0.9933333333333334,0.09854116496195242
+GSE10072,disease,cellular response to cytokine stimulus (GO:0071345),NMF,107,6,1.0,0.10450831621325085
+GSE10072,disease,cellular response to cytokine stimulus (GO:0071345),Fast Greedy,107,5,1.0,0.16539015693315773
+GSE10072,disease,cellular response to cytokine stimulus (GO:0071345),Leading Eigenvector,107,3,1.0,-0.0
+GSE10072,disease,cellular response to cytokine stimulus (GO:0071345),Multilevel,107,5,1.0,0.031065086147972376
+GSE10072,disease,cellular response to cytokine stimulus (GO:0071345),Leiden γ=10.0,107,18,0.9898148148148149,0.8351902686960979
+GSE10072,disease,cellular response to cytokine stimulus (GO:0071345),Louvain γ=0.5,107,7,1.0,0.010183441073209969
+GSE10072,disease,cellular response to cytokine stimulus (GO:0071345),Louvain γ=2.0,107,12,1.0,0.030381862721947196
+GSE19188,disease,regulation of apoptotic process (GO:0042981),Leiden γ=0.5,156,2,0.9888888888888889,
+GSE19188,disease,regulation of apoptotic process (GO:0042981),Leiden γ=1.0,156,3,0.9871794871794872,-0.0
+GSE19188,disease,regulation of apoptotic process (GO:0042981),Leiden γ=2.0,156,35,0.9854700854700855,0.004820105720515368
+GSE19188,disease,regulation of apoptotic process (GO:0042981),Leiden γ=5.0,156,22,0.9694107062528114,0.38138960716592896
+GSE19188,disease,regulation of apoptotic process (GO:0042981),CPM γ=0.05,156,7,0.9871794871794872,-0.0
+GSE19188,disease,regulation of apoptotic process (GO:0042981),CPM γ=0.10,156,8,0.9794871794871796,0.019094778774054806
+GSE19188,disease,regulation of apoptotic process (GO:0042981),Louvain,156,3,0.9880341880341881,-0.0
+GSE19188,disease,regulation of apoptotic process (GO:0042981),Infomap,156,5,0.9837606837606838,0.06608409742823691
+GSE19188,disease,regulation of apoptotic process (GO:0042981),Walktrap,156,12,0.9803868645973909,0.09629615054382736
+GSE19188,disease,regulation of apoptotic process (GO:0042981),K-means,156,8,0.9863247863247864,0.019094778774054806
+GSE19188,disease,regulation of apoptotic process (GO:0042981),Gaussian Mixture,156,8,0.9871794871794872,0.019094778774054806
+GSE19188,disease,regulation of apoptotic process (GO:0042981),Ward,156,8,0.9888888888888889,0.019094778774054806
+GSE19188,disease,regulation of apoptotic process (GO:0042981),Spectral,156,6,0.9854700854700855,0.043397445261454566
+GSE19188,disease,regulation of apoptotic process (GO:0042981),HDBSCAN,156,12,0.9837606837606838,0.3036415510903154
+GSE19188,disease,regulation of apoptotic process (GO:0042981),DBSCAN,156,9,0.9820512820512821,0.10283933080303931
+GSE19188,disease,regulation of apoptotic process (GO:0042981),OPTICS,156,50,0.9811965811965813,0.181059058374926
+GSE19188,disease,regulation of apoptotic process (GO:0042981),Affinity Propagation,156,23,0.9794871794871796,0.09227054588021284
+GSE19188,disease,regulation of apoptotic process (GO:0042981),Mean Shift,156,4,0.9786324786324787,0.10197652660480812
+GSE19188,disease,regulation of apoptotic process (GO:0042981),NMF,156,8,0.9863247863247864,0.019094778774054806
+GSE19188,disease,regulation of apoptotic process (GO:0042981),Fast Greedy,156,3,0.9871794871794872,-0.0
+GSE19188,disease,regulation of apoptotic process (GO:0042981),Leading Eigenvector,156,4,0.9846153846153847,0.10197652660480812
+GSE19188,disease,regulation of apoptotic process (GO:0042981),Multilevel,156,3,0.9871794871794872,-0.0
+GSE19188,disease,regulation of apoptotic process (GO:0042981),Leiden γ=10.0,156,22,0.9726495726495727,0.6001329829118156
+GSE19188,disease,regulation of apoptotic process (GO:0042981),CPM γ=0.20,156,4,0.9820512820512821,-0.0
+GSE19188,disease,regulation of apoptotic process (GO:0042981),Louvain γ=0.5,156,8,0.9871794871794872,0.628722302959146
+GSE19188,disease,regulation of apoptotic process (GO:0042981),Louvain γ=2.0,156,37,0.9888888888888889,0.008318588847214734
+GSE19188,disease,inflammatory response (GO:0006954),Leiden γ=1.0,156,4,0.9786774628879892,0.3356432260258837
+GSE19188,disease,inflammatory response (GO:0006954),Leiden γ=2.0,156,10,0.9745389113810166,0.5631198287194288
+GSE19188,disease,inflammatory response (GO:0006954),Leiden γ=5.0,156,8,0.9788124156545208,0.4950119816391776
+GSE19188,disease,inflammatory response (GO:0006954),CPM γ=0.05,156,7,0.9786774628879892,0.09966459946288231
+GSE19188,disease,inflammatory response (GO:0006954),CPM γ=0.10,156,8,0.9829509671614934,0.21572122701500973
+GSE19188,disease,inflammatory response (GO:0006954),Louvain,156,4,0.9770580296896085,0.3356432260258837
+GSE19188,disease,inflammatory response (GO:0006954),Infomap,156,2,0.9693657219973011,
+GSE19188,disease,inflammatory response (GO:0006954),Walktrap,156,4,0.9778677462887988,0.8637281995876595
+GSE19188,disease,inflammatory response (GO:0006954),K-means,156,7,0.9811965811965813,0.30078365825490705
+GSE19188,disease,inflammatory response (GO:0006954),Gaussian Mixture,156,7,0.9794871794871796,0.30078365825490705
+GSE19188,disease,inflammatory response (GO:0006954),Ward,156,6,0.9811965811965813,0.4209309567414277
+GSE19188,disease,inflammatory response (GO:0006954),Spectral,156,4,0.9720197930724247,0.3356432260258837
+GSE19188,disease,inflammatory response (GO:0006954),HDBSCAN,156,3,0.9811965811965813,
+GSE19188,disease,inflammatory response (GO:0006954),DBSCAN,156,5,0.9803418803418804,-0.0
+GSE19188,disease,inflammatory response (GO:0006954),OPTICS,156,18,0.9794871794871796,0.6235945556941755
+GSE19188,disease,inflammatory response (GO:0006954),Affinity Propagation,156,10,0.9761583445793972,0.11044555081010479
+GSE19188,disease,inflammatory response (GO:0006954),Mean Shift,156,5,0.97953216374269,0.04597989775552357
+GSE19188,disease,inflammatory response (GO:0006954),NMF,156,5,0.9735492577597841,0.22163575575141858
+GSE19188,disease,inflammatory response (GO:0006954),Fast Greedy,156,3,0.9744489428699954,0.12773189965959938
+GSE19188,disease,inflammatory response (GO:0006954),Leading Eigenvector,156,2,0.9764282501124606,
+GSE19188,disease,inflammatory response (GO:0006954),Multilevel,156,4,0.9753486279802068,0.3356432260258837
+GSE19188,disease,inflammatory response (GO:0006954),Leiden γ=10.0,156,9,0.9549257759784077,0.006508298387075933
+GSE19188,disease,inflammatory response (GO:0006954),CPM γ=0.20,156,2,0.8805668016194332,
+GSE19188,disease,inflammatory response (GO:0006954),Louvain γ=0.5,156,4,0.9796221322537113,0.07588089425005877
+GSE19188,disease,inflammatory response (GO:0006954),Louvain γ=2.0,156,9,0.9703553756185336,0.723760767021383
+GSE19188,disease,regulation of immune response (GO:0050776),Leiden γ=0.5,156,2,0.9634727845254162,
+GSE19188,disease,regulation of immune response (GO:0050776),Leiden γ=1.0,156,4,0.9752136752136753,0.3563030902693897
+GSE19188,disease,regulation of immune response (GO:0050776),Leiden γ=2.0,156,10,0.9777777777777779,0.11062900232420622
+GSE19188,disease,regulation of immune response (GO:0050776),Leiden γ=5.0,156,6,0.9295546558704453,0.23314751734832234
+GSE19188,disease,regulation of immune response (GO:0050776),CPM γ=0.05,156,4,0.9685110211426,1.0677654411112933
+GSE19188,disease,regulation of immune response (GO:0050776),CPM γ=0.10,156,4,0.9700854700854702,-0.0
+GSE19188,disease,regulation of immune response (GO:0050776),Louvain,156,4,0.9752136752136753,0.3563030902693897
+GSE19188,disease,regulation of immune response (GO:0050776),Infomap,156,2,0.9634727845254162,
+GSE19188,disease,regulation of immune response (GO:0050776),Walktrap,156,5,0.9760683760683762,0.8813433215323113
+GSE19188,disease,regulation of immune response (GO:0050776),K-means,156,6,0.9701304543409807,0.23314751734832234
+GSE19188,disease,regulation of immune response (GO:0050776),Gaussian Mixture,156,6,0.9760683760683762,0.7404751647995748
+GSE19188,disease,regulation of immune response (GO:0050776),Ward,156,6,0.9786324786324787,0.23314751734832234
+GSE19188,disease,regulation of immune response (GO:0050776),Spectral,156,5,0.9786324786324787,0.8813433215323113
+GSE19188,disease,regulation of immune response (GO:0050776),HDBSCAN,156,3,0.9609986504723347,
+GSE19188,disease,regulation of immune response (GO:0050776),DBSCAN,156,3,0.9651372019793072,
+GSE19188,disease,regulation of immune response (GO:0050776),OPTICS,156,13,0.9786324786324787,-0.0
+GSE19188,disease,regulation of immune response (GO:0050776),Affinity Propagation,156,7,0.9820512820512821,1.3074668422494289
+GSE19188,disease,regulation of immune response (GO:0050776),Mean Shift,156,4,0.9693657219973009,1.0677654411112933
+GSE19188,disease,regulation of immune response (GO:0050776),NMF,156,6,0.9786324786324787,0.23314751734832234
+GSE19188,disease,regulation of immune response (GO:0050776),Clique Percolation,156,3,0.970310391363023,-0.0
+GSE19188,disease,regulation of immune response (GO:0050776),Fast Greedy,156,2,0.9760683760683762,
+GSE19188,disease,regulation of immune response (GO:0050776),Leading Eigenvector,156,2,0.9760683760683762,
+GSE19188,disease,regulation of immune response (GO:0050776),Multilevel,156,4,0.9752136752136753,0.3563030902693897
+GSE19188,disease,regulation of immune response (GO:0050776),Leiden γ=10.0,156,5,0.9192532613585245,0.2861276210355342
+GSE19188,disease,regulation of immune response (GO:0050776),CPM γ=0.20,156,5,0.9677462887989204,-0.0
+GSE19188,disease,regulation of immune response (GO:0050776),Louvain γ=0.5,156,4,0.976923076923077,0.3563030902693897
+GSE19188,disease,regulation of immune response (GO:0050776),Louvain γ=2.0,156,10,0.9777777777777779,0.11062900232420622
+GSE19188,disease,cellular response to cytokine stimulus (GO:0071345),Leiden γ=0.5,156,2,0.9794871794871796,
+GSE19188,disease,cellular response to cytokine stimulus (GO:0071345),Leiden γ=1.0,156,3,0.9880791722896987,-0.0
+GSE19188,disease,cellular response to cytokine stimulus (GO:0071345),Leiden γ=2.0,156,12,0.9854700854700855,0.5451329007289646
+GSE19188,disease,cellular response to cytokine stimulus (GO:0071345),Leiden γ=5.0,156,19,0.982905982905983,0.349950076635758
+GSE19188,disease,cellular response to cytokine stimulus (GO:0071345),CPM γ=0.05,156,9,0.982905982905983,0.03762627138632807
+GSE19188,disease,cellular response to cytokine stimulus (GO:0071345),CPM γ=0.10,156,6,0.9777777777777779,0.1305739456332179
+GSE19188,disease,cellular response to cytokine stimulus (GO:0071345),Louvain,156,3,0.9880791722896987,-0.0
+GSE19188,disease,cellular response to cytokine stimulus (GO:0071345),Infomap,156,3,0.9888888888888889,-0.0
+GSE19188,disease,cellular response to cytokine stimulus (GO:0071345),Walktrap,156,3,0.9880791722896987,-0.0
+GSE19188,disease,cellular response to cytokine stimulus (GO:0071345),Label Propagation,156,2,0.9794871794871796,
+GSE19188,disease,cellular response to cytokine stimulus (GO:0071345),K-means,156,8,0.982905982905983,0.008794486959245998
+GSE19188,disease,cellular response to cytokine stimulus (GO:0071345),Gaussian Mixture,156,8,0.9854700854700855,-0.0
+GSE19188,disease,cellular response to cytokine stimulus (GO:0071345),Ward,156,8,0.982905982905983,-0.0
+GSE19188,disease,cellular response to cytokine stimulus (GO:0071345),Spectral,156,6,0.9846153846153847,0.024090970814504925
+GSE19188,disease,cellular response to cytokine stimulus (GO:0071345),HDBSCAN,156,4,0.9888888888888889,-0.0
+GSE19188,disease,cellular response to cytokine stimulus (GO:0071345),DBSCAN,156,4,0.9888888888888889,0.11605502244637707
+GSE19188,disease,cellular response to cytokine stimulus (GO:0071345),OPTICS,156,27,0.9863247863247864,0.07152782642562498
+GSE19188,disease,cellular response to cytokine stimulus (GO:0071345),Affinity Propagation,156,16,0.9871794871794872,0.010008540675954516
+GSE19188,disease,cellular response to cytokine stimulus (GO:0071345),Mean Shift,156,4,0.9871794871794872,0.06752890855686003
+GSE19188,disease,cellular response to cytokine stimulus (GO:0071345),NMF,156,7,0.9880341880341881,-0.0
+GSE19188,disease,cellular response to cytokine stimulus (GO:0071345),Fast Greedy,156,3,0.9786774628879892,-0.0
+GSE19188,disease,cellular response to cytokine stimulus (GO:0071345),Leading Eigenvector,156,2,0.9778227620332883,
+GSE19188,disease,cellular response to cytokine stimulus (GO:0071345),Multilevel,156,3,0.9880791722896987,-0.0
+GSE19188,disease,cellular response to cytokine stimulus (GO:0071345),Leiden γ=10.0,156,15,0.9702654071075123,0.050356963189019596
+GSE19188,disease,cellular response to cytokine stimulus (GO:0071345),Louvain γ=0.5,156,5,0.9863247863247864,-0.0
+GSE19188,disease,cellular response to cytokine stimulus (GO:0071345),Louvain γ=2.0,156,14,0.9837606837606838,0.9433667170523273
+GSE42568,disease,regulation of apoptotic process (GO:0042981),WGCNA-style Hierarchical,121,2,0.7507539682539683,
+GSE42568,disease,regulation of apoptotic process (GO:0042981),Leiden γ=0.5,121,3,1.0,-0.0
+GSE42568,disease,regulation of apoptotic process (GO:0042981),Leiden γ=1.0,121,5,0.9974999999999999,-0.0
+GSE42568,disease,regulation of apoptotic process (GO:0042981),Leiden γ=2.0,121,13,1.0,-0.0
+GSE42568,disease,regulation of apoptotic process (GO:0042981),Leiden γ=5.0,121,42,0.9974999999999999,0.007222132094337088
+GSE42568,disease,regulation of apoptotic process (GO:0042981),CPM γ=0.05,121,13,0.9893253968253969,0.11031685354333808
+GSE42568,disease,regulation of apoptotic process (GO:0042981),CPM γ=0.10,121,5,0.9169047619047619,0.0865341723842755
+GSE42568,disease,regulation of apoptotic process (GO:0042981),Louvain,121,5,0.9974999999999999,-0.0
+GSE42568,disease,regulation of apoptotic process (GO:0042981),Infomap,121,7,0.9974999999999999,-0.0
+GSE42568,disease,regulation of apoptotic process (GO:0042981),Walktrap,121,6,0.9974999999999999,-0.0
+GSE42568,disease,regulation of apoptotic process (GO:0042981),Label Propagation,121,2,0.9974999999999999,
+GSE42568,disease,regulation of apoptotic process (GO:0042981),K-means,121,8,0.9974999999999999,0.02858210072133301
+GSE42568,disease,regulation of apoptotic process (GO:0042981),Gaussian Mixture,121,7,0.9974999999999999,0.04109301094138291
+GSE42568,disease,regulation of apoptotic process (GO:0042981),Ward,121,8,1.0,0.02858210072133301
+GSE42568,disease,regulation of apoptotic process (GO:0042981),Spectral,121,8,0.9974999999999999,0.14049905930275647
+GSE42568,disease,regulation of apoptotic process (GO:0042981),HDBSCAN,121,8,1.0,0.1890161315852664
+GSE42568,disease,regulation of apoptotic process (GO:0042981),DBSCAN,121,6,0.9511507936507936,0.0865341723842755
+GSE42568,disease,regulation of apoptotic process (GO:0042981),OPTICS,121,31,0.9875,0.0009588037667359446
+GSE42568,disease,regulation of apoptotic process (GO:0042981),Affinity Propagation,121,31,0.9974999999999999,0.011756857181771406
+GSE42568,disease,regulation of apoptotic process (GO:0042981),Mean Shift,121,3,0.8348015873015873,-0.0
+GSE42568,disease,regulation of apoptotic process (GO:0042981),NMF,121,8,0.9974999999999999,0.14049905930275647
+GSE42568,disease,regulation of apoptotic process (GO:0042981),Fast Greedy,121,5,0.9974999999999999,-0.0
+GSE42568,disease,regulation of apoptotic process (GO:0042981),Leading Eigenvector,121,3,1.0,-0.0
+GSE42568,disease,regulation of apoptotic process (GO:0042981),Multilevel,121,5,0.9974999999999999,-0.0
+GSE42568,disease,regulation of apoptotic process (GO:0042981),Leiden γ=10.0,121,31,0.9974999999999999,0.07318104270278833
+GSE42568,disease,regulation of apoptotic process (GO:0042981),Louvain γ=0.5,121,7,0.9974999999999999,-0.0
+GSE42568,disease,regulation of apoptotic process (GO:0042981),Louvain γ=2.0,121,12,1.0,0.006813007717459484
+GSE42568,disease,regulation of inflammatory response (GO:0050727),Leiden γ=0.5,121,2,0.9951190476190476,
+GSE42568,disease,regulation of inflammatory response (GO:0050727),Leiden γ=1.0,121,4,0.9936507936507937,0.1431041528131567
+GSE42568,disease,regulation of inflammatory response (GO:0050727),Leiden γ=2.0,121,8,0.9936507936507937,0.9143067958521385
+GSE42568,disease,regulation of inflammatory response (GO:0050727),Leiden γ=5.0,121,9,0.9888888888888889,0.1212388935620168
+GSE42568,disease,regulation of inflammatory response (GO:0050727),CPM γ=0.05,121,2,0.9072619047619048,
+GSE42568,disease,regulation of inflammatory response (GO:0050727),CPM γ=0.10,121,2,0.9055555555555556,
+GSE42568,disease,regulation of inflammatory response (GO:0050727),Louvain,121,5,0.9904761904761905,0.3967223113129068
+GSE42568,disease,regulation of inflammatory response (GO:0050727),Infomap,121,5,1.0,0.3967223113129068
+GSE42568,disease,regulation of inflammatory response (GO:0050727),Walktrap,121,2,0.9951190476190476,
+GSE42568,disease,regulation of inflammatory response (GO:0050727),Label Propagation,121,3,1.0,-0.0
+GSE42568,disease,regulation of inflammatory response (GO:0050727),K-means,121,3,0.9919444444444444,0.21409024083075287
+GSE42568,disease,regulation of inflammatory response (GO:0050727),Gaussian Mixture,121,3,0.9919444444444444,0.21409024083075287
+GSE42568,disease,regulation of inflammatory response (GO:0050727),Ward,121,2,0.9646825396825397,
+GSE42568,disease,regulation of inflammatory response (GO:0050727),Spectral,121,3,1.0,0.21409024083075287
+GSE42568,disease,regulation of inflammatory response (GO:0050727),HDBSCAN,121,4,1.0,0.21409024083075287
+GSE42568,disease,regulation of inflammatory response (GO:0050727),DBSCAN,121,3,0.8410317460317461,
+GSE42568,disease,regulation of inflammatory response (GO:0050727),OPTICS,121,5,1.0,0.5444988778387712
+GSE42568,disease,regulation of inflammatory response (GO:0050727),Affinity Propagation,121,9,1.0,0.3508131925940602
+GSE42568,disease,regulation of inflammatory response (GO:0050727),Mean Shift,121,3,0.8652380952380951,0.21409024083075287
+GSE42568,disease,regulation of inflammatory response (GO:0050727),NMF,121,3,0.989563492063492,0.21409024083075287
+GSE42568,disease,regulation of inflammatory response (GO:0050727),Fast Greedy,121,5,0.9904761904761905,0.3967223113129068
+GSE42568,disease,regulation of inflammatory response (GO:0050727),Leading Eigenvector,121,4,1.0,0.1431041528131567
+GSE42568,disease,regulation of inflammatory response (GO:0050727),Multilevel,121,5,0.9904761904761905,0.3967223113129068
+GSE42568,disease,regulation of inflammatory response (GO:0050727),Leiden γ=10.0,121,7,0.9785714285714286,-0.0
+GSE42568,disease,regulation of inflammatory response (GO:0050727),Louvain γ=0.5,121,6,1.0,0.29330635950144557
+GSE42568,disease,regulation of inflammatory response (GO:0050727),Louvain γ=2.0,121,8,0.9936507936507937,0.9143067958521385
+GSE42568,disease,regulation of immune response (GO:0050776),WGCNA-style Hierarchical,121,3,0.9857142857142858,0.3752983982398494
+GSE42568,disease,regulation of immune response (GO:0050776),Leiden γ=0.5,121,2,0.9576984126984127,
+GSE42568,disease,regulation of immune response (GO:0050776),Leiden γ=1.0,121,4,0.9825396825396826,0.2823030787008435
+GSE42568,disease,regulation of immune response (GO:0050776),Leiden γ=2.0,121,6,0.9944444444444445,0.6025211209866344
+GSE42568,disease,regulation of immune response (GO:0050776),Leiden γ=5.0,121,3,0.9936507936507937,-0.0
+GSE42568,disease,regulation of immune response (GO:0050776),CPM γ=0.05,121,2,0.7880158730158728,
+GSE42568,disease,regulation of immune response (GO:0050776),CPM γ=0.10,121,2,0.7940476190476191,
+GSE42568,disease,regulation of immune response (GO:0050776),Louvain,121,4,0.9833333333333334,0.2823030787008435
+GSE42568,disease,regulation of immune response (GO:0050776),Infomap,121,5,0.9976190476190476,0.7395869799673278
+GSE42568,disease,regulation of immune response (GO:0050776),Walktrap,121,2,0.9541666666666668,
+GSE42568,disease,regulation of immune response (GO:0050776),Label Propagation,121,2,0.8303174603174603,
+GSE42568,disease,regulation of immune response (GO:0050776),K-means,121,2,0.9174603174603174,
+GSE42568,disease,regulation of immune response (GO:0050776),Gaussian Mixture,121,2,0.9174603174603174,
+GSE42568,disease,regulation of immune response (GO:0050776),Ward,121,2,0.9174603174603174,
+GSE42568,disease,regulation of immune response (GO:0050776),Spectral,121,2,0.8303174603174603,
+GSE42568,disease,regulation of immune response (GO:0050776),HDBSCAN,121,3,0.9289682539682541,
+GSE42568,disease,regulation of immune response (GO:0050776),DBSCAN,121,4,0.9709523809523809,1.1847574380343688
+GSE42568,disease,regulation of immune response (GO:0050776),OPTICS,121,6,0.9733333333333334,-0.0
+GSE42568,disease,regulation of immune response (GO:0050776),Affinity Propagation,121,7,0.9925,1.1234681635534443
+GSE42568,disease,regulation of immune response (GO:0050776),NMF,121,2,0.8740873015873017,
+GSE42568,disease,regulation of immune response (GO:0050776),Clique Percolation,121,2,0.8010714285714287,
+GSE42568,disease,regulation of immune response (GO:0050776),Fast Greedy,121,4,0.9833333333333334,0.2823030787008435
+GSE42568,disease,regulation of immune response (GO:0050776),Leading Eigenvector,121,4,0.9598015873015873,0.2823030787008435
+GSE42568,disease,regulation of immune response (GO:0050776),Multilevel,121,4,0.9825396825396826,0.2823030787008435
+GSE42568,disease,regulation of immune response (GO:0050776),Leiden γ=0.1,121,2,0.8303174603174603,
+GSE42568,disease,regulation of immune response (GO:0050776),Leiden γ=10.0,121,4,0.9968253968253968,0.2823030787008435
+GSE42568,disease,regulation of immune response (GO:0050776),CPM γ=0.20,121,2,0.8060714285714285,
+GSE42568,disease,regulation of immune response (GO:0050776),Louvain γ=0.5,121,4,0.9246825396825397,0.9225151627717346
+GSE42568,disease,regulation of immune response (GO:0050776),Louvain γ=2.0,121,7,1.0,0.49549268975475047
+GSE42568,disease,cellular response to cytokine stimulus (GO:0071345),Leiden γ=0.5,121,2,0.861111111111111,
+GSE42568,disease,cellular response to cytokine stimulus (GO:0071345),Leiden γ=1.0,121,5,0.9949999999999999,0.036588728148085656
+GSE42568,disease,cellular response to cytokine stimulus (GO:0071345),Leiden γ=2.0,121,11,0.9974999999999999,0.057288694708118704
+GSE42568,disease,cellular response to cytokine stimulus (GO:0071345),Leiden γ=5.0,121,20,1.0,0.4374264885354961
+GSE42568,disease,cellular response to cytokine stimulus (GO:0071345),CPM γ=0.05,121,9,0.9843253968253969,-0.0
+GSE42568,disease,cellular response to cytokine stimulus (GO:0071345),CPM γ=0.10,121,5,0.9648015873015874,0.18716803920065528
+GSE42568,disease,cellular response to cytokine stimulus (GO:0071345),Louvain,121,5,0.9949999999999999,0.036588728148085656
+GSE42568,disease,cellular response to cytokine stimulus (GO:0071345),Infomap,121,7,0.9824999999999999,0.2501313324450313
+GSE42568,disease,cellular response to cytokine stimulus (GO:0071345),Walktrap,121,4,0.9925,0.0628143426473269
+GSE42568,disease,cellular response to cytokine stimulus (GO:0071345),Label Propagation,121,2,0.8579365079365079,
+GSE42568,disease,cellular response to cytokine stimulus (GO:0071345),K-means,121,7,0.9836507936507937,0.012665552948873997
+GSE42568,disease,cellular response to cytokine stimulus (GO:0071345),Gaussian Mixture,121,7,0.9836507936507937,0.012665552948873997
+GSE42568,disease,cellular response to cytokine stimulus (GO:0071345),Ward,121,8,0.9949999999999999,-0.0
+GSE42568,disease,cellular response to cytokine stimulus (GO:0071345),Spectral,121,6,0.9925,0.7887223905079955
+GSE42568,disease,cellular response to cytokine stimulus (GO:0071345),HDBSCAN,121,8,0.9925,0.07860280692792472
+GSE42568,disease,cellular response to cytokine stimulus (GO:0071345),DBSCAN,121,10,0.9569047619047619,0.12086401374062446
+GSE42568,disease,cellular response to cytokine stimulus (GO:0071345),OPTICS,121,15,0.9886507936507936,0.3130948450765777
+GSE42568,disease,cellular response to cytokine stimulus (GO:0071345),Affinity Propagation,121,20,0.9949999999999999,0.4374264885354961
+GSE42568,disease,cellular response to cytokine stimulus (GO:0071345),NMF,121,8,1.0,0.05093544568274893
+GSE42568,disease,cellular response to cytokine stimulus (GO:0071345),Fast Greedy,121,5,0.9949999999999999,0.036588728148085656
+GSE42568,disease,cellular response to cytokine stimulus (GO:0071345),Leading Eigenvector,121,3,0.9925,0.10989515243933662
+GSE42568,disease,cellular response to cytokine stimulus (GO:0071345),Multilevel,121,5,0.9949999999999999,0.036588728148085656
+GSE42568,disease,cellular response to cytokine stimulus (GO:0071345),Leiden γ=10.0,121,14,1.0,0.15164294877107964
+GSE42568,disease,cellular response to cytokine stimulus (GO:0071345),CPM γ=0.20,121,2,0.8776587301587302,
+GSE42568,disease,cellular response to cytokine stimulus (GO:0071345),Louvain γ=0.5,121,9,0.9793253968253968,0.12086401374062446
+GSE42568,disease,cellular response to cytokine stimulus (GO:0071345),Louvain γ=2.0,121,11,1.0,0.013422199325403615
