@@ -129,13 +129,14 @@ algorithm; WGCNA; graph neural networks; self-supervised learning; benchmarking
 
 Genes do not act in isolation. Their products participate in overlapping complexes and
 pathways, and the analysis of coordinated expression across genes is a cornerstone of
-systems biology. A dominant analytical strategy treats co-expression as a network and
+systems biology \citep{fortunato2010review,ballouz2015guidance}. A dominant analytical strategy treats co-expression as a network and
 partitions it into modules, under the assumption that genes grouped together share
 function and that module-level summaries (eigengenes, hubs) are biologically meaningful
 \citep{langfelder2008wgcna}.
 
 This paradigm has produced substantial biological insight, and WGCNA has become the
-\emph{de facto} standard for module identification in bulk transcriptomic studies.
+\emph{de facto} standard for module identification in bulk transcriptomic studies
+\citep{langfelder2008wgcna,langfelder2012wgcna,gillis2012guilt}.
 However, its application to the restricted setting of a single functional pathway --- a
 routine step in pathway-centric analyses and in hypothesis generation for drug-target
 discovery --- rests on assumptions that have received comparatively little scrutiny:
@@ -152,16 +153,16 @@ module contains coherent sub-structures at finer scales is not addressed by the 
 whether the inferred partition reflects genuine structure.
 \end{enumerate}
 
-Furthermore, when a pathway is defined by a GO term, it is by construction a \emph{nested}
-hierarchy: ``regulation of immune response'' contains ``cellular response to cytokine
+Furthermore, when a pathway is defined by a GO term \citep{ashburner2000go}, it is by
+construction a \emph{nested} hierarchy: ``regulation of immune response'' contains ``cellular response to cytokine
 stimulus'', each of which contains coherent sub-processes. A method that outputs a single
 coarse partition discards this hierarchy by design.
 
 \subsection{Related work}
 
-Multi-resolution community detection, in particular the Leiden algorithm
-\citep{traag2019leiden}, generalises modularity optimisation through a resolution
-parameter and guarantees well-connected communities. Markov Stability provides an
+Multi-resolution community detection \citep{newman2004girvan,newman2006modularity}, in
+particular the Leiden algorithm \citep{traag2019leiden}, generalises modularity optimisation
+through a resolution parameter and guarantees well-connected communities. Markov Stability provides an
 equivalent formulation in continuous Markov time \citep{delvenne2010stability}.
 Alternative approaches include the Constant Potts Model \citep{traag2011cpm}, which
 eliminates the resolution limit of modularity; information-theoretic methods
@@ -169,10 +170,14 @@ eliminates the resolution limit of modularity; information-theoretic methods
 stochastic block models; overlapping community detection \citep{ahn2010link,
 lancichinetti2011oslom}; and graph representation learning, which embeds nodes and derives
 partitions in the embedding space. Within bioinformatics, MEGENA \citep{song2015megena}
-explicitly addresses multi-scale co-expression module discovery.
+explicitly addresses multi-scale co-expression module discovery. Prior comparative studies
+of community detection \citep{lancichinetti2009benchmark,fortunato2016review,peel2017groundtruth}
+and of single-cell pipelines \citep{luecken2019benchmark} established benchmarking
+methodology \citep{weber2019benchmark}, but none has addressed the pathway-subnetwork regime.
 
 Nevertheless, to our knowledge no study has (i) compared partitioning algorithms on
-identical pathway-derived graphs across disease categories with a strictly paired design,
+identical pathway-derived graphs \citep{lancichinetti2008lfr} across disease categories with
+a strictly paired design,
 (ii) combined synthetic benchmarks with functional-coherence metrics and downstream
 clinical tasks, and (iii) reported null-model results that constrain the interpretation of
 modularity.
@@ -252,29 +257,42 @@ rather than to graph construction.
 Thirty-one algorithms spanning eight families were evaluated (Table~\ref{tab:algos}).
 
 \noindent\textbf{Family A (hierarchical co-expression).} Average-linkage hierarchical
-clustering with dynamic-style cutting (balance criterion), serving as the reference.
+clustering with dynamic-style cutting (balance criterion), serving as the reference and
+mirroring the WGCNA-style module-detection workflow \citep{langfelder2008wgcna,langfelder2012wgcna,ward1963hierarchical}.
 
-\noindent\textbf{Family B (modularity optimisation).} Leiden across a resolution grid
-($\gamma=0.1$, $0.5$, $1.0$, $2.0$, $5.0$, $10.0$), Louvain
-($\gamma=0.5$, $1.0$, $2.0$), Constant Potts Model ($\gamma=0.05$, $0.10$, $0.20$), Multilevel, Fast Greedy
-\citep{clauset2004fastgreedy}, Leading Eigenvector and Spin Glass.
+\noindent\textbf{Family B (modularity optimisation).} Leiden \citep{traag2019leiden} across a
+resolution grid ($\gamma=0.1$, $0.5$, $1.0$, $2.0$, $5.0$, $10.0$), Louvain
+\citep{blondel2008louvain} ($\gamma=0.5$, $1.0$, $2.0$), Constant Potts Model
+\citep{traag2011cpm} ($\gamma=0.05$, $0.10$, $0.20$), Multilevel \citep{blondel2008louvain},
+Fast Greedy \citep{clauset2004fastgreedy}, Leading Eigenvector \citep{newman2006leading} and
+Spin Glass \citep{reichardt2006spin}.
 
-\noindent\textbf{Family C (information-theoretic / spectral).} InfoMap, Walktrap, spectral
-clustering on the precomputed affinity.
+\noindent\textbf{Family C (information-theoretic / spectral).} InfoMap
+\citep{rosvall2008infomap}, Walktrap \citep{pons2005walktrap}, spectral clustering
+\citep{newman2006modularity} on the precomputed affinity.
 
-\noindent\textbf{Family D (generative / label propagation).} Label propagation.
+\noindent\textbf{Family D (generative / label propagation).} Label propagation
+\citep{raghavan2007lpa}.
 
-\noindent\textbf{Family E (overlapping community detection).} Clique percolation.
+\noindent\textbf{Family E (overlapping community detection).} Clique percolation
+\citep{palla2005clique}, and OSLOM \citep{lancichinetti2011oslom} and link communities
+\citep{ahn2010link} as reference implementations.
 
 \noindent\textbf{Family F (graph representation learning).} Self-supervised graph attention
-networks (GAT) and GraphSAGE, with partitions derived by $k$-means in the embedding space
-(Section~\ref{sec:selfsup}).
+networks (GAT) \citep{velickovic2018gat} and GraphSAGE \citep{hamilton2017graphsage}, with
+partitions derived by $k$-means in the embedding space (Section~\ref{sec:selfsup}); the
+self-supervised objective follows Deep Graph Infomax \citep{velickovic2019dgi}, and we
+additionally reference node2vec \citep{grover2016node2vec}, DeepWalk \citep{perozzi2014deepwalk}
+and graph convolutional networks \citep{kipf2017gcn} as the embedding lineage.
 
-\noindent\textbf{Family G (classical clustering).} $K$-means, Gaussian mixture, Ward
-agglomerative clustering, DBSCAN, HDBSCAN, OPTICS, Mean Shift, Affinity Propagation and
-non-negative matrix factorisation. Density-based methods operated in a spectral embedding
-space obtained by Laplacian eigenmaps of the TOM, to avoid the curse of dimensionality
-that affects density estimation on high-dimensional similarity profiles.
+\noindent\textbf{Family G (classical clustering).} $K$-means \citep{macqueen1967kmeans},
+Gaussian mixture \citep{dempster1977em}, Ward agglomerative clustering
+\citep{ward1963hierarchical}, DBSCAN \citep{ester1996dbscan}, HDBSCAN
+\citep{campello2013hdbscan}, OPTICS \citep{ankerst1999optics}, Mean Shift
+\citep{comaniciu2002meanshift}, Affinity Propagation \citep{frey2007ap} and non-negative
+matrix factorisation \citep{lee1999nmf}. Density-based methods operated in a spectral
+embedding space obtained by Laplacian eigenmaps of the TOM, to avoid the curse of
+dimensionality that affects density estimation on high-dimensional similarity profiles.
 
 \noindent\textbf{Family H (biological prior).} Not applicable in the present design;
 pathway membership is the grouping prior and is shared by all algorithms.
@@ -332,8 +350,8 @@ Two properties follow by construction. First, \emph{non-inferiority on clean dat
 $q\to1$, FACEO-R approaches the standard Leiden solution, so it cannot lose merely by adding
 the anchor. Second, \emph{robustness under degradation}: as expression quality falls, the
 anchoring term preserves functional coherence. Crucially, the annotations used for anchoring
-(GO Biological Process) are \emph{disjoint} from those used for evaluation (Reactome), so
-measured improvements are not circular.
+(GO Biological Process \citep{ashburner2000go}) are \emph{disjoint} from those used for
+evaluation (Reactome \citep{jassal2020reactome}), so measured improvements are not circular.
 
 \subsection{Evaluation protocol}
 
@@ -343,8 +361,9 @@ Six orthogonal layers were computed for each algorithm--pathway--cohort triple.
 entropy, unassigned-gene rate.
 
 \noindent\textbf{L2 (functional coherence; primary functional endpoint).} For each module,
-the pairwise Jaccard similarity of GO/KEGG/Reactome annotations (6807 gene sets with
-$\geq 10$ genes) was averaged over annotated gene pairs. The module score was standardised
+the pairwise Jaccard similarity of GO/KEGG/Reactome annotations
+\citep{ashburner2000go,kanehisa2000kegg,jassal2020reactome,subramanian2005gsea}
+(6807 gene sets with $\geq 10$ genes) was averaged over annotated gene pairs. The module score was standardised
 against 30 random gene sets of identical size drawn from the \emph{same pathway}:
 \begin{equation}
 z_m = \frac{c_m - \mathbb{E}[c_{\mathrm{null}}]}{\mathrm{sd}[c_{\mathrm{null}}]}.
@@ -399,7 +418,8 @@ The unit of analysis is a pathway--cohort pair. Because all algorithms received 
 input graph, comparisons are paired by construction. Paired differences were assessed with
 the Wilcoxon signed-rank test, corrected for multiple comparisons by the
 Benjamini--Hochberg procedure \citep{benjamini1995fdr} ($q<0.05$), and accompanied by
-Cliff's $\delta$ as a non-parametric effect size. Medians are reported for skewed metrics.
+Cliff's $\delta$ \citep{cliff1993dominance} as a non-parametric effect size. Partition
+agreement was quantified by the adjusted Rand index \citep{hubert1985ari}. Medians are reported for skewed metrics.
 
 \subsection{Software and reproducibility}
 
@@ -585,8 +605,10 @@ with a constant reduced mean modularity from $0.335$ to $0.237$ --- a 29\% contr
 weights alone (Table~S6) --- confirming that modularity on these graphs is substantially,
 though not exclusively, driven by the weight distribution rather than by topology.
 
-Taken together, modularity $Q$ --- and, critically, its significance against null models ---
-should not be used as primary evidence in pathway-centric module analysis, because both its
+Taken together, and consistent with long-standing caution regarding modularity
+\citep{fortunato2007resolution,fortunato2010review,traag2015significant}, modularity $Q$ ---
+and, critically, its significance against null models --- should not be used as primary
+evidence in pathway-centric module analysis, because both its
 magnitude and its apparent significance depend on construction choices that are rarely
 reported. We therefore base all primary conclusions on functional coherence against held-out
 annotation and on downstream predictive utility, which are defined with respect to external
@@ -765,8 +787,11 @@ across all 165 comparisons.}
 
 To test whether the degradation results above transfer to genuine data rather than simulated
 corruption, we applied the identical protocol to a real single-cell RNA-seq cohort: GSE145926
-(COVID-19 bronchoalveolar lavage fluid; mild $n=3$, severe $n=6$; 7{,}720 cells $\times$
-17{,}900 genes after QC). True zero fractions ranged from 51\% to 89\% (median 84\%) ---
+(COVID-19 bronchoalveolar lavage fluid \citep{liao2020covid}; mild $n=3$, severe $n=6$;
+7{,}720 cells $\times$ 17{,}900 genes after QC, processed with Scanpy \citep{wolf2018scanpy}, the same
+analysis paradigm used by Seurat \citep{satija2015seurat}, and following single-cell best
+practices \citep{luecken2019benchmark}). True zero fractions ranged
+from 51\% to 89\% (median 84\%) ---
 substantially higher than the 50\% dropout simulated above.
 
 Across 16 pathway--subnetwork tests, FACEO-R achieved higher held-out Reactome coherence
