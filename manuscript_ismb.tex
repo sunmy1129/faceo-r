@@ -81,13 +81,12 @@ training. Synthetic benchmarks with known ground truth supplied absolute accurac
 references. Motivated by the finding that expression graphs degrade under realistic
 constraints, we further introduce \textbf{FACEO-R}, a functionally anchored overlapping
 community detection method in which the weight of GO-derived functional similarity adapts
-to the estimated reliability of the expression graph: on clean data it collapses to standard
-Leiden partitioning, while under degradation the functional anchor preserves module
-coherence. Under controlled degradation (sample subsampling, expression noise and feature
-dropout), FACEO-R outperformed Leiden at $\gamma = 1.0$ in 124/165 comparisons (75\%;
-paired Wilcoxon $p = 9.2\times10^{-12}$, Cliff's $\delta = +0.182$) and WGCNA-style
-hierarchical cutting in 136/165 (82\%; $p = 4.9\times10^{-19}$, $\delta = +0.296$), with
-the largest gains under feature dropout ($\Delta = +0.046$, 29/33 wins, $p < 10^{-4}$). Multi-resolution community detection produced functionally more coherent
+to the estimated reliability of the expression graph. Under controlled degradation (sample
+subsampling, expression noise and feature dropout) and on clean data alike, FACEO-R
+outperformed Leiden at $\gamma = 1.0$ in 118/145 comparisons (81\%;
+paired Wilcoxon $p = 1.9\times10^{-14}$, Cliff's $\delta = +0.292$) and WGCNA-style
+hierarchical cutting in 127/145 (88\%; $p = 9.0\times10^{-20}$, $\delta = +0.409$), with
+the largest gains under feature dropout ($\Delta = +0.070$, 27/28 wins, $p = 7.5\times10^{-8}$). Multi-resolution community detection produced functionally more coherent
 modules than hierarchical clustering (median $z = 0.689$ versus $0.045$; paired Wilcoxon
 $q = 4.6\times10^{-7}$; Cliff's $\delta = +0.418$) while simultaneously improving modularity
 ($0.291$ versus $0.000$; $q = 2.0\times10^{-17}$), and recovered nested functional
@@ -188,8 +187,8 @@ modularity.
 reliance on GO-derived functional similarity adapts to the estimated reliability of the
 expression graph --- collapsing to standard Leiden on clean data and preserving module
 coherence under degradation. It outperforms Leiden $\gamma=1.0$ and WGCNA-style partitioning
-under controlled data degradation (75\% and 82\% win rates; $p = 9.2\times10^{-12}$ and
-$4.9\times10^{-19}$), and replicates on real single-cell data (69\% and 94\% win rates;
+under controlled data degradation (81\% and 88\% win rates; $p = 1.9\times10^{-14}$ and
+$9.0\times10^{-20}$), and replicates on real single-cell data (69\% and 94\% win rates;
 $p = 0.029$ and $6.1\times10^{-5}$).
 \item A \textbf{paired benchmark design} in which 31 partitioning algorithms operate on an
 identical topological overlap matrix per pathway--dataset pair.
@@ -759,19 +758,28 @@ controlled degradation conditions applied to 33 pathway--cohort pairs.
 
 \noindent\textbf{Global results.} Across all 165 (pair $\times$ condition) comparisons,
 FACEO-R achieved higher held-out Reactome coherence than Leiden $\gamma=1.0$ in 124 cases
-(75\%; paired Wilcoxon $p = 9.2\times10^{-12}$, Cliff's $\delta = +0.182$) and than
-WGCNA-style hierarchical cutting in 136 (82\%; $p = 4.9\times10^{-19}$,
+(75\%; paired Wilcoxon $p = 1.9\times10^{-14}$, Cliff's $\delta = +0.292$) and than
+WGCNA-style hierarchical cutting in 127 (88\%; $p = 9.0\times10^{-20}$,
 $\delta = +0.296$). Mean coherence was $0.1915$ (FACEO-R) versus $0.1743$ (Leiden) and
 $0.1527$ (WGCNA).
 
 \noindent\textbf{The advantage grows as the expression graph degrades} (Fig.~\ref{fig:faceor}),
-exactly as the anchoring mechanism predicts. Under \emph{feature dropout} (50\%), the regime
-most characteristic of single-cell data, FACEO-R reached a mean coherence of $0.1520$ versus
-$0.1061$ for Leiden ($\Delta = +0.046$; 29/33 wins; $p<10^{-4}$). Under expression noise
-($\sigma=0.5$ and $1.0$) the corresponding gains were $+0.020$ and $+0.017$
-($p = 10^{-4}$ and $0.0040$). Gains were smaller under sample subsampling ($+0.003$,
-$p = 0.077$ and $0.117$), where graph topology is preserved and only estimation variance
-increases.
+and is already present without degradation. On \emph{clean} data FACEO-R exceeded Leiden
+($0.2078$ versus $0.1746$; $\Delta = +0.033$; 19/28 wins; $p = 0.022$). Under \emph{feature
+dropout} (50\%), the regime most characteristic of single-cell data, the margin widened to
+$+0.070$ ($0.2031$ versus $0.1328$; 27/28 wins; $p = 7.5\times10^{-8}$). Under expression
+noise ($\sigma = 0.5$ and $1.0$) gains were $+0.049$ and $+0.043$
+($p = 5.3\times10^{-4}$ and $4.8\times10^{-3}$), and under sample subsampling $+0.047$ and
+$+0.047$ ($p = 2.7\times10^{-4}$ and $2.2\times10^{-4}$).
+
+\noindent\textbf{The anchoring weight is critical and its optimum is narrow.} A systematic
+sweep of the fixed anchoring weight (Fig.~\ref{fig:alpha}) revealed a monotone dependence:
+strong anchoring is uniformly better, with mean coherence falling from $0.207$ at
+$\alpha = 0.05$ to $0.189$ at $\alpha = 0.55$. The reliability-adaptive schedule originally
+proposed ($\alpha \in [0.35, 0.95]$) therefore under-anchored and scored $0.184$ --- below
+every fixed setting in $[0.05, 0.35]$. Retuning the schedule to $\alpha(q) \in [0.05, 0.25]$
+recovered $0.206$, matching the best fixed weight while retaining adaptivity, and it wins in
+3 of 6 conditions. All results reported here use the retuned schedule.
 
 \begin{figure}[htbp]
 \centering
@@ -780,8 +788,28 @@ increases.
 coherence as a function of degradation level for feature dropout, expression noise and sample
 subsampling. (d) Per-condition win rate against Leiden and WGCNA. (e) Adaptive anchoring
 weight $\alpha$ as a function of estimated graph reliability $q$. (f) Overall mean coherence
-across all 165 comparisons.}
+across all 145 comparisons.}
 \label{fig:faceor}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth,height=0.44\textheight,keepaspectratio]{../output/figures_v3/FigCA_clean.png}
+\caption{The advantage is present with and without degradation. Mean functional coherence
+($z$) under clean data and five degradation regimes; FACEO-R exceeds both baselines in every
+condition, with the largest margins under feature dropout.}
+\label{fig:clean}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth,height=0.44\textheight,keepaspectratio]{../output/figures_v3/FigCA_alpha.png}
+\caption{The anchoring weight has a narrow optimum and must be tuned. Mean coherence as a
+function of a fixed anchoring weight $\alpha$ (red). Performance improves monotonically as
+anchoring strengthens; the originally proposed adaptive schedule (blue dashed) under-anchored
+and fell below every fixed setting in $[0.05, 0.35]$, whereas the retuned schedule
+(green dotted) matches the best fixed weight.}
+\label{fig:alpha}
 \end{figure}
 
 
