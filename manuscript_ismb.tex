@@ -129,7 +129,7 @@ algorithm; WGCNA; graph neural networks; self-supervised learning; benchmarking
 
 Genes do not act in isolation. Their products participate in overlapping complexes and
 pathways, and the analysis of coordinated expression across genes is a cornerstone of
-systems biology \citep{fortunato2010review,ballouz2015guidance}. A dominant analytical strategy treats co-expression as a network and
+systems biology \citep{fortunato2010review}. A dominant analytical strategy treats co-expression as a network and
 partitions it into modules, under the assumption that genes grouped together share
 function and that module-level summaries (eigengenes, hubs) are biologically meaningful
 \citep{langfelder2008wgcna}.
@@ -160,20 +160,17 @@ coarse partition discards this hierarchy by design.
 
 \subsection{Related work}
 
-Multi-resolution community detection \citep{newman2004girvan,newman2006modularity}, in
+Multi-resolution community detection \citep{newman2004girvan}, in
 particular the Leiden algorithm \citep{traag2019leiden}, generalises modularity optimisation
-through a resolution parameter and guarantees well-connected communities. Markov Stability provides an
-equivalent formulation in continuous Markov time \citep{delvenne2010stability}.
+through a resolution parameter and guarantees well-connected communities. Markov Stability provides an equivalent formulation in continuous Markov time.
 Alternative approaches include the Constant Potts Model \citep{traag2011cpm}, which
 eliminates the resolution limit of modularity; information-theoretic methods
 \citep{rosvall2008infomap}; generative models including degree-corrected and hierarchical
-stochastic block models; overlapping community detection \citep{ahn2010link,
-lancichinetti2011oslom}; and graph representation learning, which embeds nodes and derives
+stochastic block models; overlapping community detection \citep{ahn2010link,lancichinetti2011oslom}; and graph representation learning, which embeds nodes and derives
 partitions in the embedding space. Within bioinformatics, MEGENA \citep{song2015megena}
-explicitly addresses multi-scale co-expression module discovery. Prior comparative studies
-of community detection \citep{lancichinetti2009benchmark,fortunato2016review,peel2017groundtruth}
-and of single-cell pipelines \citep{luecken2019benchmark} established benchmarking
-methodology \citep{weber2019benchmark}, but none has addressed the pathway-subnetwork regime.
+explicitly addresses multi-scale co-expression module discovery. Prior comparative studies of community detection and of
+single-cell pipelines \citep{luecken2019benchmark} established benchmarking methodology, but
+none has addressed the pathway-subnetwork regime.
 
 Nevertheless, to our knowledge no study has (i) compared partitioning algorithms on
 identical pathway-derived graphs \citep{lancichinetti2008lfr} across disease categories with
@@ -269,7 +266,7 @@ Spin Glass \citep{reichardt2006spin}.
 
 \noindent\textbf{Family C (information-theoretic / spectral).} InfoMap
 \citep{rosvall2008infomap}, Walktrap \citep{pons2005walktrap}, spectral clustering
-\citep{newman2006modularity} on the precomputed affinity.
+ on the precomputed affinity.
 
 \noindent\textbf{Family D (generative / label propagation).} Label propagation
 \citep{raghavan2007lpa}.
@@ -279,18 +276,13 @@ Spin Glass \citep{reichardt2006spin}.
 \citep{ahn2010link} as reference implementations.
 
 \noindent\textbf{Family F (graph representation learning).} Self-supervised graph attention
-networks (GAT) \citep{velickovic2018gat} and GraphSAGE \citep{hamilton2017graphsage}, with
-partitions derived by $k$-means in the embedding space (Section~\ref{sec:selfsup}); the
-self-supervised objective follows Deep Graph Infomax \citep{velickovic2019dgi}, and we
-additionally reference node2vec \citep{grover2016node2vec}, DeepWalk \citep{perozzi2014deepwalk}
-and graph convolutional networks \citep{kipf2017gcn} as the embedding lineage.
+networks (GAT) \citep{velickovic2018gat} and GraphSAGE, with
+partitions derived by $k$-means in the embedding space (Section~\ref{sec:selfsup}); the self-supervised objective follows Deep Graph Infomax \citep{velickovic2019dgi}.
 
-\noindent\textbf{Family G (classical clustering).} $K$-means \citep{macqueen1967kmeans},
-Gaussian mixture \citep{dempster1977em}, Ward agglomerative clustering
-\citep{ward1963hierarchical}, DBSCAN \citep{ester1996dbscan}, HDBSCAN
-\citep{campello2013hdbscan}, OPTICS \citep{ankerst1999optics}, Mean Shift
-\citep{comaniciu2002meanshift}, Affinity Propagation \citep{frey2007ap} and non-negative
-matrix factorisation \citep{lee1999nmf}. Density-based methods operated in a spectral
+\noindent\textbf{Family G (classical clustering).} $K$-means, Gaussian mixture, Ward
+agglomerative clustering \citep{ward1963hierarchical}, DBSCAN \citep{ester1996dbscan},
+HDBSCAN \citep{campello2013hdbscan}, OPTICS, Mean Shift, Affinity Propagation and
+non-negative matrix factorisation. Density-based methods operated in a spectral
 embedding space obtained by Laplacian eigenmaps of the TOM, to avoid the curse of
 dimensionality that affects density estimation on high-dimensional similarity profiles.
 
@@ -362,7 +354,7 @@ entropy, unassigned-gene rate.
 
 \noindent\textbf{L2 (functional coherence; primary functional endpoint).} For each module,
 the pairwise Jaccard similarity of GO/KEGG/Reactome annotations
-\citep{ashburner2000go,kanehisa2000kegg,jassal2020reactome,subramanian2005gsea}
+\citep{ashburner2000go,jassal2020reactome}
 (6807 gene sets with $\geq 10$ genes) was averaged over annotated gene pairs. The module score was standardised
 against 30 random gene sets of identical size drawn from the \emph{same pathway}:
 \begin{equation}
@@ -448,13 +440,14 @@ modularity}
 \label{sec:main}
 
 Paired comparison of Leiden at $\gamma=1.0$ against WGCNA-style hierarchical clustering
-across all 100 pathway--cohort pairs showed that multi-resolution partitioning produced
+across all 100 pathway--cohort pairs (Fig.~\ref{fig:consistency}) showed that multi-resolution partitioning produced
 significantly more modules (median 4.5 versus 3.0; Wilcoxon signed-rank,
 $q = 2.1\times10^{-11}$, Cliff's $\delta = +0.857$) while simultaneously achieving higher
 modularity (median $Q = 0.304$ versus $\mathbf{0.000}$; $q = 1.8\times10^{-12}$,
 $\delta = +0.989$). The reference method's median modularity of exactly zero indicates that
 hierarchical cutting on pathway-derived graphs frequently fails to yield a partition that
-improves on the trivial one-module solution.
+improves on the trivial one-module solution (Fig.~\ref{fig:network} illustrates the
+coarse-versus-fine division on a representative apoptotic subnetwork).
 
 Crucially, the same comparison on the size-unbiased functional coherence metric --- computed
 against random gene sets drawn from the same pathway --- favoured multi-resolution
@@ -606,7 +599,7 @@ weights alone (Table~S6) --- confirming that modularity on these graphs is subst
 though not exclusively, driven by the weight distribution rather than by topology.
 
 Taken together, and consistent with long-standing caution regarding modularity
-\citep{fortunato2007resolution,fortunato2010review,traag2015significant}, modularity $Q$ ---
+\citep{fortunato2007resolution,fortunato2010review}, modularity $Q$ ---
 and, critically, its significance against null models --- should not be used as primary
 evidence in pathway-centric module analysis, because both its
 magnitude and its apparent significance depend on construction choices that are rarely
@@ -788,13 +781,13 @@ across all 165 comparisons.}
 To test whether the degradation results above transfer to genuine data rather than simulated
 corruption, we applied the identical protocol to a real single-cell RNA-seq cohort: GSE145926
 (COVID-19 bronchoalveolar lavage fluid \citep{liao2020covid}; mild $n=3$, severe $n=6$;
-7{,}720 cells $\times$ 17{,}900 genes after QC, processed with Scanpy \citep{wolf2018scanpy}, the same
-analysis paradigm used by Seurat \citep{satija2015seurat}, and following single-cell best
-practices \citep{luecken2019benchmark}). True zero fractions ranged
+7{,}720 cells $\times$ 17{,}900 genes after QC, processed with Scanpy \citep{wolf2018scanpy} following established
+single-cell practice \citep{luecken2019benchmark}). True zero fractions ranged
 from 51\% to 89\% (median 84\%) ---
 substantially higher than the 50\% dropout simulated above.
 
-Across 16 pathway--subnetwork tests, FACEO-R achieved higher held-out Reactome coherence
+Across 16 pathway--subnetwork tests (Fig.~\ref{fig:scrna}), FACEO-R achieved higher
+held-out Reactome coherence
 than Leiden in \textbf{11 cases (69\%)} (paired Wilcoxon $p = 0.029$) and than WGCNA in
 \textbf{15 (94\%)} ($p = 6.1\times10^{-5}$). Mean coherence was $0.252$ (FACEO-R) versus
 $0.217$ (Leiden) and $0.181$ (WGCNA). Notably, the magnitude of the advantage was \emph{not}
@@ -922,8 +915,42 @@ manuscript source are organised as a reproducible pipeline and are available at
 Section~\ref{sec:scrna} is available from GEO under accession GSE145926. Supplementary tables
 S1--S6 are provided in the Supplementary Material.
 
-\bibliographystyle{unsrtnat}
-\bibliography{refs}
+\begin{thebibliography}{99}
+\setlength{\itemsep}{1.5pt}
+\bibitem{fortunato2010review} Fortunato S (2010) Community detection in graphs. \textit{Physics Reports} 486, 75--174.
+\bibitem{langfelder2008wgcna} Langfelder P, Horvath S (2008) WGCNA: an R package for weighted correlation network analysis. \textit{BMC Bioinformatics} 9, 559.
+\bibitem{langfelder2012wgcna} Langfelder P, Horvath S (2012) Fast R functions for robust correlations and hierarchical clustering. \textit{Journal of Statistical Software} 46, 1--17.
+\bibitem{gillis2012guilt} Gillis J, Pavlidis P (2012) "Guilt by association" is the exception rather than the rule in gene networks. \textit{PLoS Computational Biology} 8, e1002444.
+\bibitem{ashburner2000go} Ashburner M, Ball CA, Blake JA, et al (2000) Gene Ontology: Tool for the unification of biology. \textit{Nature Genetics} 25, 25--29.
+\bibitem{newman2004girvan} Newman ME, Girvan M (2004) Finding and evaluating community structure in networks. \textit{Physical Review E} 69, 026113.
+\bibitem{traag2019leiden} Traag VA, Waltman L, van Eck NJ (2019) From Louvain to Leiden: guaranteeing well-connected communities. \textit{Scientific Reports} 9, 5233.
+\bibitem{traag2011cpm} Traag VA, Van Dooren P, Nesterov Y (2011) Narrow scope for resolution-limit-free community detection. \textit{Physical Review E} 84, 016114.
+\bibitem{rosvall2008infomap} Rosvall M, Bergstrom CT (2008) Maps of random walks on complex networks reveal community structure. \textit{PNAS} 105, 1118--1123.
+\bibitem{ahn2010link} Ahn YY, Bagrow JP, Lehmann S (2010) Link communities reveal multiscale complexity in networks. \textit{Nature} 466, 761--764.
+\bibitem{lancichinetti2011oslom} Lancichinetti A, Radicchi F, Ramasco JJ, Fortunato S (2011) Finding statistically significant communities in networks. \textit{PLoS ONE} 6, e18961.
+\bibitem{song2015megena} Song WM, Zhang B (2015) MEGENA: Multiscale Clustering of Geometrical Network. \textit{Bioinformatics} 31, 909--916.
+\bibitem{luecken2019benchmark} Luecken MD, Theis FJ (2019) Current best practices in single-cell RNA-seq analysis: A tutorial. \textit{Molecular Systems Biology} 15, e8746.
+\bibitem{lancichinetti2008lfr} Lancichinetti A, Fortunato S, Radicchi F (2008) Benchmark graphs for testing community detection algorithms. \textit{Physical Review E} 78, 046110.
+\bibitem{ward1963hierarchical} Ward JH (1963) Hierarchical grouping to optimize an objective function. \textit{Journal of the American Statistical Association} 58, 236--244.
+\bibitem{blondel2008louvain} Blondel VD, Guillaume JL, Lambiotte R, Lefebvre E (2008) Fast unfolding of communities in large networks. \textit{Journal of Statistical Mechanics}, P10008.
+\bibitem{clauset2004fastgreedy} Clauset A, Newman ME, Moore C (2004) Finding community structure in very large networks. \textit{Physical Review E} 70, 066111.
+\bibitem{newman2006leading} Newman ME (2006) Finding community structure in networks using the eigenvectors of matrices. \textit{Physical Review E} 74, 036104.
+\bibitem{reichardt2006spin} Reichardt J, Bornholdt S (2006) Statistical mechanics of community detection. \textit{Physical Review E} 74, 016110.
+\bibitem{pons2005walktrap} Pons P, Latapy M (2006) Computing communities in large networks using random walks. \textit{Journal of Graph Algorithms and Applications} 10, 191--218.
+\bibitem{raghavan2007lpa} Raghavan UN, Albert R, Kumara S (2007) Near linear time algorithm to detect community structures in large-scale networks. \textit{Physical Review E} 76, 036106.
+\bibitem{palla2005clique} Palla G, Derenyi I, Farkas I, Vicsek T (2005) Uncovering the overlapping community structure of complex networks in nature and society. \textit{Nature} 435, 814--818.
+\bibitem{velickovic2018gat} Velickovic P, Cucurull G, Casanova A, Romero A, Lio P, Bengio Y (2018) Graph attention networks. \textit{International Conference on Learning Representations (ICLR)}.
+\bibitem{velickovic2019dgi} Velickovic P, Fedus W, Hamilton WL, Lio P, Bengio Y, Hjelm RD (2019) Deep graph infomax. \textit{International Conference on Learning Representations (ICLR)}.
+\bibitem{ester1996dbscan} Ester M, Kriegel HP, Sander J, Xu X (1996) A density-based algorithm for discovering clusters in large spatial databases with noise. \textit{ACM SIGKDD International Conference on Knowledge Discovery and Data Mining (KDD)}, 226--231.
+\bibitem{campello2013hdbscan} Campello RJ, Moulavi D, Sander J (2013) Density-based clustering based on hierarchical density estimates. \textit{Pacific-Asia Conference on Knowledge Discovery and Data Mining (PAKDD)}, 160--172.
+\bibitem{jassal2020reactome} Jassal B, Matthews L, Viteri G, et al (2020) The Reactome pathway knowledgebase. \textit{Nucleic Acids Research} 48, D498--D503.
+\bibitem{benjamini1995fdr} Benjamini Y, Hochberg Y (1995) Controlling the false discovery rate: a practical and powerful approach to multiple testing. \textit{Journal of the Royal Statistical Society: Series B} 57, 289--300.
+\bibitem{cliff1993dominance} Cliff N (1993) Dominance statistics: Ordinal analyses to answer ordinal questions. \textit{Psychological Bulletin} 114, 494--509.
+\bibitem{hubert1985ari} Hubert L, Arabie P (1985) Comparing partitions. \textit{Journal of Classification} 2, 193--218.
+\bibitem{fortunato2007resolution} Fortunato S, Barthelemy M (2007) Resolution limit in community detection. \textit{PNAS} 104, 36--41.
+\bibitem{liao2020covid} Liao M, Liu Y, Yuan J, Wen Y, Xu G, Zhao J, et al (2020) Single-cell landscape of bronchoalveolar immune cells in patients with COVID-19. \textit{Nature Medicine} 26, 842--844.
+\bibitem{wolf2018scanpy} Wolf FA, Angerer P, Theis FJ (2018) SCANPY: Large-scale single-cell gene expression data analysis. \textit{Genome Biology} 19, 15.
+\end{thebibliography}
 
 \begin{figure}[t]
 \centering
