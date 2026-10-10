@@ -158,4 +158,4 @@ If you use this code, please cite the manuscript above.
 
 ## License
 
-To be specified on publication.
+MIT License (see LICENSE).
