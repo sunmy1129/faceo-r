@@ -748,7 +748,7 @@ F. Graph representation learning & Self-supervised GAT; GraphSAGE (edge-predicti
 G. Classical clustering & $K$-means; Gaussian mixture; Ward; DBSCAN; HDBSCAN; OPTICS; \\
  & Mean Shift; Affinity Propagation; NMF \\
 \midrule
-\multicolumn{2}{l}{\emph{Total: 31 algorithms from 7 families}} \\
+\multicolumn{2}{l}{\emph{Total: 31 algorithms from 8 families}} \\
 \bottomrule
 \end{tabular}
 \end{table*}
@@ -756,14 +756,14 @@ G. Classical clustering & $K$-means; Gaussian mixture; Ward; DBSCAN; HDBSCAN; OP
 \noindent\textbf{FACEO-R outperforms existing methods under data degradation.} The resolution instability established above is intrinsic to single-graph approaches. We
 therefore tested FACEO-R (Section~\ref{sec:faceor}), which anchors the partition to
 GO-derived functional similarity with a weight that adapts to graph reliability, under five
-controlled degradation conditions applied to 33 pathway--cohort pairs.
+under five controlled degradation conditions applied to 29 pathway--cohort pairs.
 
-\noindent\textbf{Global results.} Across all 165 (pair $\times$ condition) comparisons,
-FACEO-R achieved higher held-out Reactome coherence than Leiden $\gamma=1.0$ in 124 cases
-(75\%; paired Wilcoxon $p = 1.9\times10^{-14}$, Cliff's $\delta = +0.292$) and than
+\noindent\textbf{Global results.} Across all 145 (pair $\times$ condition) comparisons,
+FACEO-R achieved higher held-out Reactome coherence than Leiden $\gamma=1.0$ in 118 cases
+(81\%; paired Wilcoxon $p = 1.9\times10^{-14}$, Cliff's $\delta = +0.292$) and than
 WGCNA-style hierarchical cutting in 127 (88\%; $p = 9.0\times10^{-20}$,
-$\delta = +0.296$). Mean coherence was $0.1915$ (FACEO-R) versus $0.1743$ (Leiden) and
-$0.1527$ (WGCNA).
+$\delta = +0.409$). Mean coherence was $0.1999$ (FACEO-R) versus $0.1586$ (Leiden) and
+$0.1397$ (WGCNA).
 
 \noindent\textbf{The advantage grows as the expression graph degrades} (Fig.~\ref{fig:faceor}),
 and is already present without degradation. On \emph{clean} data FACEO-R exceeded Leiden
