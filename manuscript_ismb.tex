@@ -227,11 +227,13 @@ log$_2$-transformed where the dynamic range exceeded 100. Probe-to-gene mapping 
 mygene.info annotation service. Datasets whose series matrix contained no expression
 values were excluded.
 
-Within each cohort, seven core GO biological-process pathways were analysed: apoptotic
-process (GO:0006915), inflammatory response (GO:0006954), regulation of immune response
-(GO:0050776), response to cytokine (GO:0034097), regulation of I-$\kappa$B
-kinase/NF-$\kappa$B signalling (GO:0043122), cellular response to oxidative stress
-(GO:0034599) and chemokine-mediated signalling pathway (GO:0070098). A pathway was
+Within each cohort, nine core GO biological-process pathways were analysed: regulation of
+apoptotic process (GO:0042981), inflammatory response (GO:0006954), regulation of
+inflammatory response (GO:0050727), regulation of immune response (GO:0050776), negative
+regulation of immune response (GO:0050777), cellular response to cytokine stimulus
+(GO:0071345), regulation of I-$\kappa$B kinase/NF-$\kappa$B signalling (GO:0043122),
+cellular response to oxidative stress (GO:0034599) and chemokine-mediated signalling
+pathway (GO:0070098). A pathway was
 analysed only if at least 25 of its genes had measurable expression; pathways larger than
 300 genes were reduced to the 300 highest-variance genes to bound computation.
 
@@ -411,10 +413,10 @@ $\rightarrow$ statistics $\rightarrow$ visualisation $\rightarrow$ reporting).
 
 \noindent\textbf{Benchmark scale.} Sixteen cohorts were retained after quality control (Table~\ref{tab:datasets}): three lung
 cancer, two breast cancer, two colorectal cancer and one each of hepatocellular carcinoma,
-sepsis, type 2 diabetes, cardiomyopathy and systemic lupus erythematosus. Seven GO
-biological-process pathways were analysed per cohort where at least 25 genes had measurable
-expression, yielding 100 analysable pathway--cohort pairs (median 177 genes per pathway).
-Thirty-one partitioning algorithms produced 3100 evaluation records.
+sepsis, type 2 diabetes, cardiomyopathy and systemic lupus erythematosus. Nine GO
+biological-process pathways were analysed per cohort where at least 25 genes had
+measurable expression, yielding 100 analysable pathway--cohort pairs (median 177 genes
+per pathway). Thirty-one partitioning algorithms produced 3100 evaluation records.
 
 \noindent\textbf{Multi-resolution partitioning improves functional coherence at equal or better
 modularity.} \label{sec:main}
@@ -941,7 +943,11 @@ produced functionally more coherent modules than hierarchical co-expression clus
 recovered nested functional sub-structure in synthetic benchmarks with known ground truth,
 and yielded better downstream clinical prediction --- while modularity failed to exceed
 degree-preserving null models and self-supervised embeddings only partially reproduced the
-inferred communities. We therefore recommend that pathway-centric module analyses report
+inferred communities. Building on these findings we introduced FACEO-R, which anchors
+overlapping community detection on GO-derived functional similarity through a
+reliability-adaptive weight, and which outperformed both Leiden and WGCNA-style
+partitioning across clean and degraded data (81\% and 88\% win rates) as well as on real
+single-cell data. We therefore recommend that pathway-centric module analyses report
 functional coherence against pathway-internal null expectations and select resolution
 parameters against external criteria, rather than relying on module counts or modularity.
 
@@ -963,11 +969,12 @@ The author declares no competing interests.
 \section*{Data availability}
 All expression cohorts are publicly available from GEO under the accessions in
 Table~\ref{tab:datasets}. Processed expression matrices, complete evaluation tables (3100
-main-benchmark, 528 synthetic-benchmark, 317 downstream, 495 FACEO-R degradation and 60
+main-benchmark, 528 synthetic-benchmark, 317 downstream, 435 FACEO-R degradation and 60
 single-cell validation records), statistical outputs, all figure-generating scripts and the
 manuscript source are organised as a reproducible pipeline and are available at
-\url{https://github.com/sunmy1129/faceo-r}. The single-cell dataset analysed in
-Section~\ref{sec:scrna} is available from GEO under accession GSE145926. Supplementary tables
+\url{https://github.com/sunmy1129/faceo-r}. The single-cell datasets analysed in
+Section~\ref{sec:scrna} are available from GEO under accessions GSE145926 and GSE185224.
+Supplementary tables
 S1--S6 are provided in the Supplementary Material.
 
 \begin{thebibliography}{99}
