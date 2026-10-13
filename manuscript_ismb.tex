@@ -84,11 +84,11 @@ community detection method in which the weight of GO-derived functional similari
 to the estimated reliability of the expression graph. Under controlled degradation (sample
 subsampling, expression noise and feature dropout) and on clean data alike, FACEO-R
 outperformed Leiden at $\gamma = 1.0$ in 118/145 comparisons (81\%;
-paired Wilcoxon $p = 1.9\times10^{-14}$, Cliff's $\delta = +0.292$) and WGCNA-style
-hierarchical cutting in 127/145 (88\%; $p = 9.0\times10^{-20}$, $\delta = +0.409$), with
-the largest gains under feature dropout ($\Delta = +0.070$, 27/28 wins, $p = 7.5\times10^{-8}$). Multi-resolution community detection produced functionally more coherent
+paired Wilcoxon $p = 1.9\times10^{-14}$) and WGCNA-style
+hierarchical cutting in 127/145 (88\%; $p = 9.0\times10^{-20}$), with
+the largest gains under feature dropout ($\Delta = +0.070$, 27/28 wins). Multi-resolution community detection produced functionally more coherent
 modules than hierarchical clustering (median $z = 0.689$ versus $0.045$; paired Wilcoxon
-$q = 4.6\times10^{-7}$; Cliff's $\delta = +0.418$) while simultaneously improving modularity
+$q = 4.6\times10^{-7}$) while simultaneously improving modularity
 ($0.291$ versus $0.000$; $q = 2.0\times10^{-17}$), and recovered nested functional
 sub-structures with markedly higher accuracy in synthetic benchmarks (ARI $1.000$ versus
 $0.908$). Downstream clinical prediction also favoured multi-resolution partitions
@@ -907,7 +907,7 @@ performance --- rather than by convention.
 structural proxy well correlated with the functional target, so alternative mechanisms tend
 to trade one metric for another. The picture changes when the expression graph degrades ---
 as it does in single-cell data, small clinical cohorts and noisy measurements. FACEO-R
-exploits the fact that functional annotation is \emph{unaffected} by expression degradation,
+exploits that functional annotation is \emph{unaffected} by expression degradation,
 and adapts its reliance on that annotation to the estimated reliability of the graph. The
 result is a method that does not sacrifice coherence on clean data while gaining markedly
 under degradation ($+0.046$ coherence under 50\% feature dropout; 88\% win rate;
@@ -957,7 +957,7 @@ degree-preserving null models and self-supervised embeddings only partially repr
 inferred communities. Building on these findings we introduced FACEO-R, which anchors
 overlapping community detection on GO-derived functional similarity through a
 reliability-adaptive weight, and which outperformed both Leiden and WGCNA-style
-partitioning across clean and degraded data (81\% and 88\% win rates) as well as on real
+partitioning across clean and degraded data (81\% and 88\% win rates) and on real
 single-cell data. We therefore recommend that pathway-centric module analyses report
 functional coherence against pathway-internal null expectations and select resolution
 parameters against external criteria, rather than relying on module counts or modularity.
