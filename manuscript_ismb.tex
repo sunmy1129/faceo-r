@@ -333,9 +333,10 @@ with $\tilde{T},\tilde{S}$ min--max normalised. Leiden partitioning of $A$ at
 $\gamma=1.0$ yields module cores; each gene is then assigned to every core whose mean
 affinity exceeds $\tau=0.65$ of its maximum, producing an overlapping partition.
 
-Two properties follow by construction. First, \emph{non-inferiority on clean data}: as
-$q\to1$, FACEO-R approaches the standard Leiden solution, so it cannot lose merely by adding
-the anchor. Second, \emph{robustness under degradation}: as expression quality falls, the
+Two properties follow by construction. First, \emph{bounded deviation from structure}: the
+anchoring weight is capped at $\alpha_{\max}=0.25$, so the functional term never fully
+overrides expression structure, and as the graph becomes reliable the partition moves toward a
+structure-dominant solution. Second, \emph{robustness under degradation}: as expression quality falls, the
 anchoring term preserves functional coherence. Crucially, the annotations used for anchoring
 (GO Biological Process \citep{ashburner2000go}) are \emph{disjoint} from those used for
 evaluation (Reactome \citep{jassal2020reactome}), so measured improvements are not circular.
@@ -908,7 +909,7 @@ to trade one metric for another. The picture changes when the expression graph d
 as it does in single-cell data, small clinical cohorts and noisy measurements. FACEO-R
 exploits the fact that functional annotation is \emph{unaffected} by expression degradation,
 and adapts its reliance on that annotation to the estimated reliability of the graph. The
-result is a method that is never worse than standard Leiden on clean data yet markedly better
+result is a method that does not sacrifice coherence on clean data while gaining markedly
 under degradation ($+0.046$ coherence under 50\% feature dropout; 88\% win rate;
 $p<10^{-4}$). The practical value of annotation anchoring therefore lies not in beating
 structure-based methods on ideal data, but in preserving module quality when data are
@@ -922,7 +923,17 @@ after spectral embedding to mitigate the curse of dimensionality, which may unde
 performance on raw similarity profiles. Four high-complexity algorithms (edge betweenness,
 link communities, optimal modularity and full multi-scale Markov Stability) could not be
 evaluated reliably at the pathway sizes considered and were excluded; this is a limitation of
-feasibility rather than a negative finding about those methods. Finally, the downstream
+feasibility rather than a negative finding about those methods. A further caveat concerns the
+attribution of the gain: the baselines operate on the expression graph alone, whereas FACEO-R
+additionally consumes GO-derived functional similarity, so part of its advantage reflects the
+availability of this additional information rather than the partitioning step itself. On the
+same anchored affinity, the relative ordering of partitioning algorithms changes, and
+establishing how much of the improvement is algorithmic rather than informational is an open
+question that a common-affinity benchmark would settle. We also note that the overlap
+expansion was retained for biological interpretability, since pleiotropy implies that a hard
+partition is an inappropriate model for gene function; on our benchmark it did not by itself
+improve functional coherence relative to a hard partition on the same affinity, and its
+benefit, if any, should be judged on biological rather than coherence grounds. Finally, the downstream
 evaluation is limited to disease-status classification, which is an easy task in these
 cohorts; survival and drug-target endpoints would be more discriminative.
 
