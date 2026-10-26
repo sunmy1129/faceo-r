@@ -1,0 +1,180 @@
+%% ISMB / Bioinformatics (OUP) submission template
+%% Title: Systematic benchmarking of functional module partitioning in GO pathway subnetworks
+%% Compile with: pdflatex -> bibtex -> pdflatex -> pdflatex
+\documentclass[twocolumn,10pt,letterpaper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{newtxtext}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\usepackage{float}
+\usepackage[letterpaper,top=1in,bottom=1in,left=1in,right=1in,columnsep=0.25in,footskip=0.35in]{geometry}
+\setlength{\floatsep}{5pt plus 1pt minus 1pt}
+\setlength{\textfloatsep}{7pt plus 1pt minus 1pt}
+\setlength{\intextsep}{5pt plus 1pt minus 1pt}
+\setlength{\abovedisplayskip}{4pt plus 1pt minus 1pt}
+\setlength{\belowdisplayskip}{4pt plus 1pt minus 1pt}
+\setlength{\abovedisplayshortskip}{2pt}
+\setlength{\belowdisplayshortskip}{2pt}
+\usepackage{caption}
+\captionsetup[figure]{font=footnotesize,labelfont=bf,skip=3.5pt,name={Fig.},labelsep=period}
+\captionsetup[table]{font=footnotesize,labelfont=bf,skip=3.5pt,name={Table},labelsep=period}
+
+% ---- 排版微调：避免溢出、平衡字间距 ----
+\setlength{\emergencystretch}{2.5em}
+\tolerance=1200
+\widowpenalty=1000
+\clubpenalty=1000
+\setlength{\parskip}{0pt}
+\setlength{\abovedisplayskip}{4pt}
+\setlength{\belowdisplayskip}{4pt}
+\usepackage{titlesec}
+\titleformat{\section}[hang]{\normalfont\large\bfseries}{\thesection}{0.6em}{}
+\titleformat{\subsection}[hang]{\normalfont\normalsize\bfseries}{\thesubsection}{0.6em}{}
+\titleformat{\subsubsection}[runin]{\normalfont\small\bfseries}{}{0em}{}[.]
+\titlespacing*{\section}{0pt}{6pt plus 2pt minus 1pt}{2.5pt}
+\titlespacing*{\subsection}{0pt}{4pt plus 1pt minus 1pt}{1.5pt}
+\titlespacing*{\subsubsection}{0pt}{4pt}{0.5em}
+
+%% ---- 跨栏标题 + 摘要（ISMB/OUP 样式）----
+\renewcommand{\topfraction}{0.95}
+\renewcommand{\bottomfraction}{0.9}
+\renewcommand{\textfraction}{0.06}
+\renewcommand{\floatpagefraction}{0.72}
+\begin{document}
+
+\twocolumn[{
+\begin{center}
+{\LARGE\bfseries FACEO-R: Functionally Anchored Overlapping Community Detection for
+Robust Pathway Module Discovery\par}
+\vspace{0.85em}
+{\large Mingyu Sun\textsuperscript{2} \quad Weixiong Zhang\textsuperscript{1,\,2,\,3,\,*}\par}
+\vspace{0.28em}
+{\footnotesize\textsuperscript{1}Hong Kong Jockey Club STEM Laboratory for Genomics and AI
+in Healthcare, Hong Kong, China\par}
+{\footnotesize\textsuperscript{2}Department of Health Technology and Informatics, The Hong
+Kong Polytechnic University, Hong Kong, China\par}
+{\footnotesize\textsuperscript{3}Department of Data Science and Artificial Intelligence,
+The Hong Kong Polytechnic University, Hong Kong, China\par}
+{\footnotesize\textsuperscript{*}Correspondence: weixiong.zhang@polyu.edu.hk;
+mingyu.sun@connect.polyu.hk\par}
+\end{center}
+\vspace{0.35em}
+\hrule height 0.4pt
+\vspace{0.60em}
+\begin{minipage}{0.955\textwidth}
+\footnotesize
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\noindent\textbf{Motivation.} Weighted gene co-expression network analysis (WGCNA) and its
+variants remain the dominant paradigm for partitioning genes into functional modules.
+We treat the validity of this paradigm as a statistical question rather than a modelling
+choice, and test it on a fixed benchmark with strictly paired comparisons and null models
+that separate genuine biological organisation from artefacts of network construction. Four
+assumptions are examined: that a monotone co-expression metric captures functional
+relatedness; that a global cut yields reproducible modules; that a single partition resolves
+nested sub-structure; and that reported modularity reflects biological organisation. All
+four fail.
+
+\vspace{4pt}
+\noindent\textbf{Results.} We assembled a benchmark of 16 publicly available expression
+cohorts spanning neoplastic and non-neoplastic disease, nine GO biological-process
+pathways and 31 partitioning algorithms from eight methodological families, yielding 100
+pathway--cohort pairs and 3100 evaluation records. All algorithms operated on an identical
+topological overlap matrix per pair, enforcing a strictly paired comparison. Evaluation
+followed a six-layer protocol covering structural compactness, functional coherence
+(GO/KEGG/Reactome-referenced, size-unbiased $z$-scores), bootstrap stability,
+multi-perturbation robustness, biological validity (curated antagonistic gene pairs) and
+downstream clinical prediction. To eliminate circularity, graph representation learning was
+reformulated as self-supervised edge prediction, removing all community labels from
+training. Synthetic benchmarks with known ground truth supplied absolute accuracy
+references. Motivated by the finding that expression graphs degrade under realistic
+constraints, we further introduce \textbf{FACEO-R}, a functionally anchored overlapping
+community detection method in which the weight of GO-derived functional similarity adapts
+to the estimated reliability of the expression graph. Under controlled degradation (sample
+subsampling, expression noise and feature dropout) and on clean data alike, FACEO-R
+outperformed Leiden at $\gamma = 1.0$ in 118/145 comparisons (81\%;
+paired Wilcoxon $p = 1.9\times10^{-14}$) and WGCNA-style
+hierarchical cutting in 127/145 (88\%; $p = 9.0\times10^{-20}$), with
+the largest gains under feature dropout ($\Delta = +0.070$, 27/28 wins). Multi-resolution community detection produced functionally more coherent
+modules than hierarchical clustering (median $z = 0.689$ versus $0.045$; paired Wilcoxon
+$q = 4.6\times10^{-7}$) while simultaneously improving modularity
+($0.291$ versus $0.000$; $q = 2.0\times10^{-17}$), and recovered nested functional
+sub-structures with markedly higher accuracy in synthetic benchmarks (ARI $1.000$ versus
+$0.908$). Downstream clinical prediction also favoured multi-resolution partitions
+(AUC $0.989$ versus $0.898$).
+
+\vspace{4pt}
+\noindent\textbf{Conclusions.} We find that the three implicit assumptions of current
+practice --- a single adequate algorithm, a single defensible resolution, and modularity as
+evidence --- all fail, and that the failures are systematic. First,
+modularity --- and its significance against degree-preserving null models --- proved unstable
+with respect to graph construction (threshold sensitivity reverses the sign; weights
+contribute 29\%), so it should not be used as primary evidence. Second, the functionally optimal
+resolution is \emph{not predictable}: optimal $\gamma$ was highly dispersed across pathways
+(entropy 1.74 of a maximum 1.79, with no value optimal in more than 26\% of cases), yet four
+families of automatic selection strategies --- structural-fingerprint regression, pathway-size
+grouping, multi-resolution consensus clustering and cross-library held-out annotation
+guidance --- all failed (accuracy 0.16--0.46, none significantly better than chance, with
+consensus clustering actively harmful). Third, any fixed resolution therefore sacrifices a
+mean of 0.765 functional-coherence $z$-units relative to per-pathway optimal selection. We
+recommend reporting resolution-sensitivity curves validated against held-out functional
+evidence, rather than modularity, module counts, or a single arbitrary resolution.
+
+\vspace{6pt}
+\noindent\textbf{Availability and implementation:} The FACEO-R implementation, all
+analysis scripts, processed expression matrices and complete evaluation tables are freely
+available at \url{https://github.com/sunmy1129/faceo-r} under an MIT licence.\\
+\noindent\textbf{Contact:} weixiong.zhang@polyu.edu.hk; mingyu.sun@connect.polyu.hk\\
+\noindent\textbf{Keywords:} functional module partitioning; community detection; Leiden
+algorithm; WGCNA; graph neural networks; self-supervised learning; benchmarking
+\end{minipage}
+\vspace{0.30em}
+\hrule height 0.4pt
+\vspace{0.85em}
+}]
+
+\vspace{2pt}
+
+%% ============================================================
+
+\renewcommand{\thefigure}{S\arabic{figure}}
+\setcounter{figure}{0}
+\section*{Appendix}
+%% ============================================================
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\columnwidth,height=0.30\textheight,keepaspectratio]{../output/figures_v3/FigCA_clean.png}
+\caption{The advantage is present with and without degradation, and the anchoring strength
+has a narrow optimum. (a) Mean functional coherence under clean data and five degradation
+regimes; FACEO-R exceeds both baselines in every condition. (b) Coherence as a function of a
+fixed anchoring weight $\alpha$ (solid); performance improves monotonically as anchoring
+strengthens, the originally proposed adaptive schedule under-anchored (dashed, below every
+fixed setting in $[0.05, 0.35]$), and the retuned schedule matches the best fixed weight.}
+\label{fig:clean}
+\end{figure}
+
+%% ============================================================
+
+
+
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\columnwidth,height=0.28\textheight,keepaspectratio]{../output/figures_v3/FigCA_bio.png}
+\caption{Recovered modules map onto coherent, specific biological processes. Median
+enrichment significance of the top Gene Ontology term per module, with the input pathway
+excluded from consideration; annotations show the median number of module genes in each
+term. Twenty-two distinct processes were recovered across four cohorts.}
+\label{fig:bio}
+\end{figure}
+
+\end{document}
+
+\end{document}
