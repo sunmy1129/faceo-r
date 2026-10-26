@@ -1,0 +1,1052 @@
+%% ISMB / Bioinformatics (OUP) submission template
+%% Title: Systematic benchmarking of functional module partitioning in GO pathway subnetworks
+%% Compile with: pdflatex -> bibtex -> pdflatex -> pdflatex
+\documentclass[twocolumn,10pt,letterpaper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{newtxtext}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\usepackage{float}
+\usepackage[letterpaper,top=1in,bottom=1in,left=1in,right=1in,columnsep=0.25in,footskip=0.35in]{geometry}
+\setlength{\floatsep}{5pt plus 1pt minus 1pt}
+\setlength{\textfloatsep}{7pt plus 1pt minus 1pt}
+\setlength{\intextsep}{5pt plus 1pt minus 1pt}
+\setlength{\abovedisplayskip}{4pt plus 1pt minus 1pt}
+\setlength{\belowdisplayskip}{4pt plus 1pt minus 1pt}
+\setlength{\abovedisplayshortskip}{2pt}
+\setlength{\belowdisplayshortskip}{2pt}
+\usepackage{caption}
+\captionsetup[figure]{font=footnotesize,labelfont=bf,skip=3.5pt,name={Fig.},labelsep=period}
+\captionsetup[table]{font=footnotesize,labelfont=bf,skip=3.5pt,name={Table},labelsep=period}
+
+% ---- 排版微调：避免溢出、平衡字间距 ----
+\setlength{\emergencystretch}{2.5em}
+\tolerance=1200
+\widowpenalty=1000
+\clubpenalty=1000
+\setlength{\parskip}{0pt}
+\setlength{\abovedisplayskip}{4pt}
+\setlength{\belowdisplayskip}{4pt}
+\usepackage{titlesec}
+\titleformat{\section}[hang]{\normalfont\large\bfseries}{\thesection}{0.6em}{}
+\titleformat{\subsection}[hang]{\normalfont\normalsize\bfseries}{\thesubsection}{0.6em}{}
+\titleformat{\subsubsection}[runin]{\normalfont\small\bfseries}{}{0em}{}[.]
+\titlespacing*{\section}{0pt}{6pt plus 2pt minus 1pt}{2.5pt}
+\titlespacing*{\subsection}{0pt}{4pt plus 1pt minus 1pt}{1.5pt}
+\titlespacing*{\subsubsection}{0pt}{4pt}{0.5em}
+
+%% ---- 跨栏标题 + 摘要（ISMB/OUP 样式）----
+\renewcommand{\topfraction}{0.95}
+\renewcommand{\bottomfraction}{0.9}
+\renewcommand{\textfraction}{0.06}
+\renewcommand{\floatpagefraction}{0.72}
+\begin{document}
+
+\twocolumn[{
+\begin{center}
+{\LARGE\bfseries FACEO-R: Functionally Anchored Overlapping Community Detection for
+Robust Pathway Module Discovery\par}
+\vspace{0.85em}
+{\large Mingyu Sun\textsuperscript{2} \quad Weixiong Zhang\textsuperscript{1,\,2,\,3,\,*}\par}
+\vspace{0.28em}
+{\footnotesize\textsuperscript{1}Hong Kong Jockey Club STEM Laboratory for Genomics and AI
+in Healthcare, Hong Kong, China\par}
+{\footnotesize\textsuperscript{2}Department of Health Technology and Informatics, The Hong
+Kong Polytechnic University, Hong Kong, China\par}
+{\footnotesize\textsuperscript{3}Department of Data Science and Artificial Intelligence,
+The Hong Kong Polytechnic University, Hong Kong, China\par}
+{\footnotesize\textsuperscript{*}Correspondence: weixiong.zhang@polyu.edu.hk;
+mingyu.sun@connect.polyu.hk\par}
+\end{center}
+\vspace{0.35em}
+\hrule height 0.4pt
+\vspace{0.60em}
+\begin{minipage}{0.955\textwidth}
+\footnotesize
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\noindent\textbf{Motivation.} Weighted gene co-expression network analysis (WGCNA) and its
+variants remain the dominant paradigm for partitioning genes into functional modules.
+We treat the validity of this paradigm as a statistical question rather than a modelling
+choice, and test it on a fixed benchmark with strictly paired comparisons and null models
+that separate genuine biological organisation from artefacts of network construction. Four
+assumptions are examined: that a monotone co-expression metric captures functional
+relatedness; that a global cut yields reproducible modules; that a single partition resolves
+nested sub-structure; and that reported modularity reflects biological organisation. All
+four fail.
+
+\vspace{4pt}
+\noindent\textbf{Results.} We assembled a benchmark of 16 publicly available expression
+cohorts spanning neoplastic and non-neoplastic disease, nine GO biological-process
+pathways and 31 partitioning algorithms from eight methodological families, yielding 100
+pathway--cohort pairs and 3100 evaluation records. All algorithms operated on an identical
+topological overlap matrix per pair, enforcing a strictly paired comparison. Evaluation
+followed a six-layer protocol covering structural compactness, functional coherence
+(GO/KEGG/Reactome-referenced, size-unbiased $z$-scores), bootstrap stability,
+multi-perturbation robustness, biological validity (curated antagonistic gene pairs) and
+downstream clinical prediction. To eliminate circularity, graph representation learning was
+reformulated as self-supervised edge prediction, removing all community labels from
+training. Synthetic benchmarks with known ground truth supplied absolute accuracy
+references. Motivated by the finding that expression graphs degrade under realistic
+constraints, we further introduce \textbf{FACEO-R}, a functionally anchored overlapping
+community detection method in which the weight of GO-derived functional similarity adapts
+to the estimated reliability of the expression graph. Under controlled degradation (sample
+subsampling, expression noise and feature dropout) and on clean data alike, FACEO-R
+outperformed Leiden at $\gamma = 1.0$ in 118/145 comparisons (81\%;
+paired Wilcoxon $p = 1.9\times10^{-14}$) and WGCNA-style
+hierarchical cutting in 127/145 (88\%; $p = 9.0\times10^{-20}$), with
+the largest gains under feature dropout ($\Delta = +0.070$, 27/28 wins). Multi-resolution community detection produced functionally more coherent
+modules than hierarchical clustering (median $z = 0.689$ versus $0.045$; paired Wilcoxon
+$q = 4.6\times10^{-7}$) while simultaneously improving modularity
+($0.291$ versus $0.000$; $q = 2.0\times10^{-17}$), and recovered nested functional
+sub-structures with markedly higher accuracy in synthetic benchmarks (ARI $1.000$ versus
+$0.908$). Downstream clinical prediction also favoured multi-resolution partitions
+(AUC $0.989$ versus $0.898$).
+
+\vspace{4pt}
+\noindent\textbf{Conclusions.} We find that the three implicit assumptions of current
+practice --- a single adequate algorithm, a single defensible resolution, and modularity as
+evidence --- all fail, and that the failures are systematic. First,
+modularity --- and its significance against degree-preserving null models --- proved unstable
+with respect to graph construction (threshold sensitivity reverses the sign; weights
+contribute 29\%), so it should not be used as primary evidence. Second, the functionally optimal
+resolution is \emph{not predictable}: optimal $\gamma$ was highly dispersed across pathways
+(entropy 1.74 of a maximum 1.79, with no value optimal in more than 26\% of cases), yet four
+families of automatic selection strategies --- structural-fingerprint regression, pathway-size
+grouping, multi-resolution consensus clustering and cross-library held-out annotation
+guidance --- all failed (accuracy 0.16--0.46, none significantly better than chance, with
+consensus clustering actively harmful). Third, any fixed resolution therefore sacrifices a
+mean of 0.765 functional-coherence $z$-units relative to per-pathway optimal selection. We
+recommend reporting resolution-sensitivity curves validated against held-out functional
+evidence, rather than modularity, module counts, or a single arbitrary resolution.
+
+\vspace{6pt}
+\noindent\textbf{Availability and implementation:} The FACEO-R implementation, all
+analysis scripts, processed expression matrices and complete evaluation tables are freely
+available at \url{https://github.com/sunmy1129/faceo-r} under an MIT licence.\\
+\noindent\textbf{Contact:} weixiong.zhang@polyu.edu.hk; mingyu.sun@connect.polyu.hk\\
+\noindent\textbf{Keywords:} functional module partitioning; community detection; Leiden
+algorithm; WGCNA; graph neural networks; self-supervised learning; benchmarking
+\end{minipage}
+\vspace{0.30em}
+\hrule height 0.4pt
+\vspace{0.85em}
+}]
+
+\vspace{2pt}
+
+%% ============================================================
+\section{Introduction}
+%% ============================================================
+
+Co-expression module analysis is the dominant strategy for extracting functional structure
+from transcriptomic data. WGCNA, its most widely used implementation, has become the
+\emph{de facto} standard across thousands of studies, and its modules routinely serve as the
+starting point for enrichment analysis, biomarker discovery and drug-target
+prioritisation \citep{langfelder2008wgcna,langfelder2012wgcna,gillis2012guilt}.
+
+The paradigm rests on four assumptions that are rarely stated and almost never tested.
+
+\begin{enumerate}
+
+\item \textbf{Linearity.} Hierarchical clustering on topological-overlap dissimilarity
+presupposes that functional relatedness is a monotone function of co-expression. Where this
+fails --- as for functionally antagonistic partners that nevertheless co-vary --- genes with
+opposing roles are merged, and the eigengene averages over signal instead of representing it.
+
+\item \textbf{Global cutting.} Dynamic tree cutting sets module boundaries from a single
+dendrogram height, so membership depends on network size and on the cut statistic. Such
+modules need not reproduce across cohorts of different size even when the biology is
+unchanged.
+
+\item \textbf{Single scale.} WGCNA returns one partition. Whether a module conceals coherent
+nested sub-structure cannot be answered within the method, and is usually not asked.
+
+\item \textbf{No external standard.} Nothing in the pipeline tests whether a partition
+reflects genuine structure rather than an artefact of network construction. Modularity ---
+the quantity usually reported as evidence --- is optimised by the algorithm itself, and is
+not an independent measurement.
+
+\end{enumerate}
+
+These are not niceties. If they hold, module-level conclusions from two decades of
+pathway-centric work carry a systematic, unquantified uncertainty, and the field has no
+benchmark with which to detect it. We therefore ask a narrow, checkable question:
+\emph{does hierarchical co-expression analysis recover the functional structure its modules
+are taken to represent?}
+
+Furthermore, when a pathway is defined by a GO term \citep{ashburner2000go}, it is by
+construction a \emph{nested} hierarchy: ``regulation of immune response'' contains ``cellular response to cytokine
+stimulus'', each of which contains coherent sub-processes. A method that outputs a single
+coarse partition discards this hierarchy by design.
+
+\noindent\textbf{Related work.} Multi-resolution community detection \citep{newman2004girvan}, in
+particular the Leiden algorithm \citep{traag2019leiden}, generalises modularity optimisation
+through a resolution parameter and guarantees well-connected communities. Alternatives
+include the Constant Potts Model \citep{traag2011cpm}, information-theoretic methods
+\citep{rosvall2008infomap}, degree-corrected and hierarchical stochastic block models,
+overlapping community detection \citep{ahn2010link,lancichinetti2011oslom}, and graph
+representation learning. Within bioinformatics, MEGENA \citep{song2015megena} explicitly
+addresses multi-scale co-expression module discovery. Prior comparative studies of community
+detection and of single-cell pipelines \citep{luecken2019benchmark} established benchmarking
+methodology, but none has addressed the pathway-subnetwork regime with a strictly paired
+design, combined synthetic benchmarks such as LFR \citep{lancichinetti2008lfr} with
+functional-coherence metrics, or constrained the interpretation of modularity with null
+models.
+
+\noindent\textbf{Contributions.} \begin{enumerate}
+\item \textbf{FACEO-R}, a functionally anchored overlapping community detection method whose
+reliance on GO-derived functional similarity adapts to the estimated reliability of the
+expression graph. Its anchoring strength was selected by a systematic sweep. It outperforms
+Leiden $\gamma=1.0$ and WGCNA-style partitioning
+under controlled degradation and on clean data (81\% and 88\% win rates; $p = 1.9\times10^{-14}$ and
+$9.0\times10^{-20}$), and replicates on real single-cell data (69\% and 94\% win rates;
+$p = 0.029$ and $6.1\times10^{-5}$).
+\item A \textbf{paired benchmark design} in which 31 partitioning algorithms operate on an
+identical topological overlap matrix per pathway--dataset pair.
+\item A \textbf{six-layer evaluation protocol} separating structural, functional,
+stability, robustness, biological and downstream dimensions, and explicitly avoiding
+module-count-based criteria.
+\item \textbf{Functional coherence with a pathway-internal null}, replacing enrichment
+$p$-values, which are biased by module size, with a size-unbiased $z$-score.
+\item A \textbf{self-supervised reformulation} of graph representation learning, removing
+the label leakage inherent in training an embedding model on the community labels it is
+later used to validate.
+\item \textbf{Synthetic benchmarks with absolute ground truth}, including a nested
+sub-structure benchmark that directly tests whether multi-resolution partitioning recovers
+fine-grained functional divisions.
+\item A \textbf{systematic test of automatic resolution selection}, demonstrating that the
+functionally optimal resolution is pathway-specific and cannot be recovered from structural
+fingerprints, coarse grouping rules, multi-resolution consensus clustering or cross-library
+held-out annotation guidance --- to our knowledge the first evidence that no data-driven
+resolution-selection strategy succeeds in this setting.
+\item \textbf{Negative results reported without suppression}: observed modularity does not
+exceed degree-preserving null models, and consensus clustering over resolutions is actively
+harmful ($0/12$ pairs improved).
+\end{enumerate}
+
+%% ============================================================
+\section{Materials and methods}
+%% ============================================================
+
+\noindent\textbf{Datasets.} Sixteen publicly available cohorts spanning neoplastic and non-neoplastic disease were
+retrieved from the Gene Expression Omnibus (GEO) (Table~\ref{tab:datasets}). Each cohort
+was processed to a gene $\times$ sample matrix (gene symbols, uppercase), filtered to
+remove low-expression genes by an adaptive rule (a gene was retained if its expression
+exceeded the within-cohort 25th-percentile-median threshold in more than 50\% of samples,
+with progressively relaxed thresholds until at least 1000 genes remained), and
+log$_2$-transformed where the dynamic range exceeded 100. Probe-to-gene mapping used the
+mygene.info annotation service. Datasets whose series matrix contained no expression
+values were excluded.
+
+Within each cohort, nine core GO biological-process pathways were analysed: regulation of
+apoptotic process (GO:0042981), inflammatory response (GO:0006954), regulation of
+inflammatory response (GO:0050727), regulation of immune response (GO:0050776), negative
+regulation of immune response (GO:0050777), cellular response to cytokine stimulus
+(GO:0071345), regulation of I-$\kappa$B kinase/NF-$\kappa$B signalling (GO:0043122),
+cellular response to oxidative stress (GO:0034599) and chemokine-mediated signalling
+pathway (GO:0070098). A pathway was
+analysed only if at least 25 of its genes had measurable expression; pathways larger than
+300 genes were reduced to the 300 highest-variance genes to bound computation.
+
+\noindent\textbf{Network construction.} For each pathway--cohort pair, a soft-thresholded correlation adjacency was computed as
+$a_{ij} = |\mathrm{cor}(x_i,x_j)|^{\beta}$ with $\beta = 6$, and the topological overlap
+matrix (TOM) derived as
+\begin{equation}
+\mathrm{TOM}_{ij} = \frac{l_{ij} + a_{ij}}{\min(k_i,k_j) + 1 - a_{ij}},
+\qquad l_{ij} = \sum_u a_{iu}a_{uj},
+\end{equation}
+where $k_i = \sum_u a_{iu}$. The TOM served as the \emph{single shared input} to every
+algorithm, so all differences in output are attributable to the partitioning procedure
+rather than to graph construction.
+
+\noindent\textbf{Partitioning algorithms.} Thirty-one algorithms spanning eight families were evaluated (Table~\ref{tab:algos}).
+
+\noindent\textbf{Family A (hierarchical co-expression).} Average-linkage hierarchical
+clustering with dynamic-style cutting (balance criterion), serving as the reference and
+mirroring the WGCNA-style module-detection workflow \citep{langfelder2008wgcna,langfelder2012wgcna,ward1963hierarchical}.
+
+\noindent\textbf{Family B (modularity optimisation).} Leiden \citep{traag2019leiden} across a
+resolution grid ($\gamma=0.1$, $0.5$, $1.0$, $2.0$, $5.0$, $10.0$), Louvain
+\citep{blondel2008louvain} ($\gamma=0.5$, $1.0$, $2.0$), Constant Potts Model
+\citep{traag2011cpm} ($\gamma=0.05$, $0.10$, $0.20$), Multilevel \citep{blondel2008louvain},
+Fast Greedy \citep{clauset2004fastgreedy}, Leading Eigenvector \citep{newman2006leading} and
+Spin Glass \citep{reichardt2006spin}.
+
+\noindent\textbf{Family C (information-theoretic / spectral).} InfoMap
+\citep{rosvall2008infomap}, Walktrap \citep{pons2005walktrap}, spectral clustering
+ on the precomputed affinity.
+
+\noindent\textbf{Family D (generative / label propagation).} Label propagation
+\citep{raghavan2007lpa}.
+
+\noindent\textbf{Family E (overlapping community detection).} Clique percolation
+\citep{palla2005clique}, and OSLOM \citep{lancichinetti2011oslom} and link communities
+\citep{ahn2010link} as reference implementations.
+
+\noindent\textbf{Family F (graph representation learning).} Self-supervised graph attention
+networks (GAT) \citep{velickovic2018gat} and GraphSAGE, with
+partitions derived by $k$-means in the embedding space (Section~\ref{sec:selfsup}); the self-supervised objective follows Deep Graph Infomax \citep{velickovic2019dgi}.
+
+\noindent\textbf{Family G (classical clustering).} $K$-means, Gaussian mixture, Ward
+agglomerative clustering \citep{ward1963hierarchical}, DBSCAN \citep{ester1996dbscan},
+HDBSCAN \citep{campello2013hdbscan}, OPTICS, Mean Shift, Affinity Propagation and
+non-negative matrix factorisation. Density-based methods operated in a spectral
+embedding space obtained by Laplacian eigenmaps of the TOM, to avoid the curse of
+dimensionality that affects density estimation on high-dimensional similarity profiles.
+
+\noindent\textbf{Family H (biological prior).} Not applicable in the present design;
+pathway membership is the grouping prior and is shared by all algorithms.
+
+All stochastic algorithms used a fixed seed (42); stability was assessed across bootstrap
+resamples rather than across seeds alone.
+
+\noindent\textbf{Self-supervised graph representation learning.} \label{sec:selfsup}
+
+To avoid circularity --- an embedding model trained on community labels cannot provide
+independent evidence about those labels --- the representation component was reformulated
+as self-supervised edge prediction. For a graph with node features $X$ (standardised rows of
+the TOM) and weighted edge set $E$, a fraction (15\%) of edges was masked; a two-layer
+graph attention network with edge-feature conditioning (\texttt{edge\_dim}$=1$) produced
+$d = 64$-dimensional node embeddings; and the objective was a binary cross-entropy over
+positive (masked) edges and an equal number of uniformly sampled negatives:
+\begin{equation}
+\begin{split}
+\mathcal{L} ={} &-\frac{1}{|E^{+}|}\sum_{(i,j)\in E^{+}}\log\sigma(z_i^{\top}z_j) \\
+&-\frac{1}{|E^{-}|}\sum_{(i,j)\in E^{-}}\log\!\left(1-\sigma(z_i^{\top}z_j)\right),
+\end{split}
+\end{equation}
+with early stopping (patience 40). Because community labels are never used during training,
+the degree to which the Leiden partition is separable in the embedding space constitutes a
+genuinely independent test. A control experiment on a synthetic graph with known community
+structure confirmed that the implementation recovers ground-truth partitions (ARI $=1.000$).
+
+\noindent\textbf{FACEO-R: functionally anchored overlapping community detection.} \label{sec:faceor}
+
+We introduce \textbf{FACEO-R}, in which functional annotation acts as an \emph{anchoring
+prior} whose weight adapts to the reliability of the expression graph. Let $T$ denote the
+topological overlap matrix derived from expression and $S$ the pairwise Jaccard similarity
+of GO Biological Process annotations. We estimate a graph reliability $q\in[0,1]$ from the
+bootstrap stability of the Leiden partition under gene resampling (five resamples retaining
+80\% of genes; mean pairwise ARI rescaled from $[0.3,0.9]$ to $[0,1]$). The anchoring weight
+is
+\begin{equation}
+\begin{split}
+\alpha(q) &= \alpha_{\min} + (\alpha_{\max}-\alpha_{\min})\,q, \\
+&\qquad \alpha_{\min}=0.05,\;\alpha_{\max}=0.25,
+\end{split}
+\end{equation}
+so that $\alpha\to\alpha_{\max}$ when the expression graph is reliable and decreases when
+it is not. The fused affinity is
+\begin{equation}
+A = \alpha(q)\,\tilde{T} + \bigl(1-\alpha(q)\bigr)\,\tilde{S},
+\end{equation}
+with $\tilde{T},\tilde{S}$ min--max normalised. Leiden partitioning of $A$ at
+$\gamma=1.0$ yields module cores; each gene is then assigned to every core whose mean
+affinity exceeds $\tau=0.65$ of its maximum, producing an overlapping partition.
+
+Two properties follow by construction. First, \emph{bounded deviation from structure}: the
+anchoring weight is capped at $\alpha_{\max}=0.25$, so the functional term never fully
+overrides expression structure, and as the graph becomes reliable the partition moves toward a
+structure-dominant solution. Second, \emph{robustness under degradation}: as expression quality falls, the
+anchoring term preserves functional coherence. Crucially, the annotations used for anchoring
+(GO Biological Process \citep{ashburner2000go}) are \emph{disjoint} from those used for
+evaluation (Reactome \citep{jassal2020reactome}), so measured improvements are not circular.
+
+\noindent\textbf{Evaluation protocol.} Six orthogonal layers were computed for each algorithm--pathway--cohort triple.
+
+\noindent\textbf{L1 (structure).} Number of modules, Newman modularity $Q$, module-size
+entropy, unassigned-gene rate.
+
+\noindent\textbf{L2 (functional coherence; primary functional endpoint).} For each module,
+the pairwise Jaccard similarity of GO/KEGG/Reactome annotations
+\citep{ashburner2000go,jassal2020reactome}
+(6807 gene sets with $\geq 10$ genes) was averaged over annotated gene pairs. The module score was standardised
+against 30 random gene sets of identical size drawn from the \emph{same pathway}:
+\begin{equation}
+z_m = \frac{c_m - \mathbb{E}[c_{\mathrm{null}}]}{\mathrm{sd}[c_{\mathrm{null}}]}.
+\end{equation}
+This removes both module-size bias and the pathway-level enrichment background. Enrichment
+$p$-values were retained only as a secondary, size-biased reference.
+
+\noindent\textbf{L3 (stability).} Bootstrap resampling of 80\% of genes, 4 repeats; mean
+pairwise ARI across resamples.
+
+\noindent\textbf{L4 (robustness).} ARI between the baseline partition and partitions
+obtained after adding 10\% and 20\% Gaussian noise to the TOM and after removing 10\% of
+edges.
+
+\noindent\textbf{L5 (biological validity).} Twenty literature-curated antagonistic gene
+pairs (e.g. BAX/BCL2, CASP3/XIAP, NFKB1/NFKBIA); the separation rate is the fraction
+assigned to different modules.
+
+\noindent\textbf{L6 (downstream clinical prediction).} Module eigengenes (first principal
+component of each module) were used as features to predict clinically annotated phenotypes
+by logistic regression under five-fold stratified cross-validation, reporting the area
+under the ROC curve (AUC).
+
+\noindent\textbf{Random control.} ARI between the observed partition and a uniformly random
+partition with the same number of modules.
+
+\noindent\textbf{Synthetic benchmarks with ground truth.} \noindent\textbf{B1 (block model).} Weighted graphs with seven known communities, generated
+with a fuzziness parameter $\mu\in\{0.10,0.25,0.40,0.55,0.70\}$ controlling overlap between
+within- and between-community edge weights; three seeds per setting.
+
+\noindent\textbf{B2 (nested sub-structure; decisive).} Six modules, each containing two
+functional sub-groups (12 ground-truth groups), with strong within-sub-group, weak
+between-sub-group and near-zero between-module weights.
+
+\noindent\textbf{B3 (noise gradient).} Block-model graphs ($\mu=0.25$) subjected to
+Gaussian weight noise $\sigma\in\{0,0.10,0.20,0.35,0.50\}$.
+
+\noindent\textbf{Null models.} \noindent\textbf{Null A (degree-preserving rewiring).} Edges were rewired while preserving
+each node's degree ($3|E|$ swaps), then re-weighted by sampling from the observed weight
+distribution; Leiden modularity was recomputed on each of 30 realisations.
+
+\noindent\textbf{Null B (expression permutation).} Each gene's expression vector was
+independently permuted across samples, the TOM recomputed and modularity evaluated as above.
+
+\noindent\textbf{Statistical analysis.} The unit of analysis is a pathway--cohort pair. Because all algorithms received an identical
+input graph, comparisons are paired by construction. Paired differences were assessed with
+the Wilcoxon signed-rank test, corrected for multiple comparisons by the
+Benjamini--Hochberg procedure \citep{benjamini1995fdr} ($q<0.05$), and accompanied by
+Cliff's $\delta$ \citep{cliff1993dominance} as a non-parametric effect size. Partition
+agreement was quantified by the adjusted Rand index \citep{hubert1985ari}. Medians are reported for skewed metrics.
+
+\noindent\textbf{Software and reproducibility.} Analyses used Python 3.11 with \texttt{igraph}, \texttt{leidenalg}, \texttt{networkx},
+\texttt{scikit-learn}, \texttt{PyTorch Geometric}, \texttt{hdbscan} and \texttt{mygene}.
+All random seeds were fixed. Scripts, processed matrices and result tables are organised as
+a linear pipeline (acquisition $\rightarrow$ pathway extraction $\rightarrow$ graph
+construction $\rightarrow$ partitioning $\rightarrow$ embedding $\rightarrow$ evaluation
+$\rightarrow$ statistics $\rightarrow$ visualisation $\rightarrow$ reporting).
+
+%% ============================================================
+\section{Results}
+%% ============================================================
+
+\noindent\textbf{Benchmark scale.} Sixteen cohorts were retained after quality control (Table~\ref{tab:datasets}): three lung
+cancer, two breast cancer, two colorectal cancer and one each of hepatocellular carcinoma,
+sepsis, type 2 diabetes, cardiomyopathy and systemic lupus erythematosus. Nine GO
+biological-process pathways were analysed per cohort where at least 25 genes had
+measurable expression, yielding 100 analysable pathway--cohort pairs (median 177 genes
+per pathway). Thirty-one partitioning algorithms produced 3100 evaluation records.
+
+\noindent\textbf{Multi-resolution partitioning improves functional coherence at equal or better
+modularity.} \label{sec:main}
+
+Paired comparison of Leiden at $\gamma=1.0$ against WGCNA-style hierarchical clustering
+across all 100 pathway--cohort pairs (Fig.~\ref{fig:consistency}) showed that multi-resolution partitioning produced
+significantly more modules (median 4.5 versus 3.0; Wilcoxon signed-rank,
+$q = 4.9\times10^{-16}$, Cliff's $\delta = +0.870$) while simultaneously achieving higher
+modularity (median $Q = 0.291$ versus $\mathbf{0.000}$; $q = 2.0\times10^{-17}$,
+$\delta = +1.000$). The reference method's median modularity of exactly zero indicates that
+hierarchical cutting on pathway-derived graphs frequently fails to yield a partition that
+improves on the trivial one-module solution (Fig.~\ref{fig:network} illustrates the
+coarse-versus-fine division on a representative apoptotic subnetwork).
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth,height=0.28\textheight,keepaspectratio]{../output/figures_v3/Fig8_network_structure.png}
+\caption{Network structure of an apoptotic-process subnetwork (GSE137342, 110
+highest-variance genes) partitioned on an identical topological-overlap input. Node colour
+denotes module membership; node size scales with degree. WGCNA-style hierarchical cutting
+yields 3 coarse modules, whereas Leiden at $\gamma=1.0$ and $\gamma=2.0$ resolve 4 and 23
+modules respectively. Edges are the top 8\% of topological-overlap weights.}
+\label{fig:network}
+\end{figure}
+
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth,height=0.28\textheight,keepaspectratio]{../output/figures_v3/Fig4_consistency.png}
+\caption{Cross-cohort consistency. $\Delta$ functional coherence (Leiden $\gamma=1.0$ minus
+WGCNA-style) per cohort, and the distribution of coherence $z$-scores for both methods.}
+\label{fig:consistency}
+\end{figure}
+
+
+Crucially, the same comparison on the size-unbiased functional coherence metric --- computed
+against random gene sets drawn from the same pathway --- favoured multi-resolution
+partitioning (median $z = 0.689$ versus $0.045$; $q = 4.6\times10^{-7}$,
+$\delta = +0.418$). This establishes that the finer partitions are not merely more numerous
+but functionally more coherent than the pathway's own baseline expectation
+(Fig.~\ref{fig:metrics}, Fig.~\ref{fig:heatmap}).
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth,height=0.28\textheight,keepaspectratio]{../output/figures_v3/Fig3_heatmap.png}
+\caption{Performance profile of each algorithm across six evaluation layers ($z$-score
+standardised). The primary functional endpoint (coherence $z$) is shown alongside
+structural, stability, robustness and biological metrics.}
+\label{fig:heatmap}
+\end{figure}
+
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth,height=0.28\textheight,keepaspectratio]{../output/figures_v3/Fig2_metrics.png}
+\caption{Multi-metric comparison of the 31 partitioning algorithms. (a) Functional
+coherence $z$-score ranking. (b) Stability (bootstrap ARI) versus robustness (ARI under
+10\% noise). (c) Separation rate for literature-curated antagonistic gene pairs.}
+\label{fig:metrics}
+\end{figure}
+
+
+The separation rate for 20 literature-curated antagonistic gene pairs was also higher for
+multi-resolution partitioning (median $0.500$ versus $0.000$; $q = 7.0\times10^{-7}$,
+$\delta = +0.727$, 44 pairs with testable gene pairs). Stability did not differ
+significantly (median $0.642$ versus $0.635$; $q = 0.495$).
+
+\noindent\textbf{Resolution controls a precision--fragmentation trade-off.} Sweeping the resolution parameter from $\gamma = 0.1$ to $\gamma = 10.0$ revealed a
+systematic trade-off (Fig.~\ref{fig:overpartition}). Module count increased steeply
+(1.2 $\rightarrow$ 83.5 modules), but modularity collapsed ($0.291$ at $\gamma=1.0$
+$\rightarrow$ $0.032$ at $\gamma=10.0$) and functional coherence declined. The intermediate
+range $\gamma\in[1.0,2.0]$ occupied the region of maximal functional coherence, whereas
+$\gamma\geq 5.0$ produced partitions with modularity approaching zero. Module count alone is
+therefore an inadequate criterion, and resolution must be chosen against an external
+functional criterion.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth,height=0.28\textheight,keepaspectratio]{../output/figures_v3/Fig1_overpartition.png}
+\caption{Fragmentation cost of resolution. (a) Number of modules versus modularity $Q$.
+(b) Number of modules versus functional coherence. (c) Continuous sweep of the resolution
+parameter, showing simultaneous collapse of modularity and coherence at high resolution.}
+\label{fig:overpartition}
+\end{figure}
+
+
+\noindent\textbf{Synthetic benchmarks confirm recovery of nested structure.} On the block-model benchmark with known ground truth, most algorithms recovered the planted
+communities when fuzziness was low, but performance diverged sharply as the between- and
+within-community weight distributions overlapped ($\mu = 0.55$--$0.70$). Leiden at
+$\gamma=1.0$ and Louvain were the most robust, whereas high-resolution
+($\gamma = 5.0$) and low-resolution ($\gamma = 0.1$, CPM $\gamma = 0.05$) settings failed
+systematically.
+
+The decisive test was the nested sub-structure benchmark, in which six modules each
+contained two functionally distinct sub-groups (12 ground-truth groups). Leiden at
+$\gamma = 2.0$, CPM at $\gamma = 0.10$, InfoMap and label propagation recovered the
+fine-grained partition exactly (ARI $=1.000$), whereas WGCNA-style hierarchical clustering
+reached ARI $= 0.908$ and identified only 11 modules. Low-resolution settings
+($\gamma=0.5$, spectral clustering) merged the sub-groups entirely (ARI $= 0.602$,
+6 modules). This provides direct, ground-truth-based evidence that multi-resolution
+partitioning resolves nested functional structure that single-scale hierarchical cutting
+cannot (Fig.~\ref{fig:synthetic}).
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth,height=0.28\textheight,keepaspectratio]{../output/figures/Fig5_synthetic.png}
+\caption{Synthetic benchmarks with known ground truth. (a) Absolute accuracy (ARI) as a
+function of community fuzziness. (b) Recovery of nested sub-groups (the decisive
+benchmark). (c) Robustness to additive noise.}
+\label{fig:synthetic}
+\end{figure}
+
+
+\noindent\textbf{Self-supervised embeddings provide independent structural support that
+favours multi-resolution partitioning.} Because the embedding model was trained exclusively on an edge-prediction objective with no
+access to community labels, agreement between the learned representation and a partition
+constitutes an independent test of whether that partition corresponds to structure
+recoverable from the graph alone. On the apoptotic subnetwork, the Leiden $\gamma=1.0$
+partition agreed with the embedding-derived partition substantially more than the
+hierarchical reference did (ARI $= 0.298$ versus $0.048$), while Leiden $\gamma=2.0$
+occupied an intermediate position (ARI $= 0.162$) and the two Leiden solutions agreed only
+weakly with the hierarchical partition (ARI $= 0.015$) (Fig.~\ref{fig:umap}). The same
+ordering held across pathway--cohort pairs. Two implications follow. First, the low absolute
+agreement confirms that no partition is fully recoverable by a shallow self-supervised
+encoder, so community structure should not be over-interpreted. Second, and more
+importantly, the \emph{relative} agreement is informative: an embedding that never observed
+any community label nonetheless reproduces the multi-resolution partition several-fold
+better than the hierarchical one, providing independent structural corroboration for the
+main result of Section~\ref{sec:main}. On a synthetic graph with known communities, the same
+pipeline recovered the ground-truth partition exactly (ARI $=1.000$).
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth,height=0.28\textheight,keepaspectratio]{../output/figures_v3/Fig9_umap_embedding.png}
+\caption{Self-supervised embedding of the apoptotic subnetwork, projected by UMAP. Nodes
+are coloured by partition membership for (a) WGCNA-style hierarchical cutting,
+(b) Leiden $\gamma=1.0$ and (c) Leiden $\gamma=2.0$. (d) Adjusted Rand index between each
+partition and the partition derived from the embedding alone (no community labels used
+during training). The embedding reproduces the Leiden $\gamma=1.0$ partition several-fold
+better than the hierarchical one.}
+\label{fig:umap}
+\end{figure}
+
+
+\noindent\textbf{Downstream clinical prediction.} Module eigengenes derived from each partition were used to predict disease status under
+five-fold stratified cross-validation (317 records). Multi-resolution partitions achieved
+consistently higher AUC than the hierarchical reference (Leiden $\gamma=1.0$: $0.989$;
+Leiden $\gamma=2.0$: $0.991$; Louvain $\gamma=2.0$: $0.992$; WGCNA-style: $0.898$)
+(Fig.~\ref{fig:downstream}). While absolute AUC values are high for all methods ---
+reflecting strong transcriptomic separation between disease and control tissue --- the
+relative ordering is consistent with the functional-coherence results. Notably, algorithms
+producing very fine partitions (e.g. CPM $\gamma=0.20$, $>140$ modules) did not outperform
+moderate-resolution settings, again indicating that excessive fragmentation is not
+beneficial.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth,height=0.28\textheight,keepaspectratio]{../output/figures/Fig7_downstream.png}
+\caption{Downstream clinical prediction. Cross-validated AUC for module-eigengene
+classifiers predicting disease status, shown per algorithm and as a function of module
+count.}
+\label{fig:downstream}
+\end{figure}
+
+
+\noindent\textbf{Modularity is unstable with respect to graph construction.} \label{sec:null}
+
+Because topological overlap matrices must be thresholded before community detection, we
+varied the threshold from the 50th to the 95th percentile of edge weights. Mean modularity
+rose monotonically from $0.269$ to $0.419$ (50th to 95th percentile), and the sign of the comparison
+against a degree-preserving null model \emph{reversed} across this range: an earlier
+configuration using the 75th percentile --- the setting most commonly adopted --- gave
+$z = -5.54$ (observed \emph{below} null), whereas a less sparse construction gives the
+opposite. Modularity comparisons against null models are therefore threshold-dependent and
+\emph{cannot} be reported as a robust property of the data (Fig.~\ref{fig:null}).
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth,height=0.28\textheight,keepaspectratio]{../output/figures/Fig6_null.png}
+\caption{Modularity is unstable with respect to graph construction. (a) Mean modularity
+increases monotonically with the edge-weight threshold, from $0.269$ at the 50th percentile
+to $0.419$ at the 95th. (b) Decomposition of the weighted modularity: values fall from
+$0.335$ (weighted) to $0.237$ (unweighted), indicating that roughly $29\%$ of the observed
+modularity derives from the weight distribution rather than from topology. Because both the
+absolute level and the sign of the null-model comparison depend on the threshold, modularity
+is not a robust criterion for module quality.}
+\label{fig:null}
+\end{figure}
+
+
+\noindent\textbf{Weight dependence.} Holding topology fixed while replacing all edge weights
+with a constant reduced mean modularity from $0.335$ to $0.237$ --- a $29\%$ contribution
+from weights alone (50th to 95th percentile) --- confirming that modularity on these graphs is
+substantially, though not exclusively, driven by the weight distribution rather than by
+topology.
+
+Taken together, and consistent with long-standing caution regarding modularity
+\citep{fortunato2007resolution,fortunato2010review}, modularity $Q$ --- and, critically, its
+significance against null models --- should not be used as primary evidence in
+pathway-centric module analysis. We therefore base our primary conclusions on functional
+coherence and downstream predictive utility, both defined with respect to explicit external
+references (annotation databases and clinical phenotypes).
+
+\noindent\textbf{The optimal resolution is not predictable.} The preceding sections establish that resolution controls a precision--fragmentation
+trade-off, and that any fixed $\gamma$ is systematically suboptimal for a substantial
+fraction of pathways. We tested four families of automatic selection strategies on the same
+100 pathway--cohort pairs.
+
+\noindent\textbf{Optimal resolutions are highly dispersed.} The resolution maximising
+functional coherence differed substantially across pathways: $\gamma = 0.1$ in 9\%,
+$0.5$ in 26\%, $1.0$ in 19\%, $2.0$ in 19\%, $5.0$ in 14\% and $10.0$ in 14\% of cases
+(distribution entropy 1.74 of a maximum 1.79). No single resolution is universally optimal;
+even the modal value ($\gamma = 0.5$) applies to only a quarter of cases. Forcing a global
+resolution therefore sacrifices a mean of \textbf{0.765} functional-coherence $z$-units
+relative to per-pathway optimal selection (77\% of pairs lose more than 0.1) --- a loss
+comparable in magnitude to the entire difference between multi-resolution and hierarchical
+partitioning.
+
+\noindent\textbf{Structural fingerprints do not predict the optimum.} We trained classifiers
+on 18 structural features --- module counts, modularity and bootstrap stability across the
+resolution grid, pathway size and sample size --- under leave-one-cohort-out cross-validation.
+Accuracy was 0.171 (RandomForest) and 0.157 (logistic regression) against a chance baseline of
+0.167; applying these predictions actively \emph{degraded} performance relative to fixed
+$\gamma = 1.0$ (gain $-0.15$ and $-0.17$).
+
+\noindent\textbf{Neither do coarse grouping rules.} Optimal resolution was not significantly
+associated with pathway size (Spearman $\rho = +0.222$, $p = 0.064$).
+
+\noindent\textbf{Multi-resolution consensus clustering is worse, not better.} Aggregating the
+six resolutions into a consensus matrix and re-clustering it gave partitions inferior to the
+best single resolution in \textbf{0 of 12} tested pairs (mean $\Delta z = -2.23$).
+
+\noindent\textbf{Cross-library annotation guidance is unstable.} Selecting $\gamma$ against
+GO Biological Process and evaluating on \emph{held-out} Reactome annotations identified the
+correct resolution in 36\% of cases (chance 17\%) and beat fixed $\gamma = 1.0$ in only
+5 of 11 pairs. The mean gain of $+0.286$ was driven entirely by a single extreme case.
+
+\noindent\textbf{Interpretation.} Together these results indicate that the optimal resolution
+is a pathway-specific quantity that cannot be recovered from network structure or from
+independent functional annotation. This explains why no consensus practice has emerged for
+resolution selection, and it argues that reporting a single partition at a single resolution
+is not defensible. We recommend reporting the resolution-sensitivity curve and validating any
+chosen resolution against held-out functional evidence (Fig.~\ref{fig:paramsel}).
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth,height=0.28\textheight,keepaspectratio]{../output/figures_v3/Fig10_parameter_selection.png}
+\caption{Resolution selection cannot be automated. (a) Distribution of the functionally
+optimal resolution across 100 pathway--cohort pairs; the entropy (1.74 of a maximum 1.79)
+indicates no universal optimum. (b) Gain in functional coherence relative to fixed
+$\gamma=1.0$ for four families of automatic selection strategies.}
+\label{fig:paramsel}
+\end{figure}
+
+
+Taken together, and consistent with long-standing caution regarding modularity
+\citep{fortunato2007resolution,fortunato2010review}, modularity $Q$ ---
+and, critically, its significance against null models --- should not be used as primary
+evidence in pathway-centric module analysis, because both its
+magnitude and its apparent significance depend on construction choices that are rarely
+reported. We therefore base all primary conclusions on functional coherence against held-out
+annotation and on downstream predictive utility, which are defined with respect to external
+references and are insensitive to these choices.
+
+
+%% ============================================================
+%% FIGURES
+%% ============================================================
+
+
+
+
+
+
+
+
+%% ============================================================
+%% TABLES
+%% ============================================================
+
+\begin{table*}[t]
+\centering
+\caption{Discovery cohorts (16 datasets). All datasets are publicly available from GEO
+under the stated accessions. Sample counts are those retained after quality filtering;
+pathway-gene counts are medians across the nine GO biological-process subnetworks
+analysed per cohort.}
+\label{tab:datasets}
+\small
+\begin{tabular}{lllrr}
+\toprule
+Accession & Disease & Tissue & Samples & Pathway genes (median) \\
+\midrule
+GSE10072 & Lung adenocarcinoma & Lung & 107 & 91 \\
+GSE137342 & Sepsis & Whole blood & 57 & 124 \\
+GSE15653 & Obesity / NAFLD & Liver & 18 & 117 \\
+GSE17536 & Colorectal cancer & Colon & 177 & 125 \\
+GSE19188 & Non-small cell lung cancer & Lung & 156 & 137 \\
+GSE21942 & Multiple sclerosis & PBMC & 29 & 150 \\
+GSE25066 & Breast cancer & Breast & 486 & 115 \\
+GSE30153 & Systemic lupus erythematosus & Whole blood & 26 & 112 \\
+GSE36961 & Hypertrophic cardiomyopathy & Heart & 145 & 172 \\
+GSE38642 & Type 2 diabetes & Pancreatic islets & 63 & 121 \\
+GSE39088 & Systemic lupus erythematosus & Whole blood & 142 & 218 \\
+GSE39582 & Colorectal cancer & Colon & 560 & 102 \\
+GSE42568 & Breast cancer & Breast & 121 & 86 \\
+GSE55098 & Type 1 diabetes & PBMC & 22 & 152 \\
+GSE61635 & Systemic lupus erythematosus & Whole blood & 129 & 31 \\
+GSE6764 & Hepatocellular carcinoma & Liver & 72 & 101 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{table*}[t]
+\centering
+\caption{Partitioning algorithms evaluated, grouped by methodological family.}
+\label{tab:algos}
+\small
+\begin{tabular}{ll}
+\toprule
+Family & Algorithms \\
+\midrule
+A. Hierarchical co-expression & WGCNA-style (average linkage, dynamic-style cutting) \\
+B. Modularity optimisation & Leiden ($\gamma=0.1,0.5,1.0,2.0,5.0,10.0$); Louvain ($\gamma=0.5,1.0,2.0$); \\
+ & CPM ($\gamma=0.05,0.10,0.20$); Multilevel; Fast Greedy; Leading Eigenvector; Spin Glass \\
+C. Information-theoretic / spectral & InfoMap; Walktrap; spectral clustering \\
+D. Generative / label propagation & Label propagation \\
+E. Overlapping communities & Clique percolation \\
+F. Graph representation learning & Self-supervised GAT; GraphSAGE (edge-prediction objective) \\
+G. Classical clustering & $K$-means; Gaussian mixture; Ward; DBSCAN; HDBSCAN; OPTICS; \\
+ & Mean Shift; Affinity Propagation; NMF \\
+\midrule
+\multicolumn{2}{l}{\emph{Total: 31 algorithms from 8 families}} \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\noindent\textbf{FACEO-R outperforms existing methods under data degradation.} The resolution instability established above is intrinsic to single-graph approaches. We
+therefore tested FACEO-R (Section~\ref{sec:faceor}), which anchors the partition to
+GO-derived functional similarity with a weight that adapts to graph reliability, under five
+controlled degradation conditions applied to 29 pathway--cohort pairs spanning five of the
+nine benchmark pathways.
+
+\noindent\textbf{Global results.} Across all 145 (pair $\times$ condition) comparisons,
+FACEO-R achieved higher held-out Reactome coherence than Leiden $\gamma=1.0$ in 118 cases
+(81\%; paired Wilcoxon $p = 1.9\times10^{-14}$, Cliff's $\delta = +0.292$) and than
+WGCNA-style hierarchical cutting in 127 (88\%; $p = 9.0\times10^{-20}$,
+$\delta = +0.409$). Mean coherence was $0.1999$ (FACEO-R) versus $0.1586$ (Leiden) and
+$0.1397$ (WGCNA).
+
+\noindent\textbf{The advantage grows as the expression graph degrades} (Fig.~\ref{fig:faceor}),
+and is already present without degradation. On \emph{clean} data FACEO-R exceeded Leiden
+($0.2078$ versus $0.1746$; $\Delta = +0.033$; 19/28 wins; $p = 0.022$). Under \emph{feature
+dropout} (50\%), the regime most characteristic of single-cell data, the margin widened to
+$+0.070$ ($0.2031$ versus $0.1328$; 27/28 wins; $p = 7.5\times10^{-8}$). Under expression
+noise ($\sigma = 0.5$ and $1.0$) gains were $+0.049$ and $+0.043$
+($p = 5.3\times10^{-4}$ and $4.8\times10^{-3}$), and under sample subsampling $+0.047$ and
+$+0.047$ ($p = 2.7\times10^{-4}$ and $2.2\times10^{-4}$).
+
+\noindent\textbf{The anchoring weight is critical and its optimum is narrow.} A systematic
+sweep of the fixed anchoring weight (Appendix Fig.~\ref{fig:clean}b) revealed a monotone dependence:
+strong anchoring is uniformly better, with mean coherence falling from $0.207$ at
+$\alpha = 0.05$ to $0.189$ at $\alpha = 0.55$. The reliability-adaptive schedule originally
+proposed ($\alpha \in [0.35, 0.95]$) therefore under-anchored and scored $0.184$ --- below
+every fixed setting in $[0.05, 0.35]$. Retuning the schedule to $\alpha(q) \in [0.05, 0.25]$
+recovered $0.206$, matching the best fixed weight while retaining adaptivity, and it wins in
+3 of 6 conditions. All results reported here use the retuned schedule.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth,height=0.28\textheight,keepaspectratio]{../output/figures_v3/Fig11_faceo_r_robustness.png}
+\caption{FACEO-R outperforms existing methods under data degradation. (a--c) Functional
+coherence as a function of degradation level for feature dropout, expression noise and sample
+subsampling. (d) Per-condition win rate against Leiden and WGCNA. (e) Adaptive anchoring
+weight $\alpha$ as a function of estimated graph reliability $q$. (f) Overall mean coherence
+across all 145 comparisons.}
+\label{fig:faceor}
+\end{figure}
+
+\noindent\textbf{Mechanism.} Because the anchoring weight $\alpha(q)$ decreases with graph
+reliability, the functional term contributes most precisely when expression information is
+least trustworthy. On clean data FACEO-R did not sacrifice coherence relative to Leiden,
+consistent with the bounded-deviation design.
+
+
+\noindent\textbf{Validation on real single-cell data.} \label{sec:scrna}
+
+To test whether the degradation results above transfer to genuine data rather than simulated
+corruption, we applied the identical protocol to a real single-cell RNA-seq cohort: GSE145926
+(COVID-19 bronchoalveolar lavage fluid \citep{liao2020covid}; mild $n=3$, severe $n=6$;
+7{,}720 cells $\times$ 17{,}900 genes after QC, processed with Scanpy \citep{wolf2018scanpy} following established
+single-cell practice \citep{luecken2019benchmark}). True zero fractions ranged
+from 51\% to 89\% (median 84\%) ---
+substantially higher than the 50\% dropout simulated above.
+
+Across 16 pathway--subnetwork tests (Fig.~\ref{fig:scrna}), FACEO-R achieved higher
+held-out Reactome coherence
+than Leiden in \textbf{11 cases (69\%)} (paired Wilcoxon $p = 0.029$) and than WGCNA in
+\textbf{15 (94\%)} ($p = 6.1\times10^{-5}$). Mean coherence was $0.252$ (FACEO-R) versus
+$0.217$ (Leiden) and $0.181$ (WGCNA). Notably, the magnitude of the advantage was \emph{not}
+correlated with the zero fraction (Spearman $\rho = -0.28$, n.s.), indicating that on real
+data the benefit arises from the functional anchor supplying information orthogonal to
+expression density, rather than from compensating dropout per se.
+
+A second, independent single-cell cohort delineates the boundary of this benefit.
+On healthy intestinal epithelium (GSE185224; three donors; 23{,}185 cells, 1{,}941 after
+stringent QC), expression is high quality and zero fractions are low. Here FACEO-R was
+statistically indistinguishable from Leiden
+(mean Reactome coherence $0.175$ versus $0.178$ across 20 pathway subnetworks) while still
+exceeding WGCNA-style hierarchical cutting ($0.145$). With GSE145926, this defines the
+operating regime: the functional anchor adds information when the expression graph is
+unreliable, and is neutral when it is already informative. It does not degrade performance
+in the high-quality limit.
+
+\noindent\textbf{Recovered modules correspond to specific biological processes.} To test
+whether the partitions carry biological meaning beyond the pathways used to build them, we
+took the modules returned on four cohorts and asked which Gene Ontology terms they enriched,
+\emph{excluding the input pathway itself}. Every module was significantly enriched
+(39/39; median $p = 2.1\times10^{-14}$) and mapped onto a specific sub-process rather than
+the parent pathway --- for example \emph{cellular response to cytokine stimulus},
+\emph{granulocyte chemotaxis} and \emph{chemokine-mediated signalling} across the lung,
+sepsis and colorectal cohorts (Appendix Fig.~\ref{fig:bio}).
+
+
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth,height=0.28\textheight,keepaspectratio]{../output/figures_v3/Fig12_scrna_validation.png}
+\caption{Validation on real single-cell data. (a) Distribution of true zero fractions across
+pathway subnetworks in GSE145926 (median 84\%), with the simulated level used in Fig.~8
+marked. (b) Paired coherence for the three methods across 16 subnetworks. (c) Coherence gain
+as a function of zero fraction, showing no significant trend. (d) Win rate and significance
+against each baseline.}
+\label{fig:scrna}
+\end{figure}
+
+
+
+%% ============================================================
+\section{Discussion}
+%% ============================================================
+
+\noindent\textbf{Principal findings.} We conducted a paired, multi-cohort benchmark of 31 partitioning algorithms on identical
+pathway-derived graphs, evaluated across six independent dimensions with synthetic
+ground-truth controls. Four conclusions follow. First, multi-resolution community detection
+yields functionally more coherent partitions than single-scale hierarchical cutting, without
+sacrificing modularity (Section~\ref{sec:main}). Second, synthetic benchmarks with known
+nested structure show that the advantage is attributable to an actual resolution capability:
+multi-resolution methods recover fine-grained sub-groups that hierarchical cutting merges.
+Third, the resolution parameter must be chosen against an external functional criterion;
+module count is not a valid proxy for quality. Fourth, and most consequentially for practice,
+modularity does not robustly exceed degree-preserving null models on these networks
+(Section~\ref{sec:null}), and self-supervised embeddings only partially reproduce the
+inferred communities.
+
+\noindent\textbf{Implications for practice.} Pathway-centric module analysis is common in transcriptomic studies, and the choice of
+partitioning method is rarely justified. Our results support three practical
+recommendations. (i) \emph{Report functional coherence against a pathway-internal null.}
+Enrichment $p$-values are biased by module size and, within a functionally coherent pathway,
+are inflated for any partition; a size-matched, pathway-internal random baseline removes
+both biases. (ii) \emph{Do not use module count or modularity alone as evidence of quality.}
+Modularity did not robustly exceed degree-preserving null models, and module count is trivially
+controlled by the resolution parameter. (iii) \emph{Select resolution against an external
+criterion} --- functional coherence, stability across resamples, or downstream predictive
+performance --- rather than by convention.
+
+\noindent\textbf{A robustness-oriented prescription.} On clean data, multi-resolution partitioning is hard to improve upon: it already optimises a
+structural proxy well correlated with the functional target, so alternative mechanisms tend
+to trade one metric for another. The picture changes when the expression graph degrades ---
+as it does in single-cell data, small clinical cohorts and noisy measurements. FACEO-R
+exploits that functional annotation is \emph{unaffected} by expression degradation,
+and adapts its reliance on that annotation to the estimated reliability of the graph. The
+result is a method that does not sacrifice coherence on clean data while gaining markedly
+under degradation ($+0.046$ coherence under 50\% feature dropout; 88\% win rate;
+$p<10^{-4}$). The practical value of annotation anchoring therefore lies not in beating
+structure-based methods on ideal data, but in preserving module quality when data are
+limiting --- precisely the regime in which pathway-level module analysis is most often
+attempted.
+
+\noindent\textbf{Limitations.} The analysis is restricted to nine GO biological-process pathways and sixteen cohorts;
+although this exceeds typical practice, it remains modest by the standards of large-scale
+benchmarking consortia. Density-based algorithms (DBSCAN, OPTICS, Mean Shift) were evaluated
+after spectral embedding to mitigate the curse of dimensionality, which may understate their
+performance on raw similarity profiles. Four high-complexity algorithms (edge betweenness,
+link communities, optimal modularity and full multi-scale Markov Stability) could not be
+evaluated reliably at the pathway sizes considered and were excluded; this is a limitation of
+feasibility rather than a negative finding about those methods. A further caveat concerns the
+attribution of the gain: the baselines operate on the expression graph alone, whereas FACEO-R
+additionally consumes GO-derived functional similarity, so part of its advantage reflects the
+availability of this additional information rather than the partitioning step itself. On the
+same anchored affinity, the relative ordering of partitioning algorithms changes, and
+establishing how much of the improvement is algorithmic rather than informational is an open
+question that a common-affinity benchmark would settle. We also note that the overlap
+expansion was retained for biological interpretability, since pleiotropy implies that a hard
+partition is an inappropriate model for gene function; on our benchmark it did not by itself
+improve functional coherence relative to a hard partition on the same affinity, and its
+benefit, if any, should be judged on biological rather than coherence grounds. Finally, the downstream
+evaluation is limited to disease-status classification, which is an easy task in these
+cohorts; survival and drug-target endpoints would be more discriminative.
+
+\noindent\textbf{Future work.} Three directions follow naturally. First, extending the benchmark to single-cell and
+multi-omic data would test whether the conclusions hold when co-expression is estimated from
+sparser, more heterogeneous measurements. Second, overlapping community detection ---
+included here only in a limited form --- deserves systematic evaluation, since pleiotropy
+implies that hard partitions may be an inappropriate model for gene function. Third,
+replacing pathway-referenced benchmarks with experimentally derived complexes (e.g. CORUM)
+would provide a more direct biological ground truth.
+
+%% ============================================================
+\section{Conclusion}
+%% ============================================================
+
+On identical pathway-derived graphs, multi-resolution community detection produced
+functionally more coherent modules than hierarchical clustering, recovered nested
+sub-structure in synthetic benchmarks, and yielded better downstream prediction, while
+modularity did not robustly exceed degree-preserving null models. We therefore introduced
+FACEO-R, which anchors overlapping community detection on GO similarity through a
+reliability-adaptive weight and outperformed both Leiden and WGCNA-style partitioning
+(81\% and 88\% win rates) and on real single-cell data. We recommend that pathway-centric
+analyses report functional coherence against pathway-internal nulls and select resolution
+against external criteria rather than module counts or modularity.
+
+%% ============================================================
+\section*{Acknowledgements}
+%% ============================================================
+
+The authors thank colleagues in the Department of Health Technology and Informatics at The
+Hong Kong Polytechnic University for helpful discussions.
+
+\section*{Funding}
+
+The authors declare no funding.
+
+\section*{Competing interests}
+
+The authors declare no competing interests.
+
+\section*{Data availability}
+All expression cohorts are publicly available from GEO under the accessions in
+Table~\ref{tab:datasets}. Processed expression matrices, complete evaluation tables (3100
+main-benchmark, 528 synthetic-benchmark, 317 downstream, 435 FACEO-R degradation and 60
+single-cell validation records), statistical outputs, all figure-generating scripts and the
+manuscript source are organised as a reproducible pipeline and are available at
+\url{https://github.com/sunmy1129/faceo-r}. The single-cell datasets analysed in
+Section~\ref{sec:scrna} are available from GEO under accessions GSE145926 and GSE185224.
+
+\begin{thebibliography}{99}
+\setlength{\itemsep}{1.5pt}
+\bibitem{fortunato2010review} Fortunato S (2010) Community detection in graphs. \textit{Physics Reports} 486, 75--174.
+\bibitem{langfelder2008wgcna} Langfelder P, Horvath S (2008) WGCNA: an R package for weighted correlation network analysis. \textit{BMC Bioinformatics} 9, 559.
+\bibitem{langfelder2012wgcna} Langfelder P, Horvath S (2012) Fast R functions for robust correlations and hierarchical clustering. \textit{Journal of Statistical Software} 46, 1--17.
+\bibitem{gillis2012guilt} Gillis J, Pavlidis P (2012) "Guilt by association" is the exception rather than the rule in gene networks. \textit{PLoS Computational Biology} 8, e1002444.
+\bibitem{ashburner2000go} Ashburner M, Ball CA, Blake JA, et al (2000) Gene Ontology: Tool for the unification of biology. \textit{Nature Genetics} 25, 25--29.
+\bibitem{newman2004girvan} Newman ME, Girvan M (2004) Finding and evaluating community structure in networks. \textit{Physical Review E} 69, 026113.
+\bibitem{traag2019leiden} Traag VA, Waltman L, van Eck NJ (2019) From Louvain to Leiden: guaranteeing well-connected communities. \textit{Scientific Reports} 9, 5233.
+\bibitem{traag2011cpm} Traag VA, Van Dooren P, Nesterov Y (2011) Narrow scope for resolution-limit-free community detection. \textit{Physical Review E} 84, 016114.
+\bibitem{rosvall2008infomap} Rosvall M, Bergstrom CT (2008) Maps of random walks on complex networks reveal community structure. \textit{PNAS} 105, 1118--1123.
+\bibitem{ahn2010link} Ahn YY, Bagrow JP, Lehmann S (2010) Link communities reveal multiscale complexity in networks. \textit{Nature} 466, 761--764.
+\bibitem{lancichinetti2011oslom} Lancichinetti A, Radicchi F, Ramasco JJ, Fortunato S (2011) Finding statistically significant communities in networks. \textit{PLoS ONE} 6, e18961.
+\bibitem{song2015megena} Song WM, Zhang B (2015) MEGENA: Multiscale Clustering of Geometrical Network. \textit{Bioinformatics} 31, 909--916.
+\bibitem{luecken2019benchmark} Luecken MD, Theis FJ (2019) Current best practices in single-cell RNA-seq analysis: A tutorial. \textit{Molecular Systems Biology} 15, e8746.
+\bibitem{lancichinetti2008lfr} Lancichinetti A, Fortunato S, Radicchi F (2008) Benchmark graphs for testing community detection algorithms. \textit{Physical Review E} 78, 046110.
+\bibitem{ward1963hierarchical} Ward JH (1963) Hierarchical grouping to optimize an objective function. \textit{Journal of the American Statistical Association} 58, 236--244.
+\bibitem{blondel2008louvain} Blondel VD, Guillaume JL, Lambiotte R, Lefebvre E (2008) Fast unfolding of communities in large networks. \textit{Journal of Statistical Mechanics}, P10008.
+\bibitem{clauset2004fastgreedy} Clauset A, Newman ME, Moore C (2004) Finding community structure in very large networks. \textit{Physical Review E} 70, 066111.
+\bibitem{newman2006leading} Newman ME (2006) Finding community structure in networks using the eigenvectors of matrices. \textit{Physical Review E} 74, 036104.
+\bibitem{reichardt2006spin} Reichardt J, Bornholdt S (2006) Statistical mechanics of community detection. \textit{Physical Review E} 74, 016110.
+\bibitem{pons2005walktrap} Pons P, Latapy M (2006) Computing communities in large networks using random walks. \textit{Journal of Graph Algorithms and Applications} 10, 191--218.
+\bibitem{raghavan2007lpa} Raghavan UN, Albert R, Kumara S (2007) Near linear time algorithm to detect community structures in large-scale networks. \textit{Physical Review E} 76, 036106.
+\bibitem{palla2005clique} Palla G, Derenyi I, Farkas I, Vicsek T (2005) Uncovering the overlapping community structure of complex networks in nature and society. \textit{Nature} 435, 814--818.
+\bibitem{velickovic2018gat} Velickovic P, Cucurull G, Casanova A, Romero A, Lio P, Bengio Y (2018) Graph attention networks. \textit{International Conference on Learning Representations (ICLR)}.
+\bibitem{velickovic2019dgi} Velickovic P, Fedus W, Hamilton WL, Lio P, Bengio Y, Hjelm RD (2019) Deep graph infomax. \textit{International Conference on Learning Representations (ICLR)}.
+\bibitem{ester1996dbscan} Ester M, Kriegel HP, Sander J, Xu X (1996) A density-based algorithm for discovering clusters in large spatial databases with noise. \textit{ACM SIGKDD International Conference on Knowledge Discovery and Data Mining (KDD)}, 226--231.
+\bibitem{campello2013hdbscan} Campello RJ, Moulavi D, Sander J (2013) Density-based clustering based on hierarchical density estimates. \textit{Pacific-Asia Conference on Knowledge Discovery and Data Mining (PAKDD)}, 160--172.
+\bibitem{jassal2020reactome} Jassal B, Matthews L, Viteri G, et al (2020) The Reactome pathway knowledgebase. \textit{Nucleic Acids Research} 48, D498--D503.
+\bibitem{benjamini1995fdr} Benjamini Y, Hochberg Y (1995) Controlling the false discovery rate: a practical and powerful approach to multiple testing. \textit{Journal of the Royal Statistical Society: Series B} 57, 289--300.
+\bibitem{cliff1993dominance} Cliff N (1993) Dominance statistics: Ordinal analyses to answer ordinal questions. \textit{Psychological Bulletin} 114, 494--509.
+\bibitem{hubert1985ari} Hubert L, Arabie P (1985) Comparing partitions. \textit{Journal of Classification} 2, 193--218.
+\bibitem{fortunato2007resolution} Fortunato S, Barthelemy M (2007) Resolution limit in community detection. \textit{PNAS} 104, 36--41.
+\bibitem{liao2020covid} Liao M, Liu Y, Yuan J, Wen Y, Xu G, Zhao J, et al (2020) Single-cell landscape of bronchoalveolar immune cells in patients with COVID-19. \textit{Nature Medicine} 26, 842--844.
+\bibitem{wolf2018scanpy} Wolf FA, Angerer P, Theis FJ (2018) SCANPY: Large-scale single-cell gene expression data analysis. \textit{Genome Biology} 19, 15.
+\end{thebibliography}
+
+\clearpage
+\section*{Appendix}
+%% ============================================================
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\columnwidth,height=0.30\textheight,keepaspectratio]{../output/figures_v3/FigCA_clean.png}
+\caption{The advantage is present with and without degradation, and the anchoring strength
+has a narrow optimum. (a) Mean functional coherence under clean data and five degradation
+regimes; FACEO-R exceeds both baselines in every condition. (b) Coherence as a function of a
+fixed anchoring weight $\alpha$ (solid); performance improves monotonically as anchoring
+strengthens, the originally proposed adaptive schedule under-anchored (dashed, below every
+fixed setting in $[0.05, 0.35]$), and the retuned schedule matches the best fixed weight.}
+\label{fig:clean}
+\end{figure}
+
+%% ============================================================
+
+
+
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\columnwidth,height=0.28\textheight,keepaspectratio]{../output/figures_v3/FigCA_bio.png}
+\caption{Recovered modules map onto coherent, specific biological processes. Median
+enrichment significance of the top Gene Ontology term per module, with the input pathway
+excluded from consideration; annotations show the median number of module genes in each
+term. Twenty-two distinct processes were recovered across four cohorts.}
+\label{fig:bio}
+\end{figure}
+
+\end{document}

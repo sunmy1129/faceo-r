@@ -19,9 +19,10 @@ prediction), plus synthetic benchmarks with ground truth.
 
 It further implements **FACEO-R**, a functionally anchored overlapping community detection
 method in which the weight of GO-derived functional similarity adapts to the estimated
-reliability of the expression graph. Two properties follow by construction: non-inferiority on
-clean data (it collapses to standard Leiden as graph reliability approaches unity) and
-robustness under degradation.
+reliability of the expression graph. The anchoring weight is capped at
+`alpha_max`, so the functional term never fully overrides expression structure: the method
+degrades gracefully toward a structure-dominant partition when the graph is reliable, and
+shifts weight toward functional similarity when it is not.
 
 ## Environment
 
