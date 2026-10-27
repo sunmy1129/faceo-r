@@ -21,8 +21,8 @@
 \setlength{\abovedisplayshortskip}{2pt}
 \setlength{\belowdisplayshortskip}{2pt}
 \usepackage{caption}
-\captionsetup[figure]{font=footnotesize,labelfont=bf,skip=3.5pt,name={Fig.},labelsep=period}
-\captionsetup[table]{font=footnotesize,labelfont=bf,skip=3.5pt,name={Table},labelsep=period}
+\captionsetup[figure]{font=normalsize,labelfont=bf,skip=3.5pt,name={Fig.},labelsep=period}
+\captionsetup[table]{font=normalsize,labelfont=bf,skip=3.5pt,name={Table},labelsep=period}
 
 % ---- 排版微调：避免溢出、平衡字间距 ----
 \setlength{\emergencystretch}{2.5em}
@@ -35,7 +35,7 @@
 \usepackage{titlesec}
 \titleformat{\section}[hang]{\normalfont\large\bfseries}{\thesection}{0.6em}{}
 \titleformat{\subsection}[hang]{\normalfont\normalsize\bfseries}{\thesubsection}{0.6em}{}
-\titleformat{\subsubsection}[runin]{\normalfont\small\bfseries}{}{0em}{}[.]
+\titleformat{\subsubsection}[runin]{\normalfont\normalsize\bfseries}{}{0em}{}[.]
 \titlespacing*{\section}{0pt}{6pt plus 2pt minus 1pt}{2.5pt}
 \titlespacing*{\subsection}{0pt}{4pt plus 1pt minus 1pt}{1.5pt}
 \titlespacing*{\subsubsection}{0pt}{4pt}{0.5em}
@@ -54,13 +54,13 @@ Robust Pathway Module Discovery\par}
 \vspace{0.85em}
 {\large Mingyu Sun\textsuperscript{2} \quad Weixiong Zhang\textsuperscript{1,\,2,\,3,\,*}\par}
 \vspace{0.28em}
-{\small\textsuperscript{1}Hong Kong Jockey Club STEM Laboratory for Genomics and AI
+{\normalsize\textsuperscript{1}Hong Kong Jockey Club STEM Laboratory for Genomics and AI
 in Healthcare, Hong Kong, China\par}
-{\small\textsuperscript{2}Department of Health Technology and Informatics, The Hong
+{\normalsize\textsuperscript{2}Department of Health Technology and Informatics, The Hong
 Kong Polytechnic University, Hong Kong, China\par}
-{\small\textsuperscript{3}Department of Data Science and Artificial Intelligence,
+{\normalsize\textsuperscript{3}Department of Data Science and Artificial Intelligence,
 The Hong Kong Polytechnic University, Hong Kong, China\par}
-{\small\textsuperscript{*}Correspondence: weixiong.zhang@polyu.edu.hk\par}
+{\normalsize\textsuperscript{*}Correspondence: weixiong.zhang@polyu.edu.hk\par}
 \end{center}
 \vspace{0.35em}
 \hrule height 0.4pt
@@ -137,6 +137,8 @@ algorithm; WGCNA; graph neural networks; self-supervised learning; benchmarking
 \vspace{0.85em}
 }]
 
+\clearpage
+
 \vspace{2pt}
 
 %% ============================================================
@@ -206,27 +208,18 @@ Leiden $\gamma=1.0$ and WGCNA-style partitioning
 under controlled degradation and on clean data (81\% and 88\% win rates; $p = 1.9\times10^{-14}$ and
 $9.0\times10^{-20}$), and replicates on real single-cell data (69\% and 94\% win rates;
 $p = 0.029$ and $6.1\times10^{-5}$).
-\item A \textbf{paired benchmark design} in which 31 partitioning algorithms operate on an
-identical topological overlap matrix per pathway--dataset pair.
-\item A \textbf{six-layer evaluation protocol} separating structural, functional,
-stability, robustness, biological and downstream dimensions, and explicitly avoiding
-module-count-based criteria.
-\item \textbf{Functional coherence with a pathway-internal null}, replacing enrichment
-$p$-values, which are biased by module size, with a size-unbiased $z$-score.
+\item A \textbf{paired benchmark} in which 31 algorithms from eight families share an
+identical topological overlap matrix, evaluated by a \textbf{six-layer protocol} that avoids
+module-count-based criteria and replaces enrichment $p$-values with a size-unbiased $z$-score
+against a pathway-internal null.
 \item A \textbf{self-supervised reformulation} of graph representation learning, removing
-the label leakage inherent in training an embedding model on the community labels it is
-later used to validate.
-\item \textbf{Synthetic benchmarks with absolute ground truth}, including a nested
-sub-structure benchmark that directly tests whether multi-resolution partitioning recovers
-fine-grained functional divisions.
-\item A \textbf{systematic test of automatic resolution selection}, demonstrating that the
-functionally optimal resolution is pathway-specific and cannot be recovered from structural
-fingerprints, coarse grouping rules, multi-resolution consensus clustering or cross-library
-held-out annotation guidance --- to our knowledge the first evidence that no data-driven
-resolution-selection strategy succeeds in this setting.
-\item \textbf{Negative results reported without suppression}: observed modularity does not
-exceed degree-preserving null models, and consensus clustering over resolutions is actively
-harmful ($0/12$ pairs improved).
+label leakage, together with \textbf{synthetic benchmarks with absolute ground truth}.
+\item A \textbf{systematic test of automatic resolution selection}: the functionally optimal
+resolution is pathway-specific and cannot be recovered from structural fingerprints, coarse
+grouping rules, consensus clustering or held-out annotation guidance --- to our knowledge the
+first evidence that no data-driven strategy succeeds in this setting.
+\item \textbf{Negative results reported without suppression}: modularity does not robustly
+exceed degree-preserving nulls, and consensus clustering is actively harmful ($0/12$).
 \end{enumerate}
 
 %% ============================================================
@@ -295,15 +288,8 @@ partitions derived by $k$-means in the embedding space (Section~\ref{sec:selfsup
 \noindent\textbf{Family G (classical clustering).} $K$-means, Gaussian mixture, Ward
 agglomerative clustering \citep{ward1963hierarchical}, DBSCAN \citep{ester1996dbscan},
 HDBSCAN \citep{campello2013hdbscan}, OPTICS, Mean Shift, Affinity Propagation and
-non-negative matrix factorisation. Density-based methods operated in a spectral
-embedding space obtained by Laplacian eigenmaps of the TOM, to avoid the curse of
-dimensionality that affects density estimation on high-dimensional similarity profiles.
-
-\noindent\textbf{Family H (biological prior).} Not applicable in the present design;
-pathway membership is the grouping prior and is shared by all algorithms.
-
-All stochastic algorithms used a fixed seed (42); stability was assessed across bootstrap
-resamples rather than across seeds alone.
+non-negative matrix factorisation, with density-based methods in a Laplacian eigenmap of the TOM. Family H (biological prior) is not applicable here: pathway membership
+is the shared grouping prior.
 
 \noindent\textbf{Self-supervised graph representation learning.} \label{sec:selfsup}
 
@@ -450,7 +436,7 @@ coarse-versus-fine division on a representative apoptotic subnetwork).
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\columnwidth,height=0.26\textheight,keepaspectratio]{../output/figures_v3/Fig8_network_structure.png}
+\includegraphics[width=\columnwidth,height=0.22\textheight,keepaspectratio]{../output/figures_v3/Fig8_network_structure.png}
 \caption{Network structure of an apoptotic-process subnetwork (GSE137342, 110
 highest-variance genes) partitioned on an identical topological-overlap input. Node colour
 denotes module membership; node size scales with degree. WGCNA-style hierarchical cutting
@@ -462,7 +448,7 @@ modules respectively. Edges are the top 8\% of topological-overlap weights.}
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\columnwidth,height=0.26\textheight,keepaspectratio]{../output/figures_v3/Fig4_consistency.png}
+\includegraphics[width=\columnwidth,height=0.22\textheight,keepaspectratio]{../output/figures_v3/Fig4_consistency.png}
 \caption{Cross-cohort consistency. $\Delta$ functional coherence (Leiden $\gamma=1.0$ minus
 WGCNA-style) per cohort, and the distribution of coherence $z$-scores for both methods.}
 \label{fig:consistency}
@@ -478,7 +464,7 @@ but functionally more coherent than the pathway's own baseline expectation
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\columnwidth,height=0.26\textheight,keepaspectratio]{../output/figures_v3/Fig3_heatmap.png}
+\includegraphics[width=\columnwidth,height=0.22\textheight,keepaspectratio]{../output/figures_v3/Fig3_heatmap.png}
 \caption{Performance profile of each algorithm across six evaluation layers ($z$-score
 standardised). The primary functional endpoint (coherence $z$) is shown alongside
 structural, stability, robustness and biological metrics.}
@@ -488,7 +474,7 @@ structural, stability, robustness and biological metrics.}
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\columnwidth,height=0.26\textheight,keepaspectratio]{../output/figures_v3/Fig2_metrics.png}
+\includegraphics[width=\columnwidth,height=0.22\textheight,keepaspectratio]{../output/figures_v3/Fig2_metrics.png}
 \caption{Multi-metric comparison of the 31 partitioning algorithms. (a) Functional
 coherence $z$-score ranking. (b) Stability (bootstrap ARI) versus robustness (ARI under
 10\% noise). (c) Separation rate for literature-curated antagonistic gene pairs.}
@@ -512,7 +498,7 @@ functional criterion.
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\columnwidth,height=0.26\textheight,keepaspectratio]{../output/figures_v3/Fig1_overpartition.png}
+\includegraphics[width=\columnwidth,height=0.22\textheight,keepaspectratio]{../output/figures_v3/Fig1_overpartition.png}
 \caption{Fragmentation cost of resolution. (a) Number of modules versus modularity $Q$.
 (b) Number of modules versus functional coherence. (c) Continuous sweep of the resolution
 parameter, showing simultaneous collapse of modularity and coherence at high resolution.}
@@ -539,7 +525,7 @@ cannot (Fig.~\ref{fig:synthetic}).
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\columnwidth,height=0.26\textheight,keepaspectratio]{../output/figures/Fig5_synthetic.png}
+\includegraphics[width=\columnwidth,height=0.22\textheight,keepaspectratio]{../output/figures/Fig5_synthetic.png}
 \caption{Synthetic benchmarks with known ground truth. (a) Absolute accuracy (ARI) as a
 function of community fuzziness. (b) Recovery of nested sub-groups (the decisive
 benchmark). (c) Robustness to additive noise.}
@@ -555,7 +541,7 @@ recoverable from the graph alone. On the apoptotic subnetwork, the Leiden $\gamm
 partition agreed with the embedding-derived partition substantially more than the
 hierarchical reference did (ARI $= 0.298$ versus $0.048$), while Leiden $\gamma=2.0$
 occupied an intermediate position (ARI $= 0.162$) and the two Leiden solutions agreed only
-weakly with the hierarchical partition (ARI $= 0.015$) (Fig.~\ref{fig:umap}). The same
+weakly with the hierarchical partition (ARI $= 0.015$) (Supplementary Fig.~S3). The same
 ordering held across pathway--cohort pairs. Two implications follow. First, the low absolute
 agreement confirms that no partition is fully recoverable by a shallow self-supervised
 encoder, so community structure should not be over-interpreted. Second, and more
@@ -564,18 +550,6 @@ any community label nonetheless reproduces the multi-resolution partition severa
 better than the hierarchical one, providing independent structural corroboration for the
 main result of Section~\ref{sec:main}. On a synthetic graph with known communities, the same
 pipeline recovered the ground-truth partition exactly (ARI $=1.000$).
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\columnwidth,height=0.26\textheight,keepaspectratio]{../output/figures_v3/Fig9_umap_embedding.png}
-\caption{Self-supervised embedding of the apoptotic subnetwork, projected by UMAP. Nodes
-are coloured by partition membership for (a) WGCNA-style hierarchical cutting,
-(b) Leiden $\gamma=1.0$ and (c) Leiden $\gamma=2.0$. (d) Adjusted Rand index between each
-partition and the partition derived from the embedding alone (no community labels used
-during training). The embedding reproduces the Leiden $\gamma=1.0$ partition several-fold
-better than the hierarchical one.}
-\label{fig:umap}
-\end{figure}
 
 
 \noindent\textbf{Downstream clinical prediction.} Module eigengenes derived from each partition were used to predict disease status under
@@ -591,7 +565,7 @@ beneficial.
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\columnwidth,height=0.26\textheight,keepaspectratio]{../output/figures/Fig7_downstream.png}
+\includegraphics[width=\columnwidth,height=0.22\textheight,keepaspectratio]{../output/figures/Fig7_downstream.png}
 \caption{Downstream clinical prediction. Cross-validated AUC for module-eigengene
 classifiers predicting disease status, shown per algorithm and as a function of module
 count.}
@@ -612,7 +586,7 @@ opposite. Modularity comparisons against null models are therefore threshold-dep
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\columnwidth,height=0.26\textheight,keepaspectratio]{../output/figures/Fig6_null.png}
+\includegraphics[width=\columnwidth,height=0.22\textheight,keepaspectratio]{../output/figures/Fig6_null.png}
 \caption{Modularity is unstable with respect to graph construction. (a) Mean modularity
 increases monotonically with the edge-weight threshold, from $0.269$ at the 50th percentile
 to $0.419$ at the 95th. (b) Decomposition of the weighted modularity: values fall from
@@ -680,7 +654,7 @@ chosen resolution against held-out functional evidence (Fig.~\ref{fig:paramsel})
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\columnwidth,height=0.26\textheight,keepaspectratio]{../output/figures_v3/Fig10_parameter_selection.png}
+\includegraphics[width=\columnwidth,height=0.22\textheight,keepaspectratio]{../output/figures_v3/Fig10_parameter_selection.png}
 \caption{Resolution selection cannot be automated. (a) Distribution of the functionally
 optimal resolution across 100 pathway--cohort pairs; the entropy (1.74 of a maximum 1.79)
 indicates no universal optimum. (b) Gain in functional coherence relative to fixed
@@ -721,7 +695,7 @@ under the stated accessions. Sample counts are those retained after quality filt
 pathway-gene counts are medians across the nine GO biological-process subnetworks
 analysed per cohort.}
 \label{tab:datasets}
-\small
+\normalsize
 \begin{tabular}{lllrr}
 \toprule
 Accession & Disease & Tissue & Samples & Pathway genes (median) \\
@@ -750,7 +724,7 @@ GSE6764 & Hepatocellular carcinoma & Liver & 72 & 101 \\
 \centering
 \caption{Partitioning algorithms evaluated, grouped by methodological family.}
 \label{tab:algos}
-\small
+\normalsize
 \begin{tabular}{ll}
 \toprule
 Family & Algorithms \\
@@ -803,7 +777,7 @@ recovered $0.206$, matching the best fixed weight while retaining adaptivity, an
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\columnwidth,height=0.26\textheight,keepaspectratio]{../output/figures_v3/Fig11_faceo_r_robustness.png}
+\includegraphics[width=\columnwidth,height=0.22\textheight,keepaspectratio]{../output/figures_v3/Fig11_faceo_r_robustness.png}
 \caption{FACEO-R outperforms existing methods under data degradation. (a--c) Functional
 coherence as a function of degradation level for feature dropout, expression noise and sample
 subsampling. (d) Per-condition win rate against Leiden and WGCNA. (e) Adaptive anchoring
@@ -860,7 +834,7 @@ sepsis and colorectal cohorts (Supplementary Fig.~S2).
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\columnwidth,height=0.26\textheight,keepaspectratio]{../output/figures_v3/Fig12_scrna_validation.png}
+\includegraphics[width=\columnwidth,height=0.22\textheight,keepaspectratio]{../output/figures_v3/Fig12_scrna_validation.png}
 \caption{Validation on real single-cell data. (a) Distribution of true zero fractions across
 pathway subnetworks in GSE145926 (median 84\%), with the simulated level used in Fig.~8
 marked. (b) Paired coherence for the three methods across 16 subnetworks. (c) Coherence gain
