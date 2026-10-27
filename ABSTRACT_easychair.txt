@@ -3,7 +3,7 @@ Title: FACEO-R: Functionally Anchored Overlapping Community Detection for Robust
 Authors: Mingyu Sun, Weixiong Zhang
 ============================================================
 
-Weighted gene co-expression network analysis (WGCNA) and its
+Motivation. Weighted gene co-expression network analysis (WGCNA) and its
 variants remain the dominant paradigm for partitioning genes into functional modules.
 We treat the validity of this paradigm as a statistical question rather than a modelling
 choice, and test it on a fixed benchmark with strictly paired comparisons and null models
